@@ -10,7 +10,7 @@ using System.Windows;
 
 namespace HelloDynamo
 {
-    public class SayHello : IViewExtension
+    public class ViewExtensionLoaded : IViewExtension
     {
         public string UniqueId => "5E85F38F-0A19-4F24-9E18-96845764780C";
 
