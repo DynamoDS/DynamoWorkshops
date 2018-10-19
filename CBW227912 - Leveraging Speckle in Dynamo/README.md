@@ -1,0 +1,4 @@
+# CBW227912 - Leveraging Speckle in Dynamo
+Matteo Cominetti
+
+Join this breakout session and learn how to build an extension! We'll examine an existing one and understand how it works. You'll have the opportunity to modify it, break it, and fix it. We'll see how extensions can have a user interface or just run in the background. We'll see how extensions can be used to interact with nodes on the canvas, with the graph itself and with the Dynamo View Model. We'll also see how to set up Visual Studio to automatically build and bundle the extension with other packages for release on the package manager.
