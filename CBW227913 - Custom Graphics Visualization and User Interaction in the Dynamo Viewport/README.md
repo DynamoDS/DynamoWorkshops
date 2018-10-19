@@ -1,0 +1,4 @@
+# CBW227913 - Custom Graphics Visualization and User Interaction in the Dynamo Viewport
+Long Nguyen
+
+This session focuses on building customized rendering workflows in the Dynamo 3D Background Viewport, allowing very efficient display of geometries. Furthermore, by tracking the mouse position in the 3D viewport, interesting ways for users to directly manipulating the 3D objects can also be done! This will open up many possibilities for integrating exciting computational design algorithms into Dynamo, especially those that relies on iterative algorithms commonly found in computational geometry, optimization, simulation, machine learning, etc... An example of what can be achieved with this kind of approach is DynaShape, which features real-time interactive physical and geometric constraint solver.
