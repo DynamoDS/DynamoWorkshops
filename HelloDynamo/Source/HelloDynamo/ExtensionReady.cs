@@ -16,19 +16,20 @@ namespace HelloDynamo
 
         public void Dispose() { }
 
-        public void Ready(ReadyParams sp)
+        public void Ready(ReadyParams rp)
         {
             MessageBox.Show("Extension is ready!");
-            //todo implement a meaningful and easy to access event 
-            sp.CurrentWorkspaceChanged += Sp_CurrentWorkspaceChanged;
+
+            // we can register our own events that will be triggered when specific things happen in Dynamo
+            // a reference to the ReadyParams is needed to do this, so we pass it on
+            Events.RegisterEventHandlers(rp);
         }
 
-        private void Sp_CurrentWorkspaceChanged(Dynamo.Graph.Workspaces.IWorkspaceModel obj)
+
+        public void Shutdown()
         {
-            MessageBox.Show($"Congratulations on opening{obj.Name}");
+            Events.UnregisterEventHandlers();
         }
-
-        public void Shutdown() { }
 
         public void Startup(StartupParams sp) { }
     }
