@@ -1,4 +1,0 @@
-﻿<ExtensionDefinition>
-  <AssemblyPath>HelloDynamo.dll</AssemblyPath>
-  <TypeName>HelloDynamo.ExtensionExample</TypeName>
-</ExtensionDefinition>
