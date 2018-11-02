@@ -16,6 +16,13 @@ namespace HelloDynamo
 
         public void Dispose() { }
 
+        /// <summary>
+        /// Method that is called when Dynamo has finished loading and is ready to be used.
+        /// </summary>
+        /// <param name="rp">
+        /// Parameters that provide references to Dynamo commands, settings and events.
+        /// This object is supplied by Dynamo itself.
+        /// </param>
         public void Ready(ReadyParams rp)
         {
             MessageBox.Show("Extension is ready!");
@@ -25,12 +32,18 @@ namespace HelloDynamo
             Events.RegisterEventHandlers(rp);
         }
 
-
+        /// <summary>
+        /// Method that is called when the host Dynamo application is closed.
+        /// </summary>
         public void Shutdown()
         {
             Events.UnregisterEventHandlers();
         }
 
+        /// <summary>
+        /// Method that is called when Dynamo starts, but is not yet ready to be used.
+        /// </summary>
+        /// <param name="sp">Parameters that provide references to Dynamo settings and version.</param>
         public void Startup(StartupParams sp) { }
     }
 }
