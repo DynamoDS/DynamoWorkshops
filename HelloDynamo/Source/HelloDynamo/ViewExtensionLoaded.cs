@@ -16,16 +16,29 @@ namespace HelloDynamo
 
         public string Name => "Hello Dynamo";
 
-        public void Startup(ViewStartupParams p) { }
+        /// <summary>
+        /// Method that is called when Dynamo starts, but is not yet ready to be used.
+        /// </summary>
+        /// <param name="vsp">Parameters that provide references to Dynamo settings, version and extension manager.</param>
+        public void Startup(ViewStartupParams vsp) { }
 
-        public void Loaded(ViewLoadedParams p)
+        /// <summary>
+        /// Method that is called when Dynamo has finished loading and the UI is ready to be interacted with.
+        /// </summary>
+        /// <param name="vlp">
+        /// Parameters that provide references to Dynamo commands, settings, events and
+        /// Dynamo UI items like menus or the background preview. This object is supplied by Dynamo itself.
+        /// </param>
+        public void Loaded(ViewLoadedParams vlp)
         {
             MessageBox.Show("Hello there, viewExtension has loaded!");
         }
 
+        /// <summary>
+        /// Method that is called when the host Dynamo application is closed.
+        /// </summary>
         public void Shutdown() { }
 
         public void Dispose() { }
-
     }
 }
