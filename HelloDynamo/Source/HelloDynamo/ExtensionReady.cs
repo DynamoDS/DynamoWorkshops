@@ -14,7 +14,6 @@ namespace HelloDynamo
 
         public string Name => "Hello World";
 
-
         /// <summary>
         /// Method that is called when Dynamo starts, but is not yet ready to be used.
         /// </summary>

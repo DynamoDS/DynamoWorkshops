@@ -16,15 +16,16 @@ namespace HelloDynamo
 
         public string Name => "Hello Dynamo";
 
+        public void Startup(ViewStartupParams p) { }
+
         public void Loaded(ViewLoadedParams p)
         {
             MessageBox.Show("Hello there, viewExtension has loaded!");
         }
 
-        public void Dispose() { }
-
         public void Shutdown() { }
 
-        public void Startup(ViewStartupParams p) { }
+        public void Dispose() { }
+
     }
 }
