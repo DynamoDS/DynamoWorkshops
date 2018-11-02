@@ -134,8 +134,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Events.cs" />
-    <Compile Include="ExtensionReady.cs" />
-    <Compile Include="ViewExtensionLoaded.cs" />
+    <Compile Include="ExtensionExample.cs" />
+    <Compile Include="ViewExtensionExample.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
