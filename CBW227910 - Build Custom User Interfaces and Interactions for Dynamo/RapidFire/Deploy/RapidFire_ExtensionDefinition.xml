@@ -1,0 +1,4 @@
+﻿<ExtensionDefinition>
+  <AssemblyPath>RapidFire.dll</AssemblyPath>
+  <TypeName>RapidFire.ExtensionReady</TypeName>
+</ExtensionDefinition>
