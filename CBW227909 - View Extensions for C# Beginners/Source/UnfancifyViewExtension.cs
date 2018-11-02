@@ -49,12 +49,21 @@ namespace Unfancify
             extensionMenu = new MenuItem { Header = "AU Workshop" };
 
             // and now we add a new sub-menu item that says hello when clicked
-            var sayHelloMenuItem = new MenuItem { Header = "Unfancify" };
-            sayHelloMenuItem.Click += (sender, args) =>
+            var unfancifyMenuItem = new MenuItem { Header = "Unfancify" };
+            unfancifyMenuItem.ToolTip = new ToolTip { Content = "Simplify your graph..." };
+            unfancifyMenuItem.Click += (sender, args) =>
             {
-                MessageBox.Show("Hello " + Environment.UserName);
+                var viewModel = new UnfancifyViewModel(viewLoadedParams, dynamoViewModel, viewLoadedParams.DynamoWindow);
+                var window = new UnfancifyWindow
+                {
+                    unfancifyPanel = { DataContext = viewModel },
+                    Owner = viewLoadedParams.DynamoWindow
+                };
+                window.Left = window.Owner.Left + 400;
+                window.Top = window.Owner.Top + 200;
+                window.Show();
             };
-            extensionMenu.Items.Add(sayHelloMenuItem);
+            extensionMenu.Items.Add(unfancifyMenuItem);
 
             // finally, we need to add our menu to Dynamo
             viewLoadedParams.dynamoMenu.Items.Add(extensionMenu);
