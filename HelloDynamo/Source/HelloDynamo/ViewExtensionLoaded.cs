@@ -18,7 +18,7 @@ namespace HelloDynamo
 
         public void Loaded(ViewLoadedParams p)
         {
-            MessageBox.Show("Hello there, viewExtension has loaded!");
+            MessageBox.Show("ViewExtension has loaded!");
         }
 
         public void Dispose() { }
