@@ -14,7 +14,12 @@ namespace HelloDynamo
 
         public string Name => "Hello World";
 
-        public void Dispose() { }
+
+        /// <summary>
+        /// Method that is called when Dynamo starts, but is not yet ready to be used.
+        /// </summary>
+        /// <param name="sp">Parameters that provide references to Dynamo settings and version.</param>
+        public void Startup(StartupParams sp) { }
 
         /// <summary>
         /// Method that is called when Dynamo has finished loading and is ready to be used.
@@ -40,10 +45,6 @@ namespace HelloDynamo
             Events.UnregisterEventHandlers();
         }
 
-        /// <summary>
-        /// Method that is called when Dynamo starts, but is not yet ready to be used.
-        /// </summary>
-        /// <param name="sp">Parameters that provide references to Dynamo settings and version.</param>
-        public void Startup(StartupParams sp) { }
+        public void Dispose() { }
     }
 }
