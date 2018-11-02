@@ -8,11 +8,14 @@ using System.Windows;
 
 namespace HelloDynamo
 {
-    public class ExtensionReady : IExtension
+    /// <summary>
+    /// Dynamo extension that controls the underlying Dynamo application but not its UI.
+    /// </summary>
+    public class ExtensionExample : IExtension
     {
         public string UniqueId => "3B234622-43B7-4EA8-86DA-54FB390BE29E";
 
-        public string Name => "Hello World";
+        public string Name => "Hello Dynamo Extension";
 
         /// <summary>
         /// Method that is called when Dynamo starts, but is not yet ready to be used.

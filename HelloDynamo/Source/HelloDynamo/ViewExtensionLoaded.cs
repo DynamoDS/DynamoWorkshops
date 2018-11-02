@@ -10,11 +10,14 @@ using System.Windows;
 
 namespace HelloDynamo
 {
-    public class ViewExtensionLoaded : IViewExtension
+    /// <summary>
+    /// Dynamo View Extension that can control both the Dynamo application and its UI (menus, view, canvas, nodes).
+    /// </summary>
+    public class ViewExtensionExample : IViewExtension
     {
         public string UniqueId => "5E85F38F-0A19-4F24-9E18-96845764780C";
 
-        public string Name => "Hello Dynamo";
+        public string Name => "Hello Dynamo View Extension";
 
         /// <summary>
         /// Method that is called when Dynamo starts, but is not yet ready to be used.
