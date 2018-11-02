@@ -4,15 +4,15 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace HelloDynamo
+namespace Unfancify
 {
     /// <summary>
     /// Dynamo View Extension that can control both the Dynamo application and its UI (menus, view, canvas, nodes).
     /// </summary>
-    public class ViewExtensionExample : IViewExtension
+    public class UnfancifyViewExtension : IViewExtension
     {
-        public string UniqueId => "5E85F38F-0A19-4F24-9E18-96845764780C";
-        public string Name => "Hello Dynamo View Extension";
+        public string UniqueId => "115faa5e-faf3-47f6-a888-76438463bea6";
+        public string Name => "Unfancify";
 
         private MenuItem extensionMenu;
         private ViewLoadedParams viewLoadedParams;
@@ -33,8 +33,6 @@ namespace HelloDynamo
         /// </param>
         public void Loaded(ViewLoadedParams vlp)
         {
-            MessageBox.Show("Hello there, viewExtension has loaded!");
-
             // hold a reference to the Dynamo params to be used later
             viewLoadedParams = vlp;
 
@@ -51,7 +49,7 @@ namespace HelloDynamo
             extensionMenu = new MenuItem { Header = "AU Workshop" };
 
             // and now we add a new sub-menu item that says hello when clicked
-            var sayHelloMenuItem = new MenuItem { Header = "Say Hello" };
+            var sayHelloMenuItem = new MenuItem { Header = "Unfancify" };
             sayHelloMenuItem.Click += (sender, args) =>
             {
                 MessageBox.Show("Hello " + Environment.UserName);
