@@ -1,4 +1,0 @@
-﻿<ViewExtensionDefinition>
-  <AssemblyPath>HelloDynamo.dll</AssemblyPath>
-  <TypeName>HelloDynamo.ViewExtensionLoaded</TypeName>
-</ViewExtensionDefinition>
