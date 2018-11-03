@@ -15,146 +15,163 @@ using System.Windows.Threading;
 
 namespace Unfancify
 {
+    /// <summary>
+    /// The view model of our tool
+    /// </summary>
     class UnfancifyViewModel : NotificationObject, IDisposable
     {
         private ReadyParams readyParams;
         private DynamoViewModel viewModel;
         private Window dynWindow;
-        private bool doAutoLayout = true;
-        private bool ungroupAll = true;
-        private bool deleteTextNotes = true;
-        private bool deleteWatchNodes = true;
-        private bool disableGeometryPreview = true;
-        private string ignoreGroupPrefixes;
-        private string ignoreTextNotePrefixes;
         private string unfancifyMsg = "";
         public ICommand UnfancifyCurrentGraph { get; set; }
 
+        /// <summary>
+        /// The constructor of our view model
+        /// </summary>
+        /// <param name="p">ReadyParams: Application-level handles provided to an extension when Dynamo has started and is ready for interaction</param>
+        /// <param name="vm">The Dynamo view model: We'll need this for most of what we do below</param>
+        /// <param name="dw">The Dynamo window: We'll need this for auto-layout to work properly</param>
         public UnfancifyViewModel(ReadyParams p, DynamoViewModel vm, Window dw)
         {
+            // Hold references to the constructor arguments to be used later
             readyParams = p;
             viewModel = vm;
             dynWindow = dw;
+            // The Unfancify Current Graph button is bound to this command
             UnfancifyCurrentGraph = new DelegateCommand(OnUnfancifyCurrentClicked);
         }
 
+        /// <summary>
+        /// Method that is called for freeing, releasing, or resetting unmanaged resources
+        /// </summary>
         public void Dispose() { }
 
         /// <summary>
         /// Use auto-layout?
         /// </summary>
-        public bool DoAutoLayout
-        {
-            get { return doAutoLayout; }
-            set { doAutoLayout = value; }
-        }
+        public bool DoAutoLayout { get; set; } = true;
 
         /// <summary>
         /// Ungroup all groups?
         /// </summary>
-        public bool UngroupAll
-        {
-            get { return ungroupAll; }
-            set { ungroupAll = value; }
-        }
+        public bool UngroupAll { get; set; } = true;
 
         /// <summary>
         /// Delete all text notes?
         /// </summary>
-        public bool DeleteTextNotes
-        {
-            get { return deleteTextNotes; }
-            set { deleteTextNotes = value; }
-        }
+        public bool DeleteTextNotes { get; set; } = true;
 
         /// <summary>
         /// Delete all watch nodes?
         /// </summary>
-        public bool DeleteWatchNodes
-        {
-            get { return deleteWatchNodes; }
-            set { deleteWatchNodes = value; }
-        }
+        public bool DeleteWatchNodes { get; set; } = true;
 
         /// <summary>
         /// Disable geometry preview for all nodes?
         /// </summary>
-        public bool DisableGeometryPreview
-        {
-            get { return disableGeometryPreview; }
-            set { disableGeometryPreview = value; }
-        }
+        public bool DisableGeometryPreview { get; set; } = true;
 
         /// <summary>
         /// Group prefixes that should be ignored
         /// </summary>
-        public string IgnoreGroupPrefixes
-        {
-            get { return ignoreGroupPrefixes; }
-            set { ignoreGroupPrefixes = value; }
-        }
+        public string IgnoreGroupPrefixes { get; set; }
 
         /// <summary>
         /// Text note prefixes that should be ignored
         /// </summary>
-        public string IgnoreTextNotePrefixes
-        {
-            get { return ignoreTextNotePrefixes; }
-            set { ignoreTextNotePrefixes = value; }
-        }
+        public string IgnoreTextNotePrefixes { get; set; }
 
+        /// <summary>
+        /// Text message that appears below the buttons
+        /// It is updated by some of the methods in this view model
+        /// </summary>
         public string UnfancifyMsg
         {
             get { return unfancifyMsg; }
             set
             {
                 unfancifyMsg = value;
+                // Notify the UI that the value has changed
                 RaisePropertyChanged("UnfancifyMsg");
             }
         }
 
+        /// <summary>
+        /// Method that gets called when the user clicks on the Unfancify Current Graph button
+        /// </summary>
         public void OnUnfancifyCurrentClicked(object obj)
         {
+            // Reset the message in the UI
+            UnfancifyMsg = "";
+            // Call our main method
             UnfancifyGraph();
+            // Change the message in the UI
             UnfancifyMsg = "Current graph successfully unfancified!";
         }
 
+        /// <summary>
+        /// Method that gets called when the user has selected a directory and clicked OK
+        /// </summary>
         public void OnBatchUnfancifyClicked(string directoryPath)
         {
+            // Reset the message in the UI
             UnfancifyMsg = "";
             // Read directory contents
             var graphs = System.IO.Directory.EnumerateFiles(directoryPath);
+            // We'll need a counter here because the above enumeration doesn't have a Count property
+            // and we'll want to let the user know how many fiels we have processed in the end.
             int graphCount = 0;
+            // Cycle through all files found in the directory
             foreach (var graph in graphs)
             {
                 var ext = System.IO.Path.GetExtension(graph);
+                // We're only interested in *.dyn files
                 if (ext == ".dyn")
                 {
+                    // Open the graph
                     viewModel.OpenCommand.Execute(graph);
+                    // Set the graph run type to manual mode (otherwise some graphs might auto-execute at this point)
                     viewModel.CurrentSpaceViewModel.RunSettingsViewModel.Model.RunType = RunType.Manual;
+                    // Call our main method
                     UnfancifyGraph();
+                    // Save the graph
                     viewModel.SaveAsCommand.Execute(graph);
+                    // Close it
                     viewModel.CloseHomeWorkspaceCommand.Execute(null);
+                    // Increment our counter
                     graphCount += 1;
+                    // Update the message in the UI
                     UnfancifyMsg += "Unfancified " + graph + "\n";
                 }
             }
+            // Write a summary to the UI
             UnfancifyMsg += "Unfancified " + graphCount.ToString() + " graphs...";
         }
 
+        /// <summary>
+        /// Main method of our tool that unfancifies a graph
+        /// Actions depend on settings in UI
+        /// </summary>
         public void UnfancifyGraph()
         {
             // Create a list for storing guids of groups, nodes and text notes that we want to keep
-            List<System.String> stuffToKeep = new List<System.String>();
+            List<string> stuffToKeep = new List<string>();
+
             // Identify all groups to keep/ungroup
-            if (ungroupAll)
+            if (UngroupAll)
             {
-                var groupIgnoreList = ignoreGroupPrefixes.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+                // Make sure that no groups are currently selected
+                GeneralUtils.ClearSelection();
+                // Create a whitelist of prefixes for group titles from what was entered by the user in the UI
+                var groupIgnoreList = IgnoreGroupPrefixes.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+                // Cycle through all groups in the graph
                 foreach (AnnotationViewModel anno in viewModel.CurrentSpaceViewModel.Annotations)
                 {
+                    // Cycle through the whitelist
                     foreach (string ignoreTerm in groupIgnoreList)
                     {
-                        // Identify keepers
+                        // Identify keepers (group and its contents)
                         if (anno.AnnotationText.StartsWith(ignoreTerm) && !stuffToKeep.Contains(anno.AnnotationModel.GUID.ToString()))
                         {
                             stuffToKeep.Add(anno.AnnotationModel.GUID.ToString());
@@ -168,13 +185,18 @@ namespace Unfancify
                 // Ungroup all obsolete groups
                 viewModel.UngroupAnnotationCommand.Execute(null);
             }
+
             // Identify all text notes to keep/delete
-            if (deleteTextNotes)
+            if (DeleteTextNotes)
             {
+                // Make sure that no text notes are currently selected
                 GeneralUtils.ClearSelection();
-                var textNoteIgnoreList = ignoreTextNotePrefixes.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+                // Create a whitelist of prefixes for text note content from what was entered by the user in the UI
+                var textNoteIgnoreList = IgnoreTextNotePrefixes.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+                // Cycle through all text notes in the graph
                 foreach (NoteModel note in viewModel.Model.CurrentWorkspace.Notes)
                 {
+                    // Cycle through the whitelist
                     foreach (string ignoreTerm in textNoteIgnoreList)
                     {
                         // Identify keepers
@@ -189,64 +211,80 @@ namespace Unfancify
                 // Delete all obsolete text notes
                 viewModel.DeleteCommand.Execute(null);
             }
-            // Process nodes
+
+            // Process nodes before we call node to code
+            // Make sure that no nodes are currently selected
+            GeneralUtils.ClearSelection();
+            // We need this part to circumnavigate two minor node-to-code bugs
+            // So this is actually a good example for how you can fix Dynamo issues for yourself without having to touch DynamoCore code
             foreach (NodeModel node in viewModel.Model.CurrentWorkspace.Nodes)
             {
-                // Select all obsolete nodes and pre-process string nodes
+                // We're not interested in keepers (i.e. nodes that will not be run through node-to-code)
                 if (!stuffToKeep.Contains(node.GUID.ToString()))
                 {
-                    // Pre-Processing
+                    // Pre-processing of string input nodes only
                     // Temporary fix for https://github.com/DynamoDS/Dynamo/issues/9117 (Escape backslashes in string nodes)
                     // Temporary fix for https://github.com/DynamoDS/Dynamo/issues/9120 (Escape double quotes in string nodes)
                     if (node.GetType() == typeof(StringInput))
                     {
+                        // Cast NodeModel to StringInput
                         StringInput inputNode = (StringInput)node;
+                        // Get the current value of the input node
                         string nodeVal = inputNode.Value;
+                        // Escape backslahes and double quotes
                         nodeVal = nodeVal.Replace("\\", "\\\\").Replace("\"", "\\\"");
+                        // Update the input node's value
                         var updateVal = new UpdateValueParams("Value", nodeVal);
                         node.UpdateValue(updateVal);
                     }
+                    // Add each node to the current selection
                     viewModel.AddToSelectionCommand.Execute(node);
                 }
             }
-            // Node to code
+            // Call node to code
             viewModel.CurrentSpaceViewModel.NodeToCodeCommand.Execute(null);
+
             // Process remaining nodes
-            List<NodeModel> nodesToDelete = new List<NodeModel>();
-            if (disableGeometryPreview || deleteWatchNodes)
+            if (DisableGeometryPreview || DeleteWatchNodes)
             {
+                // Make sure no nodes are selected
+                GeneralUtils.ClearSelection();
                 foreach (NodeViewModel node in viewModel.CurrentSpaceViewModel.Nodes)
                 {
                     // Turn off geometry preview
-                    if (disableGeometryPreview)
+                    if (DisableGeometryPreview)
                     {
                         if (node.IsVisible) { node.ToggleIsVisibleCommand.Execute(null); }
                     }
                     // Identify Watch nodes
-                    if (deleteWatchNodes)
+                    if (DeleteWatchNodes)
                     {
                         string nodeType = node.NodeModel.GetType().ToString();
+                        // We're only targeting Watch, Watch 3D & Watch Image nodes here
                         if (nodeType == "CoreNodeModels.Watch" || nodeType == "Watch3DNodeModels.Watch3D" || nodeType == "CoreNodeModels.WatchImageCore")
                         {
-                            if (node.NodeModel.OutputNodes.Count == 0) { nodesToDelete.Add(node.NodeModel); }
+                            // Only add downstream nodes to selection
+                            // i.e. nodes that have no other nodes connected to their outports
+                            if (node.NodeModel.OutputNodes.Count == 0) { viewModel.AddToSelectionCommand.Execute(node.NodeModel); }
                         }
                     }
                 }
-            }
-            // Delete Watch nodes
-            if (deleteWatchNodes && nodesToDelete.Count > 0)
-            {
-                GeneralUtils.ClearSelection();
-                foreach (NodeModel deletionCandidate in nodesToDelete)
+                if (DeleteWatchNodes)
                 {
-                    viewModel.AddToSelectionCommand.Execute(deletionCandidate);
-                }
-                viewModel.DeleteCommand.Execute(null);
+                    // We need to hold off on deleting the Watch nodes until here
+                    // in order to not modify the collection of nodes while we're still cycling through it.
+                    viewModel.DeleteCommand.Execute(null);
+                }     
             }
+
             // Auto layout
-            if (doAutoLayout)
+            if (DoAutoLayout)
             {
+                // Make sure nothing is selected
                 GeneralUtils.ClearSelection();
+                // Here we'll need to call the auto-layout via Dynamo's Dispatcher
+                // Otherwise the auto layout command will not yet be aware of the size 
+                // of the code blocks generated by node to code and our graph will look less pretty.
                 dynWindow.Dispatcher.BeginInvoke(DispatcherPriority.ApplicationIdle, new Action(() =>
                 {
                     viewModel.CurrentSpaceViewModel.GraphAutoLayoutCommand.Execute(null);
