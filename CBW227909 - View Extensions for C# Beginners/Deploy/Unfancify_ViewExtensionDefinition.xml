@@ -1,4 +1,4 @@
 ﻿<ViewExtensionDefinition>
-  <AssemblyPath>HelloDynamo.dll</AssemblyPath>
-  <TypeName>HelloDynamo.ViewExtensionLoaded</TypeName>
+  <AssemblyPath>Unfancify.dll</AssemblyPath>
+  <TypeName>Unfancify.UnfancifyViewExtension</TypeName>
 </ViewExtensionDefinition>
