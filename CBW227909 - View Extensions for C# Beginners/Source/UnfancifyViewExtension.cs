@@ -1,7 +1,5 @@
 ﻿using Dynamo.ViewModels;
 using Dynamo.Wpf.Extensions;
-using System;
-using System.Windows;
 using System.Windows.Controls;
 
 namespace Unfancify
@@ -11,7 +9,9 @@ namespace Unfancify
     /// </summary>
     public class UnfancifyViewExtension : IViewExtension
     {
-        public string UniqueId => "115faa5e-faf3-47f6-a888-76438463bea6";
+        // Make sure to generate a new guid for your tool
+        // e.g. here: https://www.guidgenerator.com
+        public string UniqueId => "d28ef462-3463-44c3-821c-35390c35c544";
         public string Name => "Unfancify";
 
         private MenuItem extensionMenu;
@@ -33,10 +33,9 @@ namespace Unfancify
         /// </param>
         public void Loaded(ViewLoadedParams vlp)
         {
-            // hold a reference to the Dynamo params to be used later
+            // Hold a reference to the Dynamo params to be used later
             viewLoadedParams = vlp;
-
-            // we can now add custom menu items to Dynamo's UI
+            // Add custom menu items to Dynamo's UI
             MakeMenuItems();
         }
 
@@ -45,27 +44,36 @@ namespace Unfancify
         /// </summary>
         public void MakeMenuItems()
         {
-            // let's now create a completely top-level new menu item
+            // Create a completely top-level new menu item
             extensionMenu = new MenuItem { Header = "AU Workshop" };
 
-            // and now we add a new sub-menu item that says hello when clicked
+            // Create a new sub-menu item for our tool
             var unfancifyMenuItem = new MenuItem { Header = "Unfancify" };
+            // Add a tool tip to our menu item
             unfancifyMenuItem.ToolTip = new ToolTip { Content = "Simplify your graph..." };
+            // Define what happens when our sub-menu item is clicked
             unfancifyMenuItem.Click += (sender, args) =>
             {
+                // Instantiate the view model of our tool
                 var viewModel = new UnfancifyViewModel(viewLoadedParams, dynamoViewModel, viewLoadedParams.DynamoWindow);
+                // Create the window for our UI
                 var window = new UnfancifyWindow
                 {
+                    // Set our view model as the DataContext of the main panel of our UI
                     unfancifyPanel = { DataContext = viewModel },
+                    // Set our window as a child of the Dynamo window
                     Owner = viewLoadedParams.DynamoWindow
                 };
+                // Define the start position of our window
                 window.Left = window.Owner.Left + 400;
                 window.Top = window.Owner.Top + 200;
+                // Display our window
                 window.Show();
             };
+            // Add our sub-menu item to our top-level menu item
             extensionMenu.Items.Add(unfancifyMenuItem);
 
-            // finally, we need to add our menu to Dynamo
+            // Add our top-level menu to the Dynamo menu
             viewLoadedParams.dynamoMenu.Items.Add(extensionMenu);
         }
 
@@ -74,6 +82,9 @@ namespace Unfancify
         /// </summary>
         public void Shutdown() { }
 
+        /// <summary>
+        /// Method that is called for freeing, releasing, or resetting unmanaged resources
+        /// </summary>
         public void Dispose() { }
     }
 }
