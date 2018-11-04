@@ -75,12 +75,12 @@ namespace Unfancify
         /// <summary>
         /// Group prefixes that should be ignored
         /// </summary>
-        public string IgnoreGroupPrefixes { get; set; }
+        public string IgnoreGroupPrefixes { get; set; } = "";
 
         /// <summary>
         /// Text note prefixes that should be ignored
         /// </summary>
-        public string IgnoreTextNotePrefixes { get; set; }
+        public string IgnoreTextNotePrefixes { get; set; } = "";
 
         /// <summary>
         /// Text message that appears below the buttons
@@ -274,7 +274,7 @@ namespace Unfancify
                     // We need to hold off on deleting the Watch nodes until here
                     // in order to not modify the collection of nodes while we're still cycling through it.
                     viewModel.DeleteCommand.Execute(null);
-                }     
+                }
             }
 
             // Auto layout
@@ -289,7 +289,7 @@ namespace Unfancify
                 {
                     viewModel.CurrentSpaceViewModel.GraphAutoLayoutCommand.Execute(null);
                 }));
-            } 
+            }
         }
     }
 }
