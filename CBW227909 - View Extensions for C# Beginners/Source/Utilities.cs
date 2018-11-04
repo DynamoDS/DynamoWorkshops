@@ -9,10 +9,10 @@ namespace Unfancify
     static class GeneralUtils
     {
         /// <summary>
-        /// Dynamo's public API does not offer a method to clear the current selection
+        /// Dynamo's public API does not offer a method to clear the current selection.
         /// However, Dynamo does contain an internal DynamoSelection class that includes such a method:
         /// https://github.com/DynamoDS/Dynamo/blob/RC2.0.1_master/src/DynamoCore/Core/DynamoSelection.cs#L94
-        /// This method is exposed here via reflection
+        /// This method is exposed here via reflection.
         /// More on reflection here: https://stackify.com/what-is-c-reflection/
         /// </summary>
         public static void ClearSelection()

@@ -10,7 +10,7 @@ namespace Unfancify
     {
 
         /// <summary>
-        /// The form constructor
+        /// The form constructor.
         /// </summary>
         public UnfancifyWindow()
         {
@@ -18,7 +18,7 @@ namespace Unfancify
         }
 
         /// <summary>
-        /// Method that gets called when the user clicks on the Batch-Unfancify button
+        /// Method that gets called when the user clicks on the Batch-Unfancify button.
         /// </summary>
         public void selectSource_Click(object sender, RoutedEventArgs e)
         {

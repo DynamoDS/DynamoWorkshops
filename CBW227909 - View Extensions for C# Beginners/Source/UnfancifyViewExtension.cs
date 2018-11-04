@@ -40,7 +40,7 @@ namespace Unfancify
         }
 
         /// <summary>
-        /// Adds custom menu items to the Dynamo menu
+        /// Adds custom menu items to the Dynamo menu.
         /// </summary>
         public void MakeMenuItems()
         {
@@ -83,7 +83,7 @@ namespace Unfancify
         public void Shutdown() { }
 
         /// <summary>
-        /// Method that is called for freeing, releasing, or resetting unmanaged resources
+        /// Method that is called for freeing, releasing, or resetting unmanaged resources.
         /// </summary>
         public void Dispose() { }
     }

@@ -16,7 +16,7 @@ using System.Windows.Threading;
 namespace Unfancify
 {
     /// <summary>
-    /// The view model of our tool
+    /// The view model of our tool.
     /// </summary>
     class UnfancifyViewModel : NotificationObject, IDisposable
     {
@@ -27,7 +27,7 @@ namespace Unfancify
         public ICommand UnfancifyCurrentGraph { get; set; }
 
         /// <summary>
-        /// The constructor of our view model
+        /// The constructor of our view model.
         /// </summary>
         /// <param name="p">ReadyParams: Application-level handles provided to an extension when Dynamo has started and is ready for interaction</param>
         /// <param name="vm">The Dynamo view model: We'll need this for most of what we do below</param>
@@ -43,7 +43,7 @@ namespace Unfancify
         }
 
         /// <summary>
-        /// Method that is called for freeing, releasing, or resetting unmanaged resources
+        /// Method that is called for freeing, releasing, or resetting unmanaged resources.
         /// </summary>
         public void Dispose() { }
 
@@ -73,18 +73,18 @@ namespace Unfancify
         public bool DisableGeometryPreview { get; set; } = true;
 
         /// <summary>
-        /// Group prefixes that should be ignored
+        /// Group prefixes that should be ignored.
         /// </summary>
         public string IgnoreGroupPrefixes { get; set; } = "";
 
         /// <summary>
-        /// Text note prefixes that should be ignored
+        /// Text note prefixes that should be ignored.
         /// </summary>
         public string IgnoreTextNotePrefixes { get; set; } = "";
 
         /// <summary>
-        /// Text message that appears below the buttons
-        /// It is updated by some of the methods in this view model
+        /// Text message that appears below the buttons.
+        /// It is updated by some of the methods in this view model.
         /// </summary>
         public string UnfancifyMsg
         {
@@ -98,7 +98,7 @@ namespace Unfancify
         }
 
         /// <summary>
-        /// Method that gets called when the user clicks on the Unfancify Current Graph button
+        /// Method that gets called when the user clicks on the Unfancify Current Graph button.
         /// </summary>
         public void OnUnfancifyCurrentClicked(object obj)
         {
@@ -111,7 +111,7 @@ namespace Unfancify
         }
 
         /// <summary>
-        /// Method that gets called when the user has selected a directory and clicked OK
+        /// Method that gets called when the user has selected a directory and clicked OK.
         /// </summary>
         public void OnBatchUnfancifyClicked(string directoryPath)
         {
@@ -150,8 +150,8 @@ namespace Unfancify
         }
 
         /// <summary>
-        /// Main method of our tool that unfancifies a graph
-        /// Actions depend on settings in UI
+        /// Main method of our tool that unfancifies a graph.
+        /// Actions depend on settings in UI.
         /// </summary>
         public void UnfancifyGraph()
         {

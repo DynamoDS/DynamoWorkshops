@@ -19,7 +19,7 @@
                 Content="Node to code"/>
             <CheckBox
                 IsChecked="{Binding DoAutoLayout, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                Content="Auto layout"/>
+                Content="Auto layout (single graph mode only)"/>
             <CheckBox
                 IsChecked="{Binding DisableGeometryPreview, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 Content="Disable geometry preview"/>
