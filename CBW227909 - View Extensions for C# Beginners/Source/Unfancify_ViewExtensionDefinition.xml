@@ -1,4 +1,4 @@
 ﻿<ViewExtensionDefinition>
-  <AssemblyPath>Unfancify.dll</AssemblyPath>
+  <AssemblyPath>..\bin\Unfancify.dll</AssemblyPath>
   <TypeName>Unfancify.UnfancifyViewExtension</TypeName>
 </ViewExtensionDefinition>

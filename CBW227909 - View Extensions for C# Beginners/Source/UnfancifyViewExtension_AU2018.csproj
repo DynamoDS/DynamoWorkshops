@@ -12,6 +12,8 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <StartAction>Program</StartAction>
+    <StartProgram>C:\Program Files\Dynamo\Dynamo Core\2\DynamoSandbox.exe</StartProgram>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,6 +23,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <StartAction>Program</StartAction>
+    <StartProgram>C:\Program Files\Dynamo\Dynamo Core\2\DynamoSandbox.exe</StartProgram>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -33,9 +37,11 @@
   <ItemGroup>
     <Reference Include="CoreNodeModels, Version=2.0.1.5055, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamoVisualProgramming.WpfUILibrary.2.0.1.5055\lib\net45\CoreNodeModels.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="CoreNodeModelsWpf, Version=2.0.1.5055, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamoVisualProgramming.WpfUILibrary.2.0.1.5055\lib\net45\CoreNodeModelsWpf.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DesignScriptBuiltin, Version=2.0.1.5055, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamoVisualProgramming.Core.2.0.1.5055\lib\net45\DesignScriptBuiltin.dll</HintPath>
@@ -55,6 +61,7 @@
     </Reference>
     <Reference Include="DynamoCoreWpf, Version=2.0.1.5055, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamoVisualProgramming.WpfUILibrary.2.0.1.5055\lib\net45\DynamoCoreWpf.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DynamoInstallDetective, Version=2.0.1.5055, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamoVisualProgramming.Core.2.0.1.5055\lib\net45\DynamoInstallDetective.dll</HintPath>
@@ -141,6 +148,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="pkg.json" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="UnfancifyWindow.xaml">
@@ -148,13 +156,47 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Unfancify_ViewExtensionDefinition.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>
-    </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PostBuildEvent>
     </PostBuildEvent>
   </PropertyGroup>
+  <!--Using AfterBuild Events to copy the extension to the Dynamo packages folder-->
+  <Target Name="AfterBuild">
+    <Message Importance="High" Text="++++++++++++++++++++++++++++++++++++++" />
+    <Message Importance="High" Text="Started building the Dynamo extension" />
+    <!--Defining folders to copy-->
+    <ItemGroup>
+      <SourceDlls Include="$(TargetDir)*.dll" />
+      <SourcePdbs Include="$(TargetDir)*.pdb" />
+      <SourcePkg Include="$(ProjectDir)pkg.json" />
+      <SourceExtension Include="$(TargetDir)*ExtensionDefinition.xml" />
+    </ItemGroup>
+    <!--Copying to Build Folder-->
+    <Copy SourceFiles="@(SourceDlls)" DestinationFolder="$(TargetDir)$(ProjectName)\bin\" />
+    <Copy SourceFiles="@(SourcePdbs)" DestinationFolder="$(TargetDir)$(ProjectName)\bin\" />
+    <Copy SourceFiles="@(SourcePkg)" DestinationFolder="$(TargetDir)$(ProjectName)" />
+    <Copy SourceFiles="@(SourceExtension)" DestinationFolder="$(TargetDir)\$(ProjectName)\extra" />
+    <Message Importance="High" Text="++++++++++++++++++++++++++++++++++++++" />
+    <Message Importance="High" Text="Built to $(TargetDir)\$(ProjectName)" />
+    <ItemGroup>
+      <SourcePackage Include="$(TargetDir)\$(ProjectName)\**\*" />
+    </ItemGroup>
+    <PropertyGroup>
+      <!--Copy to Dynamo sandbox for testing -->
+      <DeployFolder Condition="'$(Configuration)' == 'Debug'">$(AppData)\Dynamo\Dynamo Core\2.0\packages\$(ProjectName)</DeployFolder>
+      <!--Copy to Dynamo revit for publishing -->
+      <DeployFolder Condition="'$(Configuration)' == 'Release' Or '$(Configuration)' == 'DebugRevit'">$(AppData)\Dynamo\Dynamo Revit\2.0\packages\$(ProjectName)</DeployFolder>
+    </PropertyGroup>
+    <Copy SourceFiles="@(SourcePackage)" DestinationFolder="$(DeployFolder)\%(RecursiveDir)" />
+    <Message Importance="High" Text="++++++++++++++++++++++++++++++++++++++" />
+    <Message Importance="High" Text="Deployed to $(DeployFolder)" />
+  </Target>
 </Project>
