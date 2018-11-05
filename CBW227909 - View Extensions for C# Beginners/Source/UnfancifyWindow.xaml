@@ -9,24 +9,36 @@
         Width="500" 
         Height="500" 
         Title="AU 2018 - Unfancify">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Unfancify;component/Shared.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
     <ScrollViewer 
         VerticalScrollBarVisibility="Auto">
         <StackPanel 
             Name="unfancifyPanel">
             <CheckBox
+                Style="{StaticResource UnfancifyCheckBox}"
                 IsChecked="True"
                 IsEnabled="False"
                 Content="Node to code"/>
             <CheckBox
+                Style="{StaticResource UnfancifyCheckBox}"
                 IsChecked="{Binding DoAutoLayout, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 Content="Auto layout (single graph mode only)"/>
             <CheckBox
+                Style="{StaticResource UnfancifyCheckBox}"
                 IsChecked="{Binding DisableGeometryPreview, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 Content="Disable geometry preview"/>
             <CheckBox
+                Style="{StaticResource UnfancifyCheckBox}"
                 IsChecked="{Binding DeleteWatchNodes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 Content="Delete all downstream Watch nodes (Watch, Watch Image &amp; Watch 3D)"/>
             <CheckBox
+                Style="{StaticResource UnfancifyCheckBox}"
                 x:Name="checkUngroup"
                 IsChecked="{Binding UngroupAll, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 Content="Ungroup all"/>
@@ -34,11 +46,13 @@
                 TextAlignment="Left" 
                 Text="Ignore groups with these prefixes:" />
             <TextBox 
+                Style="{StaticResource UnfancifyMultilineTextBox}"
                 ToolTip="Enter ignore prefixes for groups here..."
                 Height="50"
                 IsEnabled="{Binding IsChecked, ElementName=checkUngroup, Mode=OneWay}"
                 Text="{Binding IgnoreGroupPrefixes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <CheckBox
+                Style="{StaticResource UnfancifyCheckBox}"
                 x:Name="checkDeleteTextNotes"
                 IsChecked="{Binding DeleteTextNotes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 Content="Delete all text notes" />
@@ -46,6 +60,7 @@
                 TextAlignment="Left" 
                 Text="Ignore text notes with these prefixes:" />
             <TextBox 
+                Style="{StaticResource UnfancifyMultilineTextBox}"
                 ToolTip="Enter ignore prefixes for text notes here..."
                 Height="50"
                 IsEnabled="{Binding IsChecked, ElementName=checkDeleteTextNotes, Mode=OneWay}"

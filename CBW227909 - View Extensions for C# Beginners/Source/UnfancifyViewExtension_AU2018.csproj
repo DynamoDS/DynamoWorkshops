@@ -151,6 +151,10 @@
     <None Include="pkg.json" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Shared.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="UnfancifyWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
