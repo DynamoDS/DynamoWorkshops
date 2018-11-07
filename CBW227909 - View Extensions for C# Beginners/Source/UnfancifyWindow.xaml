@@ -81,7 +81,7 @@
                     Name="SelectedSource"
                     Content="Batch-unfancify"
                     ToolTip="Click here to batch-unfancify all graphs in selected directory..."
-                    Click="selectSource_Click"/>
+                    Click="SelectSource_Click"/>
             </Grid>
             <TextBlock 
                 TextAlignment="Left" 
