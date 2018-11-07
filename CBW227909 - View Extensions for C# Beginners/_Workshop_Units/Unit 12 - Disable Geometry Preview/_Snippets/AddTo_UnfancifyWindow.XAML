@@ -1,0 +1,4 @@
+            <CheckBox
+                Style="{StaticResource UnfancifyCheckBox}"
+                IsChecked="{Binding DisableGeometryPreview, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                Content="Disable geometry preview"/>
