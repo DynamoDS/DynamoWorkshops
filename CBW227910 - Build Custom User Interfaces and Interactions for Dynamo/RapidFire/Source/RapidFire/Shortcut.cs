@@ -11,10 +11,10 @@ namespace RapidFire
         public string Keys { get; set; }
         public string NodeName { get; set; }
 
-        public Shortcut(string key, string name)
+        public Shortcut(string key, string creationName)
         {
             Keys = key;
-            NodeName = name;
+            NodeName = creationName;
         }
     }
 }

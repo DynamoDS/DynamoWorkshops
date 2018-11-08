@@ -1,6 +1,7 @@
 ﻿using Dynamo.Controls;
 using Dynamo.ViewModels;
 using Dynamo.Wpf.Extensions;
+using RapidFire.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,14 @@ namespace RapidFire
             MI.Header = "Rapid Fire";
             MI.Click += (o, e) =>
             {
+                //Create the VM for the RapidFire View
+                RapidFireVM vm = new RapidFireVM(p.DynamoWindow.DataContext as DynamoViewModel, rF);
 
+                //Create the View
+                RapidFireView view = new RapidFireView(vm);
+
+                //Show it from the menu click
+                view.ShowDialog();
             };
             p.AddMenuItem(MenuBarType.View, MI);
 

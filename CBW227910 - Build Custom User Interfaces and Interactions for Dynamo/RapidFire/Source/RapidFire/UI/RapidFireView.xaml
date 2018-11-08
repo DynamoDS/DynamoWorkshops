@@ -1,0 +1,39 @@
+﻿<Window x:Class="RapidFire.UI.RapidFireView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RapidFire.UI"
+             mc:Ignorable="d" Title="Rapid Fire" Icon="pack://application:,,,/RapidFire;component/UI/Rapid Fire Zap.png"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="RapidFireResources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <ListBox ItemsSource="{Binding Shortcuts}" Style="{StaticResource RF_ListBackground}" Grid.Row="1">
+            
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding NodeName}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Grid Grid.Row="2" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button IsCancel="True" Grid.Column="1" Content="Cancel" Style="{StaticResource RF_Buttons}"/>
+            <Button Content="Save" Style="{StaticResource RF_Buttons}"/>
+        </Grid>
+    </Grid>
+</Window>
