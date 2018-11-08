@@ -1,0 +1,13 @@
+            <CheckBox
+                Style="{StaticResource UnfancifyCheckBox}"
+                x:Name="checkDeleteTextNotes"
+                IsChecked="{Binding DeleteTextNotes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                Content="Delete all text notes" />
+            <TextBlock 
+                TextAlignment="Left" 
+                Text="Ignore text notes with these prefixes:" />
+            <TextBox 
+                Style="{StaticResource UnfancifyMultilineTextBox}"
+                ToolTip="Enter ignore prefixes for text notes here..."
+                IsEnabled="{Binding IsChecked, ElementName=checkDeleteTextNotes, Mode=OneWay}"
+                Text="{Binding IgnoreTextNotePrefixes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>

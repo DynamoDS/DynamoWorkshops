@@ -1,0 +1,18 @@
+﻿{
+  "license": "",
+  "file_hash": null,
+  "name": "Unfancify",
+  "version": "0.0.0",
+  "description": "Unfancify view extension for AU2018 Computational BIM Workshop",
+  "group": "",
+  "keywords": [],
+  "dependencies": [],
+  "contents": "",
+  "engine_version": "2.0.1.5065",
+  "engine": "dynamo",
+  "engine_metadata": "",
+  "site_url": "https://github.com/DynamoDS/DeveloperWorkshop",
+  "repository_url": "https://github.com/DynamoDS/DeveloperWorkshop",
+  "contains_binaries": true,
+  "node_libraries": []
+}

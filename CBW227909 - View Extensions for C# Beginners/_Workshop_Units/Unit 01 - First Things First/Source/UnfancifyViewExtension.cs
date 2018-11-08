@@ -1,8 +1,9 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 using Dynamo.ViewModels;
 using Dynamo.Wpf.Extensions;
 
-namespace Unfancify
+namespace MyFirstViewExtension
 {
   /// <summary>
   /// Dynamo View Extension that can control both the Dynamo application and its UI (menus, view, canvas, nodes).
@@ -11,7 +12,7 @@ namespace Unfancify
   {
     // Make sure to generate a new guid for your tool
     // e.g. here: https://www.guidgenerator.com
-    public string UniqueId => "d28ef462-3463-44c3-821c-35390c35c544";
+    public string UniqueId => "4fbfca10-c70c-4d60-9aea-5ff13a393b59";
     public string Name => "Unfancify";
 
     private MenuItem extensionMenu;
@@ -54,21 +55,7 @@ namespace Unfancify
       // Define what happens when our sub-menu item is clicked
       unfancifyMenuItem.Click += (sender, args) =>
       {
-        // Instantiate the view model of our tool
-        var viewModel = new UnfancifyViewModel(viewLoadedParams, dynamoViewModel, viewLoadedParams.DynamoWindow);
-        // Create the window for our UI
-        var window = new UnfancifyWindow
-        {
-          // Set our view model as the DataContext of the main panel of our UI
-          unfancifyPanel = { DataContext = viewModel },
-          // Set our window as a child of the Dynamo window
-          Owner = viewLoadedParams.DynamoWindow
-        };
-        // Define the start position of our window
-        window.Left = window.Owner.Left + 400;
-        window.Top = window.Owner.Top + 200;
-        // Display our window
-        window.Show();
+        MessageBox.Show("There's still a long way to go...");
       };
       // Add our sub-menu item to our top-level menu item
       extensionMenu.Items.Add(unfancifyMenuItem);
