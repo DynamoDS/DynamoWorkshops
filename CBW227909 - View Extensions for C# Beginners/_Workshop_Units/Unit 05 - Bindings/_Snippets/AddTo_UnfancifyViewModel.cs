@@ -3,6 +3,11 @@ using Dynamo.UI.Commands;
 
 
 
+    private string unfancifyMsg = "";
+
+
+
+
     public ICommand UnfancifyCurrentGraph { get; set; }
 
 

@@ -14,7 +14,6 @@ namespace Unfancify
     private ReadyParams readyParams;
     private DynamoViewModel viewModel;
     private Window dynWindow;
-    private string unfancifyMsg = "";
 
     /// <summary>
     /// The constructor of our view model.
