@@ -15,6 +15,7 @@ namespace RapidFire
     {
         public HashSet<Shortcut> Shortcuts = new HashSet<Shortcut> { new Shortcut("DT", "Date Time") };
         public DynamoView View;
+        public string SaveFilePath = Serialization.ShortcutFilePath;
 
         public RapidFire(DynamoView view)
         {

@@ -15,10 +15,16 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <Button Command="{Binding OpenRepoCommand}">
+                <Image Source="pack://application:,,,/RapidFire;component/UI/Rapid Fire Zap.png"/>
+            </Button>
+            <Label Content="{Binding SavedFilePath}"/>
+        </StackPanel>
         <ListBox ItemsSource="{Binding Shortcuts}" Style="{StaticResource RF_ListBackground}" Grid.Row="1">
             
             <ListBox.ItemTemplate>
