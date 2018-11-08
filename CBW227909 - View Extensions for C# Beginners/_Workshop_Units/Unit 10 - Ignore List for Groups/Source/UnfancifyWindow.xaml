@@ -1,0 +1,61 @@
+﻿<Window x:Class="Unfancify.UnfancifyWindow" 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        mc:Ignorable="d" 
+        d:DesignHeight="500" 
+        d:DesignWidth="500" 
+        Width="500" 
+        Height="500" 
+        Title="AU 2018 - Unfancify">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Unfancify;component/Shared.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <ScrollViewer 
+        VerticalScrollBarVisibility="Auto">
+        <StackPanel 
+            Name="unfancifyPanel">
+            <CheckBox
+                Style="{StaticResource UnfancifyCheckBox}"
+                IsChecked="True"
+                IsEnabled="False"
+                Content="Node to code"/>
+            <CheckBox
+                Style="{StaticResource UnfancifyCheckBox}"
+                IsChecked="{Binding DoAutoLayout, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                Content="Auto layout (single graph mode only)"/>
+            <CheckBox
+                Style="{StaticResource UnfancifyCheckBox}"
+                x:Name="checkUngroup"
+                IsChecked="{Binding UngroupAll, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                Content="Ungroup all"/>
+            <Grid
+                Name="unfancifyButtons">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button 
+                    Grid.Column="0"
+                    Content="Unfancify this graph" 
+                    ToolTip="Click here to unfancify your graph..."
+                    Command="{Binding UnfancifyCurrentGraph}"/>
+                <Button 
+                    Grid.Column="1"
+                    Name="SelectedSource"
+                    Content="Batch-unfancify"
+                    ToolTip="Click here to batch-unfancify all graphs in selected directory..."
+                    Click="SelectSource_Click"/>
+            </Grid>
+            <TextBlock 
+                TextAlignment="Left" 
+                FontWeight="Bold"
+                Text="{Binding UnfancifyMsg}" />
+        </StackPanel>
+    </ScrollViewer>
+</Window>
