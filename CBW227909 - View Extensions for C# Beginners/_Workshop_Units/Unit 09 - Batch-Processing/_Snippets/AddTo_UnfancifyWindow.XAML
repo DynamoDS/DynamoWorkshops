@@ -1,0 +1,18 @@
+            <Grid
+                Name="unfancifyButtons">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button 
+                    Grid.Column="0"
+                    Content="Unfancify this graph" 
+                    ToolTip="Click here to unfancify your graph..."
+                    Command="{Binding UnfancifyCurrentGraph}"/>
+                <Button 
+                    Grid.Column="1"
+                    Name="SelectedSource"
+                    Content="Batch-unfancify"
+                    ToolTip="Click here to batch-unfancify all graphs in selected directory..."
+                    Click="SelectSource_Click"/>
+            </Grid>
