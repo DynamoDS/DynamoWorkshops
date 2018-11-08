@@ -1,5 +1,5 @@
 * Unit 01: First Things First
-* Unit 02: NodeToCode UI – View Extension
+* Unit 02: NodeToCode UI – ViewExtension
 * Unit 03: NodeToCode UI – View 
 * Unit 04: NodeToCode UI – ViewModel
 * Unit 05: NodeToCode UI – Bindings
