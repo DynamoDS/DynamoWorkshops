@@ -18,7 +18,8 @@ namespace RapidFire.UI
         //Bindable properties of ViewModel
         public ObservableCollection<ShortcutVM> Shortcuts { get; set; }
         public RelayCommand OpenRepoCommand { get; set; }
-        public string SavedFilePath {
+        public string SavedFilePath
+        {
             get
             {
                 return RapidFire.SaveFilePath;
@@ -39,8 +40,6 @@ namespace RapidFire.UI
         {
             System.Diagnostics.Process.Start("https://github.com/DynamoDS/DeveloperWorkshop/tree/RapidFire/CBW227910%20-%20Build%20Custom%20User%20Interfaces%20and%20Interactions%20for%20Dynamo");
         }
-
-
 
         /// <summary>
         /// Using the DynamoViewModel to access all of the node names that exist and 
