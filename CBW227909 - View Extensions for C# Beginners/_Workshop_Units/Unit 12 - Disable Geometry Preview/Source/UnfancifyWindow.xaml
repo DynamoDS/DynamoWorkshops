@@ -31,10 +31,6 @@
                 Content="Auto layout (single graph mode only)"/>
             <CheckBox
                 Style="{StaticResource UnfancifyCheckBox}"
-                IsChecked="{Binding DisableGeometryPreview, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                Content="Disable geometry preview"/>
-            <CheckBox
-                Style="{StaticResource UnfancifyCheckBox}"
                 x:Name="checkUngroup"
                 IsChecked="{Binding UngroupAll, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 Content="Ungroup all"/>
@@ -44,7 +40,6 @@
             <TextBox 
                 Style="{StaticResource UnfancifyMultilineTextBox}"
                 ToolTip="Enter ignore prefixes for groups here..."
-                Height="50"
                 IsEnabled="{Binding IsChecked, ElementName=checkUngroup, Mode=OneWay}"
                 Text="{Binding IgnoreGroupPrefixes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <CheckBox
@@ -58,7 +53,6 @@
             <TextBox 
                 Style="{StaticResource UnfancifyMultilineTextBox}"
                 ToolTip="Enter ignore prefixes for text notes here..."
-                Height="50"
                 IsEnabled="{Binding IsChecked, ElementName=checkDeleteTextNotes, Mode=OneWay}"
                 Text="{Binding IgnoreTextNotePrefixes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <Grid

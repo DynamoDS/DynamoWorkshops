@@ -9,6 +9,5 @@
             <TextBox 
                 Style="{StaticResource UnfancifyMultilineTextBox}"
                 ToolTip="Enter ignore prefixes for text notes here..."
-                Height="50"
                 IsEnabled="{Binding IsChecked, ElementName=checkDeleteTextNotes, Mode=OneWay}"
                 Text="{Binding IgnoreTextNotePrefixes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>

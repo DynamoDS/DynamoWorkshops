@@ -44,7 +44,6 @@
             <TextBox 
                 Style="{StaticResource UnfancifyMultilineTextBox}"
                 ToolTip="Enter ignore prefixes for groups here..."
-                Height="50"
                 IsEnabled="{Binding IsChecked, ElementName=checkUngroup, Mode=OneWay}"
                 Text="{Binding IgnoreGroupPrefixes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <CheckBox
@@ -58,7 +57,6 @@
             <TextBox 
                 Style="{StaticResource UnfancifyMultilineTextBox}"
                 ToolTip="Enter ignore prefixes for text notes here..."
-                Height="50"
                 IsEnabled="{Binding IsChecked, ElementName=checkDeleteTextNotes, Mode=OneWay}"
                 Text="{Binding IgnoreTextNotePrefixes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <Grid
