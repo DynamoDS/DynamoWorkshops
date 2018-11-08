@@ -1,3 +1,7 @@
+using System.Windows.Forms;
+
+
+
     /// <summary>
     /// Method that gets called when the user clicks on the Batch-Unfancify button.
     /// </summary>
