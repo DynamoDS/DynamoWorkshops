@@ -1,28 +1,33 @@
-using System.Windows.Input;
-using Dynamo.UI.Commands;
-
-
-
-    public ICommand UnfancifyCurrentGraph { get; set; }
-
-
-
-      // The Unfancify Current Graph button is bound to this command
-      UnfancifyCurrentGraph = new DelegateCommand(OnUnfancifyCurrentClicked);
-
-
-
     /// <summary>
     /// Text message that appears below the buttons.
     /// It is updated by some of the methods in this view model.
     /// </summary>
-    public string UnfancifyMsg
+    public string UnfancifyMsg { get; set; } = "";
+
+    /// <summary>
+    /// Method that gets called when the user clicks on the Unfancify Current Graph button.
+    /// </summary>
+    public void OnUnfancifyCurrentClicked(object obj)
     {
-      get { return unfancifyMsg; }
-      set
+      // Reset the message in the UI
+      UnfancifyMsg = "";
+      // Call our main method
+      UnfancifyGraph();
+      // Change the message in the UI
+      UnfancifyMsg = "Current graph successfully unfancified!";
+    }
+
+    /// <summary>
+    /// Main method of our tool that unfancifies a graph.
+    /// Actions depend on settings in UI.
+    /// </summary>
+    public void UnfancifyGraph()
+    {
+      // Select all nodes
+      foreach (var node in viewModel.Model.CurrentWorkspace.Nodes)
       {
-        unfancifyMsg = value;
-        // Notify the UI that the value has changed
-        RaisePropertyChanged("UnfancifyMsg");
+        viewModel.SelectAllCommand.Execute(node);
       }
+      // Call node to code
+      viewModel.CurrentSpaceViewModel.NodeToCodeCommand.Execute(null);
     }
