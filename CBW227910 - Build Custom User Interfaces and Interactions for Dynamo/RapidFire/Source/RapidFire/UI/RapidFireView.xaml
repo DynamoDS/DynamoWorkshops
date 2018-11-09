@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RapidFire.UI"
-             mc:Ignorable="d" Title="Rapid Fire" Icon="pack://application:,,,/RapidFire;component/UI/Rapid Fire Zap.png"
-             d:DesignHeight="450" d:DesignWidth="800">
+             mc:Ignorable="d" Title="Rapid Fire"
+             Height="450" Width="400">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -13,23 +13,24 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <Grid Background="{StaticResource RF_LightBeige}">
+    <Grid Background="{StaticResource RF_NodeDark}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal">
-            <Button Command="{Binding OpenRepoCommand}">
-                GitHub
-                <!--<Image Source="pack://application:,,,/RapidFire;component/UI/Rapid Fire Zap.png"/>-->
+        <DockPanel LastChildFill="True" >
+            <Button Command="{Binding OpenRepoCommand}" DockPanel.Dock="Right">
+                <Image DockPanel.Dock="Right" Source="pack://application:,,,/RapidFire;component/UI/Rapid Fire Zap Simple.png" ToolTip="{Binding SavedFilePath}"/>
             </Button>
-            <Label Content="{Binding SavedFilePath}"/>
-        </StackPanel>
-        <ListBox ItemsSource="{Binding Shortcuts}" Style="{StaticResource RF_ListBackground}" Grid.Row="1">
+            <Label Content="Node Search: " VerticalAlignment="Center"/>
+            <TextBox Text="{Binding SearchString, UpdateSourceTrigger=PropertyChanged}" 
+                     Style="{StaticResource SearchBoxStyle}" />
+        </DockPanel>
+        <ListBox ItemsSource="{Binding FilteredShortcuts}"  Grid.Row="1">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Label Content="{Binding NodeName}"/>
+                    <local:ShortcutView/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
@@ -38,8 +39,8 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button IsCancel="True" Grid.Column="1" Content="Cancel" Style="{StaticResource RF_Buttons}"/>
-            <Button Content="Save" Style="{StaticResource RF_Buttons}"/>
+            <Button Content="Cancel" IsCancel="True" Foreground="{StaticResource RF_Red}"/>
+            <Button Content="Save"  Grid.Column="1" Click="Save_Button_Click"/>
         </Grid>
     </Grid>
 </Window>

@@ -54,7 +54,7 @@ namespace RapidFire
         /// <param name="obj">The current Dynamo workspace</param>
         private static void OnCurrentWorkspaceChanged(Dynamo.Graph.Workspaces.IWorkspaceModel obj)
         {
-            MessageBox.Show($"Congratulations on opening the {obj.Name} workspace!");
+            //MessageBox.Show($"Congratulations on opening the {obj.Name} workspace!");
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace RapidFire
         /// <param name="node">The node that was added.</param>
         private static void OnNodeAdded(NodeModel node)
         {
-            MessageBox.Show($"You just added the {node.Name} node with Id {node.GUID} to the canvas.");
+            //MessageBox.Show($"You just added the {node.Name} node with Id {node.GUID} to the canvas.");
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace RapidFire
         /// <param name="node">The node that was removed.</param>
         private static void OnNodeRemoved(NodeModel node)
         {
-            MessageBox.Show($"You just removed the {node.Name} node with Id {node.GUID} from the canvas.");
+            //MessageBox.Show($"You just removed the {node.Name} node with Id {node.GUID} from the canvas.");
         }
     }
 }

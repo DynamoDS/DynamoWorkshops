@@ -16,5 +16,10 @@ namespace RapidFire
             Keys = key;
             NodeName = creationName;
         }
+
+        public override string ToString()
+        {
+            return $"{Keys} : {NodeName}";
+        }
     }
 }

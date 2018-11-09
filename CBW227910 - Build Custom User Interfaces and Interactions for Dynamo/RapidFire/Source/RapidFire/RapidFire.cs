@@ -20,6 +20,26 @@ namespace RapidFire
         public RapidFire(DynamoView view)
         {
             View = view;
+            LoadShortcuts();
+        }
+
+        private void LoadShortcuts()
+        {
+            var stcts = Serialization.ReadFile(SaveFilePath);
+            if (stcts != null)
+            {
+                Shortcuts = new HashSet<Shortcut>(stcts);
+            }
+        }
+
+        internal void SaveShortCuts(IEnumerable<Shortcut> shortcutModels = null)
+        {
+            if(shortcutModels != null)
+            {
+                Shortcuts = new HashSet<Shortcut>(shortcutModels);
+            }
+            Serialization.WriteShortcutsToFile(SaveFilePath, Shortcuts.ToList());
+            LoadShortcuts();
         }
 
         static char? lastChar = null;
@@ -71,6 +91,7 @@ namespace RapidFire
                 }
             }
         }
+
 
         /// <summary>
         /// find the Node Name which matches the shortcut

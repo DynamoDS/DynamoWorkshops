@@ -23,7 +23,14 @@ namespace RapidFire.UI
         public RapidFireView(RapidFireVM vm)
         {
             InitializeComponent();
+
             this.DataContext = vm;
+        }
+
+        private void Save_Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = true;
+            this.Close();
         }
     }
 }

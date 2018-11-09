@@ -144,6 +144,7 @@
     <Compile Include="Events.cs" />
     <Compile Include="FireUtilities.cs" />
     <Compile Include="RapidFire.cs" />
+    <Compile Include="UI\Mock\MockShortcutVM.cs" />
     <Compile Include="UI\RapidFireView.xaml.cs">
       <DependentUpon>RapidFireView.xaml</DependentUpon>
     </Compile>
@@ -175,7 +176,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="UI\Rapid Fire Zap.png" />
+    <Resource Include="UI\Rapid Fire Zap Simple.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

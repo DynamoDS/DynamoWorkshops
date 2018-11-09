@@ -32,8 +32,22 @@ namespace RapidFire.UI
             }
             set
             {
-                _shortcut.Keys = value;
+                if(value.Length > 2)
+                {
+                    _shortcut.Keys = string.Join("", value.Substring(0,2)).ToUpper();
+                }
+                else
+                {
+                    _shortcut.Keys = value.ToUpper();
+
+                }
+                RaisePropertyChanged();
             }
+        }
+
+        public Shortcut GetShortcut()
+        {
+            return _shortcut;
         }
     }
 }

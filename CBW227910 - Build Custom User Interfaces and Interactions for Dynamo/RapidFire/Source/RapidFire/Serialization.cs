@@ -11,7 +11,7 @@ namespace RapidFire
     {
         //Thisvariable returns the default shortcut file path.
         public static string ShortcutFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-                                                        "DynaFire", 
+                                                        "RapidFire", 
                                                         "shortcuts.txt");
 
         /// <summary>
@@ -45,11 +45,12 @@ namespace RapidFire
 
         internal static void WriteShortcutsToFile(string shortcutPath, List<Shortcut> shortcuts)
         {
-            // First clear all the existing contents so we don't write duplicates
-            File.WriteAllText(shortcutPath, string.Empty);
+            //write a blank file
+            DirectoryInfo di = Directory.CreateDirectory(Path.GetDirectoryName(shortcutPath));
+            using (File.Create(shortcutPath));
 
             // Then write all shortcuts with non-empty keys to the File
-            using (StreamWriter shortcutsFile = new StreamWriter(shortcutPath))
+            using (StreamWriter shortcutsFile = new StreamWriter(shortcutPath, false))
             {
                 foreach (Shortcut shortcut in shortcuts)
                 {
