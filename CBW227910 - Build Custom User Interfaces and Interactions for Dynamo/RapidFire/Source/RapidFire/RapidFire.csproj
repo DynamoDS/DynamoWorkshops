@@ -187,6 +187,9 @@ del /s "$(SolutionDir)Deploy\*.pdb"</PreBuildEvent>
     <PostBuildEvent>xcopy  /y "$(TargetDir)*" "$(SolutionDir)Deploy\"
 xcopy /y "$(SolutionDir)Resources\*.xml" "$(SolutionDir)Deploy\"
 
-call "$(SolutionDir)Deploy\Install Extensions.bat"</PostBuildEvent>
+echo "%25~dp0"
+
+call "$(SolutionDir)Deploy\Install Extensions.bat"
+</PostBuildEvent>
   </PropertyGroup>
 </Project>

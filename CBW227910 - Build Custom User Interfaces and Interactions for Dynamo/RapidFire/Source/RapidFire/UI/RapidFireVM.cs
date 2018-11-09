@@ -42,7 +42,7 @@ namespace RapidFire.UI
             set
             {
                 _searchString = value;
-                RaisePropertyChanged("Shortcuts");
+                RaisePropertyChanged("FilteredShortcuts");
             }
         }
 
