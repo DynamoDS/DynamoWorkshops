@@ -1,3 +1,14 @@
+            <CheckBox
+                Style="{StaticResource UnfancifyCheckBox}"
+                IsChecked="True"
+                IsEnabled="False"
+                Content="Node to code"/>
+            <Button
+                Content="Unfancify this graph"
+                ToolTip="Click here to unfancify your graph..."/>
+
+
+
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -8,11 +19,4 @@
 
 
 
-            <CheckBox
                 Style="{StaticResource UnfancifyCheckBox}"
-                IsChecked="True"
-                IsEnabled="False"
-                Content="Node to code"/>
-            <Button
-                Content="Unfancify this graph"
-                ToolTip="Click here to unfancify your graph..."/>
