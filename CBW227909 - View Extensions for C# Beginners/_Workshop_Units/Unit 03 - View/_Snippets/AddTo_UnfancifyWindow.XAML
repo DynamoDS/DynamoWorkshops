@@ -1,5 +1,4 @@
             <CheckBox
-                Style="{StaticResource UnfancifyCheckBox}"
                 IsChecked="True"
                 IsEnabled="False"
                 Content="Node to code"/>
