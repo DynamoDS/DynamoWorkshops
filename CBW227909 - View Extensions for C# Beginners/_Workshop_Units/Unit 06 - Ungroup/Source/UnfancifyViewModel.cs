@@ -75,10 +75,7 @@ namespace Unfancify
     public void UnfancifyGraph()
     {
       // Select all nodes
-      foreach (var node in viewModel.Model.CurrentWorkspace.Nodes)
-      {
-        viewModel.SelectAllCommand.Execute(node);
-      }
+      viewModel.SelectAllCommand.Execute(null);
       // Call node to code
       viewModel.CurrentSpaceViewModel.NodeToCodeCommand.Execute(null);
     }
