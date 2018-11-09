@@ -32,5 +32,6 @@ namespace RapidFire.UI
             this.DialogResult = true;
             this.Close();
         }
+       
     }
 }

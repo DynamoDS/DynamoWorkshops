@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RapidFire.UI"
-             mc:Ignorable="d" Title="Rapid Fire"
+             mc:Ignorable="d" Title="Rapid Fire" Icon="pack://application:,,,/RapidFire;component/UI/Rapid Fire Zap Simple.png"
              Height="450" Width="400">
     <Window.Resources>
         <ResourceDictionary>
@@ -16,31 +16,32 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
-        <DockPanel LastChildFill="True" >
-            <Button Command="{Binding OpenRepoCommand}" DockPanel.Dock="Right">
-                <Image DockPanel.Dock="Right" Source="pack://application:,,,/RapidFire;component/UI/Rapid Fire Zap Simple.png" ToolTip="{Binding SavedFilePath}"/>
-            </Button>
-            <Label Content="Node Search: " VerticalAlignment="Center"/>
+        <Button Command="{Binding OpenRepoCommand}">
+            <Image Source="pack://application:,,,/RapidFire;component/UI/Rapid Fire Zap Simple.png" ToolTip="{Binding SavedFilePath}"/>
+        </Button>
+        <DockPanel Grid.Row="1" >
+            <Label Content="Search:" VerticalAlignment="Center"/>
             <TextBox Text="{Binding SearchString, UpdateSourceTrigger=PropertyChanged}" 
                      Style="{StaticResource SearchBoxStyle}" />
         </DockPanel>
-        <ListBox ItemsSource="{Binding FilteredShortcuts}"  Grid.Row="1">
+        <ListBox ItemsSource="{Binding FilteredShortcuts}"  Grid.Row="2">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <local:ShortcutView/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Grid Grid.Row="2" >
+        <Grid Grid.Row="3" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Content="Cancel" IsCancel="True" Foreground="{StaticResource RF_Red}"/>
+            <Button Content="Cancel" IsCancel="True" Foreground="{StaticResource RF_Orange}"/>
             <Button Content="Save"  Grid.Column="1" Click="Save_Button_Click"/>
         </Grid>
     </Grid>
