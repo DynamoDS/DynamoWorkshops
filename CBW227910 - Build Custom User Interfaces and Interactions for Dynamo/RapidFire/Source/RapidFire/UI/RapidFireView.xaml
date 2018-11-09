@@ -11,9 +11,10 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="RapidFireResources.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <SolidColorBrush Color="Coral" x:Key="Fonts"/>
         </ResourceDictionary>
     </Window.Resources>
-    <Grid Background="{StaticResource RF_NodeDark}">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>

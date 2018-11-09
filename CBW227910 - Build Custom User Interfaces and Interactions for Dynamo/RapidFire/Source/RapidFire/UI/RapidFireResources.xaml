@@ -21,16 +21,20 @@
         <Setter Property="Margin" Value="3"/>
         <Setter Property="BorderThickness"  Value="2"/>
         <Setter Property="FontSize" Value="18"/>
-        <!--<Setter Property="BorderBrush" Value="{StaticResource RF_LightBeige}"/>-->
     </Style>
 
     <Style TargetType="ListBox">
         <Setter Property="Background" Value="{StaticResource RF_NodeDark}"/>
     </Style>
 
+    <Style TargetType="Grid">
+        <Setter Property="Background" Value="{StaticResource RF_NodeDark}"/>
+    </Style>
+
     <Style TargetType="Label">
         <Setter Property="Foreground" Value="{StaticResource RF_LightBeige}"/>
         <Setter Property="FontSize" Value="14"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
 
     <Style TargetType="TextBox">

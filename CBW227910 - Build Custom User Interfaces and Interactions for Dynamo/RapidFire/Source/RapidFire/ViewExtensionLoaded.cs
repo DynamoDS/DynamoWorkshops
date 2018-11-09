@@ -31,12 +31,12 @@ namespace RapidFire
             shortcutsMenuItem.Header = "Keyboard Shortcuts";
             shortcutsMenuItem.Click += (o, e) =>
             {
-                //TODO Create the VM for the RapidFire View
+                //TODO Create instance of the RapidFireViewModel
                 RapidFireVM vm = new RapidFireVM(p.DynamoWindow.DataContext as DynamoViewModel, RF);
 
-                //TODO Create the View
+                //TODO Create instance of the View
                 RapidFireView view = new RapidFireView(vm);
-
+                    
                 //TODO Show it from the menu click
                 var result = view.ShowDialog();
 
