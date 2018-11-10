@@ -1,19 +1,15 @@
+    public ICommand UnfancifyCurrentGraph { get; set; }
+
 using System.Windows.Input;
+
+      // The Unfancify Current Graph button is bound to this command
+      UnfancifyCurrentGraph = new DelegateCommand(OnUnfancifyCurrentClicked);
+
 using Dynamo.UI.Commands;
 
 
 
     private string unfancifyMsg = "";
-
-
-
-
-    public ICommand UnfancifyCurrentGraph { get; set; }
-
-
-
-      // The Unfancify Current Graph button is bound to this command
-      UnfancifyCurrentGraph = new DelegateCommand(OnUnfancifyCurrentClicked);
 
 
 

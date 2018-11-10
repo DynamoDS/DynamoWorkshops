@@ -1,8 +1,6 @@
-            <Button
-                Content="Unfancify this graph"
-                ToolTip="Click here to unfancify your graph..."
-                Command="{Binding UnfancifyCurrentGraph}"/>
-            <TextBlock 
-                TextAlignment="Left" 
-                FontWeight="Bold"
-                Text="{Binding UnfancifyMsg}" />
+                Command="{Binding UnfancifyCurrentGraph}"
+
+
+
+
+                Text="{Binding UnfancifyMsg}"
