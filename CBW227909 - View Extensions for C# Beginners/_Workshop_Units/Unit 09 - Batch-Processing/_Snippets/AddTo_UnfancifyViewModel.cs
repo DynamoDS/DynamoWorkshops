@@ -1,7 +1,3 @@
-using Dynamo.Models;
-
-
-
     /// <summary>
     /// Method that gets called when the user has selected a directory and clicked OK.
     /// </summary>
@@ -40,3 +36,7 @@ using Dynamo.Models;
       // Write a summary to the UI
       UnfancifyMsg += "Unfancified " + graphCount.ToString() + " graphs...";
     }
+
+
+
+using Dynamo.Models;

@@ -1,7 +1,3 @@
-using System.Windows.Forms;
-
-
-
     /// <summary>
     /// Method that gets called when the user clicks on the Batch-Unfancify button.
     /// </summary>
@@ -24,3 +20,7 @@ using System.Windows.Forms;
         vm.OnBatchUnfancifyClicked(openDialog.SelectedPath);
       }
     }
+
+
+
+using System.Windows.Forms;
