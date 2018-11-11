@@ -1,8 +1,3 @@
-using System.Windows.Threading;
-
-
-
-
     /// <summary>
     /// Use auto-layout?
     /// </summary>
@@ -10,14 +5,10 @@ using System.Windows.Threading;
 
 
 
-     // Identify all groups to keep/ungroup
-      if (UngroupAll)
-      {
         // Make sure that no groups are currently selected
         GeneralUtils.ClearSelection();
 
 
-      // Process nodes before we call node to code
       // Make sure that no nodes are currently selected
       GeneralUtils.ClearSelection();
 
@@ -36,3 +27,7 @@ using System.Windows.Threading;
           viewModel.CurrentSpaceViewModel.GraphAutoLayoutCommand.Execute(null);
         }));
       }
+
+
+
+using System.Windows.Threading;
