@@ -1,7 +1,3 @@
-using System.Collections.Generic;
-
-
-
     /// <summary>
     /// Group prefixes that should be ignored.
     /// </summary>
@@ -11,6 +7,12 @@ using System.Collections.Generic;
 
       // Create a list for storing guids of groups, nodes and text notes that we want to keep
       var stuffToKeep = new List<string>();
+
+
+
+using System.Collections.Generic;
+
+
 
       // Identify all groups to keep/ungroup
       if (UngroupAll)
@@ -40,11 +42,6 @@ using System.Collections.Generic;
         viewModel.UngroupAnnotationCommand.Execute(null);
       }
 
-      // Process nodes before we call node to code
-      // Make sure that no nodes are currently selected
-      GeneralUtils.ClearSelection();
-      // We need this part to circumnavigate two minor node-to-code bugs
-      // So this is actually a good example for how you can fix Dynamo issues for yourself without having to touch DynamoCore code
       foreach (var node in viewModel.Model.CurrentWorkspace.Nodes)
       {
         // We're not interested in keepers (i.e. nodes that will not be run through node-to-code)
@@ -69,5 +66,3 @@ using System.Collections.Generic;
           viewModel.AddToSelectionCommand.Execute(node);
         }
       }
-      // Call node to code
-      viewModel.CurrentSpaceViewModel.NodeToCodeCommand.Execute(null);
