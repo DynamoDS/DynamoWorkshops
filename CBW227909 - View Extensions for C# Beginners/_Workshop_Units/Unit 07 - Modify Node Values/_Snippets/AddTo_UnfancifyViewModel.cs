@@ -1,8 +1,3 @@
-using CoreNodeModels.Input;
-using Dynamo.Graph;
-
-
-
       // Process nodes before we call node to code
       // We need this part to circumnavigate two minor node-to-code bugs
       // So this is actually a good example for how you can fix Dynamo issues for yourself without having to touch DynamoCore code
@@ -26,3 +21,7 @@ using Dynamo.Graph;
         // Add each node to the current selection
         viewModel.AddToSelectionCommand.Execute(node);
       }
+
+
+using CoreNodeModels.Input;
+using Dynamo.Graph;
