@@ -1,0 +1,18 @@
+﻿{
+  "license": "AGPL3",
+  "file_hash": null,
+  "name": "Dynamo Server",
+  "version": "1.0.0",
+  "description": "A Dynamo Extension that allows bi-directional communication and control of Dynamo as a REST API.",
+  "group": "",
+  "keywords": [],
+  "dependencies": [],
+  "contents": "",
+  "engine_version": "2.0.1.5065",
+  "engine": "dynamo",
+  "engine_metadata": "",
+  "site_url": "https://github.com/radumg/DynamoServer",
+  "repository_url": "https://github.com/radumg/DynamoServer",
+  "contains_binaries": true,
+  "node_libraries": []
+}
