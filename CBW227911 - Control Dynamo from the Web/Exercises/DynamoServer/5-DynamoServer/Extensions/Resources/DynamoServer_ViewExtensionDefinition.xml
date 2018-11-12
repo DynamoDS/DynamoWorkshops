@@ -1,4 +1,0 @@
-﻿<ViewExtensionDefinition>
-  <AssemblyPath>..\bin\DynamoServerExtensions.dll</AssemblyPath>
-  <TypeName>DynamoServer.Extensions.ServerViewExtension</TypeName>
-</ViewExtensionDefinition>

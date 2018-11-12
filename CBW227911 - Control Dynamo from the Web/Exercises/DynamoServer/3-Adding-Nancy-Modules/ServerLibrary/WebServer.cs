@@ -6,31 +6,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NancyServer
+namespace ServerLibrary
 {
-    public class Program
+    public class WebServer
     {
         private const string DEFAULT_URL_BASE = "http://localhost:1234";
+        private NancyHost server;
 
-        static void Main(string[] args)
+        public WebServer()
         {
             var serverConfig = new HostConfiguration();
             serverConfig.UrlReservations.CreateAutomatically = true;
 
-            var server = new NancyHost(serverConfig, new Uri(DEFAULT_URL_BASE));
+            server = new NancyHost(serverConfig, new Uri(DEFAULT_URL_BASE));
+        }
 
-            // start the server
+        public void Start()
+        {
             server.Start();
-
             Process.Start("http://localhost:1234");
+            Console.WriteLine("Server has now started." + Environment.NewLine);
+        }
 
-            Console.WriteLine("Press any key to terminate server");
-            Console.ReadKey();
+        public void Stop()
+        {
             server.Stop();
-            Console.WriteLine("Server has now stopped" + Environment.NewLine);
-
-            Console.WriteLine("Press any key to exit...");
-            Console.ReadKey();
+            Console.WriteLine("Server has now stopped." + Environment.NewLine);
         }
     }
 }
