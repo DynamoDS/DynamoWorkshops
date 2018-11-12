@@ -12,7 +12,6 @@ namespace DynamoServer.Extensions
         public static MenuItem DynamoServerMenu;
         private static MenuItem StartServerMenuItem;
         private static MenuItem StopServerMenuItem;
-        private static MenuItem CheckServerStatusMenuItem;
 
         static UI()
         {
@@ -22,16 +21,13 @@ namespace DynamoServer.Extensions
             // and now we add a new sub-menu item that says hello when clicked
             StartServerMenuItem = new MenuItem { Header = "Start Server" };
             StopServerMenuItem = new MenuItem { Header = "Stop Server" };
-            CheckServerStatusMenuItem = new MenuItem { Header = "Check server status" };
 
             // register event handlers
             StartServerMenuItem.Click += Events.OnServerStartAsync;
             StopServerMenuItem.Click += Events.OnServerStop;
-            CheckServerStatusMenuItem.Click += Events.OnCheckServerStatus;
 
             DynamoServerMenu.Items.Add(StartServerMenuItem);
             DynamoServerMenu.Items.Add(StopServerMenuItem);
-            DynamoServerMenu.Items.Add(CheckServerStatusMenuItem);
         }
     }
 }

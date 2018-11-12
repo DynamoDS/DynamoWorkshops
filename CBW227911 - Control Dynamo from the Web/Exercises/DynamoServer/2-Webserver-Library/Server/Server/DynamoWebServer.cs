@@ -22,9 +22,8 @@ namespace DynamoServer.Server
 
             serverConfig = new HostConfiguration();
             serverConfig.UrlReservations.CreateAutomatically = true;
-            var bootstrapper = new Bootstrapper();
 
-            server = new NancyHost(bootstrapper, serverConfig, new Uri(UrlBase));
+            server = new NancyHost(serverConfig, new Uri(UrlBase));
 
             // set initial state
             IsRunning = false;

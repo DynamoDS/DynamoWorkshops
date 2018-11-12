@@ -44,10 +44,5 @@ namespace DynamoServer.Extensions
         {
             await ServerViewExtension.StopServerAsync();
         }
-
-        public static void OnCheckServerStatus(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show(ServerViewExtension.GetServerStatus());
-        }
     }
 }

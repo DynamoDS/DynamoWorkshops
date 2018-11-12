@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nancy.Hosting.Self;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -9,9 +10,14 @@ namespace NancyServer
 {
     public class Program
     {
+        private const string DEFAULT_URL_BASE = "http://localhost:1234";
+
         static void Main(string[] args)
         {
-            var server = new WebServer();
+            var serverConfig = new HostConfiguration();
+            serverConfig.UrlReservations.CreateAutomatically = true;
+
+            var server = new NancyHost(serverConfig, new Uri(DEFAULT_URL_BASE));
 
             // start the server
             server.Start();
@@ -20,7 +26,10 @@ namespace NancyServer
 
             Console.WriteLine("Press any key to terminate server");
             Console.ReadKey();
+            server.Stop();
 
+            Console.WriteLine("Press any key to exit...");
+            Console.ReadKey();
         }
     }
 }
