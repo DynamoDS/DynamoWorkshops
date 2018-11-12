@@ -1,0 +1,4 @@
+﻿<ExtensionDefinition>
+  <AssemblyPath>..\bin\DynaServerExtensions.dll</AssemblyPath>
+  <TypeName>DynaServer.Extensions.ServerExtension</TypeName>
+</ExtensionDefinition>
