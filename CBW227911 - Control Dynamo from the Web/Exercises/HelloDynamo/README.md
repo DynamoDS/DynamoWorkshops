@@ -133,14 +133,14 @@ Then add before `</PropertyGroup>` :
 
 # Exercise 2 -Extension snippets
 
-** Implement an interface **
+**Implement an interface**
 
 ```cs
     public class ExtensionExample : IExtension
 ```
 
 
-** Interface properties **
+**Interface properties**
 
 ```cs
         public string UniqueId => "3B234622-43B7-4EA8-86DA-54FB390BE29E";
@@ -149,7 +149,7 @@ Then add before `</PropertyGroup>` :
 ```
 
 
-** Interface methods**
+**Interface methods**
 
 ```cs
         public void Startup(StartupParams sp) {
@@ -173,7 +173,7 @@ And two more methods :
 ```
 
 
-** Usings **
+**Usings**
 
 ```cs
 using Dynamo.Extensions;
@@ -194,20 +194,20 @@ MessageBox.Show("Extension is starting up!");
 
 # Exercise 3 - View Extension snippets
 
-** Implement Interface**
+**Implement Interface**
 
 ```cs
     public class ViewExtensionExample : IViewExtension
 ```
 
-** Interface properties**
+**Interface properties**
 
 ```cs
         public string UniqueId => "5E85F38F-0A19-4F24-9E18-96845764780C";
         public string Name => "Hello Dynamo View Extension";
 ```
 
-** Interface methods **
+**Interface methods**
 
 ```cs
         public void Startup(ViewStartupParams vsp)
@@ -233,7 +233,7 @@ And two more methods, just like before :
 ```
 
 
-** Usings **
+**Usings**
 
 ```cs
 using Dynamo.Extensions;
@@ -245,7 +245,7 @@ using System.Threading.Tasks;
 using System.Windows;
 ```
 
-** Message boxes **
+**Message boxes**
 
 ```cs
 MessageBox.Show("Extension is starting up!");
