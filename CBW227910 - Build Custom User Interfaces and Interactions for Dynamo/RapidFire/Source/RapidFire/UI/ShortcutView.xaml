@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="RapidFire.UI.ShortcutView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mock="clr-namespace:RapidFire.UI.Mock"
+             xmlns:local="clr-namespace:RapidFire.UI"
+             mc:Ignorable="d" 
+             d:DesignHeight="40" d:DesignWidth="200">
+    <UserControl.Resources>
+        <ResourceDictionary >
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="RapidFireResources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <mock:MockShortcutVM x:Key="MockShortcut"/>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid d:DataContext="{Binding Source={StaticResource MockShortcut}}" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBox Text="{Binding ShortcutKey}" />
+        <Label Content="{Binding NodeName}" Grid.Column="1" VerticalAlignment="Center"/>
+    </Grid>
+</UserControl>
