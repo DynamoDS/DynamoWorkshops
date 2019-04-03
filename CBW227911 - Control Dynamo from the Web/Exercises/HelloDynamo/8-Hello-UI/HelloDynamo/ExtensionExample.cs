@@ -34,6 +34,9 @@ namespace HelloDynamo
         {
             MessageBox.Show("Extension is ready!");
 
+            // we can register our own events that will be triggered when specific things happen in Dynamo
+            // a reference to the ReadyParams is needed to do this, so we pass it on
+            Events.RegisterEventHandlers(rp);
         }
 
         /// <summary>
@@ -41,7 +44,7 @@ namespace HelloDynamo
         /// </summary>
         public void Shutdown()
         {
-
+            Events.UnregisterEventHandlers();
         }
 
         public void Dispose() { }
