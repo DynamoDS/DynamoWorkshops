@@ -188,6 +188,9 @@
       <!--Copy to Dynamo revit for publishing -->
       <DeployFolder Condition="'$(Configuration)' == 'Release' Or '$(Configuration)' == 'DebugRevit'">$(AppData)\Dynamo\Dynamo Revit\2.0\packages\$(ProjectName)</DeployFolder>
     </PropertyGroup>
+    <!--Delete any previous package directory with same name -->
+    <RemoveDir Directories="$(DeployFolder)" />
+    <!--Now copy the new one -->
     <Copy SourceFiles="@(SourcePackage)" DestinationFolder="$(DeployFolder)\%(RecursiveDir)" />
     <Message Importance="High" Text="++++++++++++++++++++++++++++++++++++++" />
     <Message Importance="High" Text="Deployed to $(DeployFolder)" />

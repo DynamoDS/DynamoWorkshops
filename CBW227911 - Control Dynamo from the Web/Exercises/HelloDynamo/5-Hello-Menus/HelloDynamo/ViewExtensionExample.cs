@@ -1,4 +1,5 @@
-﻿using Dynamo.ViewModels;
+﻿using Dynamo.Models;
+using Dynamo.ViewModels;
 using Dynamo.Wpf.Extensions;
 using System;
 using System.Windows;
@@ -15,7 +16,8 @@ namespace HelloDynamo
         public string Name => "Hello Dynamo View Extension";
 
         private ViewLoadedParams viewLoadedParams;
-        private DynamoViewModel dynamoViewModel => viewLoadedParams.DynamoWindow.DataContext as DynamoViewModel;
+        private DynamoViewModel dynamoViewModel;
+        private DynamoModel dynamoModel;
 
         /// <summary>
         /// Method that is called when Dynamo starts, but is not yet ready to be used.
@@ -36,8 +38,8 @@ namespace HelloDynamo
 
             // hold a reference to the Dynamo params to be used later
             viewLoadedParams = vlp;
-
-            // add custom menu items to Dynamo's UI
+            dynamoViewModel = vlp.DynamoWindow.DataContext as DynamoViewModel;
+            dynamoModel = dynamoViewModel.Model as DynamoModel;
         }
 
 
