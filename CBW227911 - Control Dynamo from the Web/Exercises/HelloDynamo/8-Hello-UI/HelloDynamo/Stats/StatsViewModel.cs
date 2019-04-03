@@ -17,7 +17,7 @@ using System.Runtime.CompilerServices;
 
 namespace HelloDynamo.Stats
 {
-    class StatsViewModel : NotificationObject
+    public class StatsViewModel : NotificationObject
     {
         private ViewLoadedParams readyParams;
         private string activeNodeCount;
