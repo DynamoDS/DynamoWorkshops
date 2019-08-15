@@ -1,0 +1,334 @@
+{
+  "Uuid": "3c9d0464-8643-5ffe-96e5-ab1769818209",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "05_Casework Warehouse_A",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 106,
+      "NodeType": "ExtensionNode",
+      "Id": "3b2272d36c7546eab3ddcbead32bd203",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "19defdfcf30543b08c6a94c0125813fd",
+          "Name": "Category",
+          "Description": "The selected Category.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All built-in categories."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.FamilyType.Family",
+      "Id": "4df1b25db31b4f3cb8c372f9b831968a",
+      "Inputs": [
+        {
+          "Id": "534bcb2b12764f49bd0d4a98080dc9d3",
+          "Name": "familyType",
+          "Description": "Revit.Elements.FamilyType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0df00634b76f41a0b01091b0fc43dbf5",
+          "Name": "Family",
+          "Description": "Family",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the parent family of this FamilyType\n\nFamilyType.Family: Family"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.List.GroupByKey@var[]..[],var[]..[]",
+      "Id": "56870c71c57f44c08fc6f88b80e03c0b",
+      "Inputs": [
+        {
+          "Id": "510d2851622e43e194009e5cfd442827",
+          "Name": "list",
+          "Description": "List of items to group as sublists\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "2e2b80850b1344b6bd8be74528a984ac",
+          "Name": "keys",
+          "Description": "Key values, one per item in the input list, used for grouping the items\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "5639e44f6b684ec8b02312bfcedb5394",
+          "Name": "groups",
+          "Description": "list of sublists, with items grouped by like key values",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d7a259c2d78b4dfe87a41bfbb9b8c961",
+          "Name": "unique keys",
+          "Description": "key value corresponding to each group",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Group items into sub-lists based on their like key values\n\nList.GroupByKey (list: var[]..[], keys: var[]..[]): var[]..[]"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "d036d5d14698423fa39327606d42e6f8",
+      "Inputs": [
+        {
+          "Id": "7ae14d0f724f4d1dbc91e221af28952c",
+          "Name": "",
+          "Description": "Node to evaluate.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c332e5ac621b4e359f260bcd368b3b4e",
+          "Name": "",
+          "Description": "Watch contents.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualize the output of node."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
+      "FunctionSignature": "65f93a80-674c-4a98-9d0c-db3a138287e5",
+      "FunctionType": "Graph",
+      "NodeType": "FunctionNode",
+      "Id": "234ccb553d4b49d495875e45733bd7e1",
+      "Inputs": [
+        {
+          "Id": "f80cfd376d4e4009956dc746361dac6f",
+          "Name": "category",
+          "Description": "Category",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "17fc23c3212b457dbe5dbf6def73b7f3",
+          "Name": "toggle",
+          "Description": "bool\nDefault value : true",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "46cf6bbc485d4b3999508fb31c127225",
+          "Name": "docOrRevitLinkInstance",
+          "Description": " Use only if you want to query a linked model\n\nvar\nDefault value : null",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "892f9250894f432bb4a76765f962c974",
+          "Name": "familyTypes",
+          "Description": "return value",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Gets all family types/symbols of a given category in the model."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "19defdfcf30543b08c6a94c0125813fd",
+      "End": "f80cfd376d4e4009956dc746361dac6f",
+      "Id": "8e598a3c5b3c48e8bfb144aa6db7d2f8"
+    },
+    {
+      "Start": "0df00634b76f41a0b01091b0fc43dbf5",
+      "End": "2e2b80850b1344b6bd8be74528a984ac",
+      "Id": "62f3c68a7e4941b297c2715590e0ffa3"
+    },
+    {
+      "Start": "5639e44f6b684ec8b02312bfcedb5394",
+      "End": "7ae14d0f724f4d1dbc91e221af28952c",
+      "Id": "30eba77a15134a0ca1045a1e4ff981a5"
+    },
+    {
+      "Start": "892f9250894f432bb4a76765f962c974",
+      "End": "510d2851622e43e194009e5cfd442827",
+      "Id": "771b3f8f322c40e4b62d45e02eacff02"
+    },
+    {
+      "Start": "892f9250894f432bb4a76765f962c974",
+      "End": "534bcb2b12764f49bd0d4a98080dc9d3",
+      "Id": "ad30ce80ddbd4d4caccd5eb4bd2157ca"
+    }
+  ],
+  "Dependencies": [
+    "65f93a80-674c-4a98-9d0c-db3a138287e5"
+  ],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.0.1.5055",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "Id": "3b2272d36c7546eab3ddcbead32bd203",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Name": "Categories",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 2068.08183867509,
+        "Y": 22.3374463465629
+      },
+      {
+        "Id": "4df1b25db31b4f3cb8c372f9b831968a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "FamilyType.Family",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 2630.6579085756794,
+        "Y": 119.91519653269228
+      },
+      {
+        "Id": "56870c71c57f44c08fc6f88b80e03c0b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "List.GroupByKey",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 2885.9459435259741,
+        "Y": 22.3374463465629
+      },
+      {
+        "Id": "d036d5d14698423fa39327606d42e6f8",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Watch",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 3136.2339784762689,
+        "Y": 22.3374463465629
+      },
+      {
+        "Id": "234ccb553d4b49d495875e45733bd7e1",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "All Family Types Of Category",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 2265.3698736253846,
+        "Y": 22.3374463465629
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "2e055340e3f64b2097640834ee3e2e0c",
+        "Title": "1. Get all Casework Types",
+        "Nodes": [
+          "3b2272d36c7546eab3ddcbead32bd203",
+          "4df1b25db31b4f3cb8c372f9b831968a",
+          "56870c71c57f44c08fc6f88b80e03c0b",
+          "d036d5d14698423fa39327606d42e6f8",
+          "02fd4d6c25e34838ba817146f32271cd",
+          "234ccb553d4b49d495875e45733bd7e1"
+        ],
+        "Left": 2058.08183867509,
+        "Top": -62.839426837007721,
+        "Width": 1378.1521398011791,
+        "Height": 463.17687318357059,
+        "FontSize": 30.0,
+        "InitialTop": -16.839426837007721,
+        "InitialHeight": 408.0,
+        "TextblockHeight": 36.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "02fd4d6c25e34838ba817146f32271cd",
+        "Title": "Requires the Clockwork version 2.x Package",
+        "Nodes": [],
+        "Left": 2268.6500141999068,
+        "Top": -16.839426837007721,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": -1694.4888761675361,
+    "Y": 119.60530540096639,
+    "Zoom": 0.82612246972879666
+  }
+}

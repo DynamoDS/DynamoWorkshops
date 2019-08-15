@@ -1,0 +1,4 @@
+<CheckBox
+                Style="{StaticResource UnfancifyCheckBox}"
+                IsChecked="{Binding DeleteWatchNodes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                Content="Delete all downstream Watch nodes (Watch, Watch Image &amp; Watch 3D)"/>

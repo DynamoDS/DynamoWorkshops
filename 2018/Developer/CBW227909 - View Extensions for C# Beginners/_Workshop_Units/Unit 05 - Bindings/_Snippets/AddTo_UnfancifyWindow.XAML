@@ -1,0 +1,6 @@
+                Command="{Binding UnfancifyCurrentGraph}"
+
+
+
+
+                Text="{Binding UnfancifyMsg}"

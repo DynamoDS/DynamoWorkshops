@@ -1,0 +1,4 @@
+﻿<ViewExtensionDefinition>
+  <AssemblyPath>RapidFire.dll</AssemblyPath>
+  <TypeName>RapidFire.ViewExtensionLoaded</TypeName>
+</ViewExtensionDefinition>
