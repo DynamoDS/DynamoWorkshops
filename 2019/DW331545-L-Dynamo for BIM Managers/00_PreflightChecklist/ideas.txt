@@ -1,0 +1,2 @@
+- Dynamo CLI to batch copy packages from a given area
+- EXE to install packages
