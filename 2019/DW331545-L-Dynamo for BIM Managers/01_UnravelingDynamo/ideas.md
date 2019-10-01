@@ -1,0 +1,20 @@
+- How Dynamo operates.
+	- Dynamo vs Add-In
+	- Automatic vs Manual
+- Dynamo Settings
+- Package Mapping
+- File Formats
+- Options for Node Creation (python, c#, dyf, etc)
+- Strategies
+	- templates
+	 - Analytics (Pros & Cons)
+	 	- Text File appending [nodal] _Might need to have it get the current Revit user_ 
+			- **Pro:** Simple to implement 
+			- **Con:** lots of nodes, potential not being consistent, no sandbox.
+		- Python [encapsulates a lot functionality] 
+			- **Pro:** Reduce Package dependency, screen real estate, talk to machine 
+			- **Con:** Knowledge of python required (minimal), Source is open
+		- View Extension [showcase binoculars] 
+			- **Pro:** Once installed everyone has it, speed enhancements (less render) 
+			- **Con:** Everyone needs it installed.
+		
