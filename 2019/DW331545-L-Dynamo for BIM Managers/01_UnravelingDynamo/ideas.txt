@@ -5,3 +5,5 @@
 - Package Mapping
 - File Formats
 - Options for Node Creation (python, c#, dyf, etc)
+- Strategies
+	- templates
