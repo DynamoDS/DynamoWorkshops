@@ -14,7 +14,7 @@
 		- Python [encapsulates a lot functionality] [@solamour](https://github.com/solamour)
 			- **Pro:** Reduce Package dependency, screen real estate, talk to machine 
 			- **Con:** Knowledge of python required (minimal), Source is open
-		- View Extension [showcase binoculars] @ghost
+		- View Extension [showcase binoculars] [@ghost](https://github.com/ghost)
 			- **Pro:** Once installed everyone has it, speed enhancements (less render) 
 			- **Con:** Everyone needs it installed.
 		
