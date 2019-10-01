@@ -8,10 +8,10 @@
 - Strategies
 	- templates
 	 - Analytics (Pros & Cons)
-	 	- Text File appending [nodal] _Might need to have it get the current Revit user_ @johnpierson
+	 	- Text File appending [nodal] _Might need to have it get the current Revit user_ [@johnpierson](https://github.com/johnpierson)
 			- **Pro:** Simple to implement 
 			- **Con:** lots of nodes, potential not being consistent, no sandbox.
-		- Python [encapsulates a lot functionality] @solamour 
+		- Python [encapsulates a lot functionality] [@solamour](https://github.com/solamour)
 			- **Pro:** Reduce Package dependency, screen real estate, talk to machine 
 			- **Con:** Knowledge of python required (minimal), Source is open
 		- View Extension [showcase binoculars] @ghost
