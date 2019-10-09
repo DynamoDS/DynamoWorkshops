@@ -1,0 +1,508 @@
+{
+  "Uuid": "d35af4f3-d2a0-4615-82ce-6e1cddf4194a",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "Strategy_AppendRunsToFile",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.IO.FileSystem.AppendText@string,string",
+      "Id": "932e0044aa02464abe37c6ff1e7aef03",
+      "Inputs": [
+        {
+          "Id": "e14245b4c6ec436ba716e5e26a3d905f",
+          "Name": "filePath",
+          "Description": "Path to write to\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "37d8c5b8dc8b4a9a8c7246bee609bde1",
+          "Name": "text",
+          "Description": "Text content\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a8a9e7bee28047379c970e79fbfbcd0a",
+          "Name": "void",
+          "Description": "void",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Append the text content to a file specified by the path\n\nFileSystem.AppendText (filePath: string, text: string): void"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.DateTime.Now",
+      "Id": "a38da115bcf34474b76a872c36acb167",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e1887ed9fa1c4bf8996ff191dfa599f7",
+          "Name": "dateTime",
+          "Description": "DateTime",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "The current system date and time.\n\nDateTime.Now: var"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.DateTime.Format@var,string",
+      "Id": "b9523e5aa68d48c4926a085449dcb3fa",
+      "Inputs": [
+        {
+          "Id": "4d8ebc62694f4fadb046d45a9c3032bf",
+          "Name": "dateTime",
+          "Description": "The DateTime to format.\n\nvar",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5a301cea215c4235801654d2b37165e4",
+          "Name": "format",
+          "Description": "String representation of the date format. Uses InvariantCulture, which outputs independent of the user's operating system language. Defaults to standard format \"F\" : \"Tuesday, 21 February 2017 23:02:43\" Search \"MSDN Custom Date and Time Format Strings\" for a comprehensive list of format specifiers.\n\nstring\nDefault value : \"F\"",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4397d1ad0637475fbe7549c86400fd4b",
+          "Name": "string",
+          "Description": "The specified date and time as a string, in the specified format.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Return a specified date and time as a string, in the specified format.\n\nDateTime.Format (dateTime: var, format: string = \"F\"): string"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"yyyMMdd-hh:mmtt\";",
+      "Id": "4e9ee0e119ae4ab2b68d9c87ee24bb4c",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d40931e958e24bd992bb9f0183d8df94",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"https://docs.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings\";",
+      "Id": "b472baebb5614a028b79ef0ef17dbd58",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "1ecfeaef60f448d6936d44e96391b7b2",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "ranTime + \" - \" + userName;",
+      "Id": "69fd633e269f41dca3d088aa5e0479d0",
+      "Inputs": [
+        {
+          "Id": "82e8ce2a492c4ec4a0d26f72430d7ce8",
+          "Name": "ranTime",
+          "Description": "ranTime",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "48a02c84e7fd4398989dbe845bd50589",
+          "Name": "userName",
+          "Description": "userName",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "1e84098ece1e43589f4ec863e88be0ac",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "import clr\r\n\r\nimport getpass\r\n\r\nOUT = getpass.getuser()",
+      "VariableInputPorts": true,
+      "Id": "947a3ae49e5c49399a9710e48715cf8e",
+      "Inputs": [
+        {
+          "Id": "98b36b2d04184940b45aa42538062078",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "825e6f7745374492b8da99cb24ab4805",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded IronPython script."
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "#from https://stackoverflow.com/questions/34275782/how-to-get-desktop-location\r\nimport clr\r\n\r\nimport os\r\n\r\nOUT = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop\\FileRuns.txt') ",
+      "VariableInputPorts": true,
+      "Id": "35babd85697241ed8495c8a524c3c4ae",
+      "Inputs": [
+        {
+          "Id": "699c16f96aad4417b79801d44bad5861",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "bd93c1cb4974425c9695f2d057faf701",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded IronPython script."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "e1887ed9fa1c4bf8996ff191dfa599f7",
+      "End": "4d8ebc62694f4fadb046d45a9c3032bf",
+      "Id": "282413546d5f4066b24988777f540722"
+    },
+    {
+      "Start": "4397d1ad0637475fbe7549c86400fd4b",
+      "End": "82e8ce2a492c4ec4a0d26f72430d7ce8",
+      "Id": "0ab52b086c50422c94ef354d52dd08e4"
+    },
+    {
+      "Start": "d40931e958e24bd992bb9f0183d8df94",
+      "End": "5a301cea215c4235801654d2b37165e4",
+      "Id": "a64dcf3a5ae24f57a809c9d0d1550f68"
+    },
+    {
+      "Start": "1e84098ece1e43589f4ec863e88be0ac",
+      "End": "37d8c5b8dc8b4a9a8c7246bee609bde1",
+      "Id": "deb4e23dca6148b68779162359d33a79"
+    },
+    {
+      "Start": "825e6f7745374492b8da99cb24ab4805",
+      "End": "48a02c84e7fd4398989dbe845bd50589",
+      "Id": "14a447ab97c04cf18bd45ffdbe997f5d"
+    },
+    {
+      "Start": "bd93c1cb4974425c9695f2d057faf701",
+      "End": "e14245b4c6ec436ba716e5e26a3d905f",
+      "Id": "5b4bd49d40474a4f902882a0bfc0ee08"
+    }
+  ],
+  "Dependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.1.0.7500",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "FileSystem.AppendText",
+        "Id": "932e0044aa02464abe37c6ff1e7aef03",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1094.0674927785528,
+        "Y": 472.69842819959069
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "DateTime.Now",
+        "Id": "a38da115bcf34474b76a872c36acb167",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 172.6841989929851,
+        "Y": 374.9681862713345
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "DateTime.Format",
+        "Id": "b9523e5aa68d48c4926a085449dcb3fa",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 330.20853425862242,
+        "Y": 411.65289492123441
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Custom Time Format",
+        "Id": "4e9ee0e119ae4ab2b68d9c87ee24bb4c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 103.6841989929851,
+        "Y": 485.1784819344316
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "MSDN Format Strings for Date and Time",
+        "Id": "b472baebb5614a028b79ef0ef17dbd58",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -154.96838338033626,
+        "Y": 194.38713912026384
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "69fd633e269f41dca3d088aa5e0479d0",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 688.45877743897859,
+        "Y": 536.14490969644851
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Python Script - GetCurrentUsername",
+        "Id": "947a3ae49e5c49399a9710e48715cf8e",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 303.19804982754448,
+        "Y": 738.95813059324666
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Python Script - DesktopLocation",
+        "Id": "35babd85697241ed8495c8a524c3c4ae",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 805.926288695729,
+        "Y": 394.287039838719
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "a532fc63b48e498484861118923280db",
+        "Title": "Gets the current time and formats it to our liking",
+        "Nodes": [
+          "a38da115bcf34474b76a872c36acb167",
+          "b9523e5aa68d48c4926a085449dcb3fa",
+          "4e9ee0e119ae4ab2b68d9c87ee24bb4c"
+        ],
+        "Left": 93.6841989929851,
+        "Top": 306.9681862713345,
+        "Width": 456.52433526563732,
+        "Height": 271.2102956630971,
+        "FontSize": 24.0,
+        "InitialTop": 374.9681862713345,
+        "InitialHeight": 233.2102956630971,
+        "TextblockHeight": 58.0,
+        "Background": "#FF90EE90"
+      },
+      {
+        "Id": "2c3573e568454bb4be9064fb8ed252c2",
+        "Title": "Python script to get the current windows user's login name",
+        "Nodes": [
+          "947a3ae49e5c49399a9710e48715cf8e",
+          "eda0479b600f4159b896a6b537673a96"
+        ],
+        "Left": 284.07562955993217,
+        "Top": 589.4695321268224,
+        "Width": 269.12242026761231,
+        "Height": 242.48859846642426,
+        "FontSize": 24.0,
+        "InitialTop": 685.4695321268224,
+        "InitialHeight": 123.0,
+        "TextblockHeight": 86.0,
+        "Background": "#FF90EE90"
+      },
+      {
+        "Id": "ad64fcbf31e8401e9369d1c924d0b6de",
+        "Title": "Write to desktop for now, can be another location",
+        "Nodes": [
+          "35babd85697241ed8495c8a524c3c4ae"
+        ],
+        "Left": 795.926288695729,
+        "Top": 298.287039838719,
+        "Width": 231.0,
+        "Height": 189.0,
+        "FontSize": 24.0,
+        "InitialTop": 394.287039838719,
+        "InitialHeight": 123.0,
+        "TextblockHeight": 86.0,
+        "Background": "#FF87CEFA"
+      },
+      {
+        "Id": "d7481c11866f483992aa945891d9f0e5",
+        "Title": "Join the run time and username",
+        "Nodes": [
+          "69fd633e269f41dca3d088aa5e0479d0"
+        ],
+        "Left": 678.45877743897859,
+        "Top": 497.14490969644851,
+        "Width": 348.0,
+        "Height": 142.0,
+        "FontSize": 24.0,
+        "InitialTop": 536.14490969644851,
+        "InitialHeight": 133.0,
+        "TextblockHeight": 29.0,
+        "Background": "#FFD3D3D3"
+      },
+      {
+        "Id": "c5148d7b75e04c86b08ba08a35a4c407",
+        "Title": "Write the file",
+        "Nodes": [
+          "932e0044aa02464abe37c6ff1e7aef03"
+        ],
+        "Left": 1084.0674927785528,
+        "Top": 433.69842819959069,
+        "Width": 211.0,
+        "Height": 158.0,
+        "FontSize": 24.0,
+        "InitialTop": 472.69842819959069,
+        "InitialHeight": 149.0,
+        "TextblockHeight": 29.0,
+        "Background": "#FFFFA07A"
+      },
+      {
+        "Id": "41a5a553ac5b44459b1d299012f2c187",
+        "Title": "Information",
+        "Nodes": [
+          "b472baebb5614a028b79ef0ef17dbd58"
+        ],
+        "Left": -164.96838338033626,
+        "Top": 155.38713912026384,
+        "Width": 718.0,
+        "Height": 141.0,
+        "FontSize": 24.0,
+        "InitialTop": 194.38713912026384,
+        "InitialHeight": 132.0,
+        "TextblockHeight": 29.0,
+        "Background": "#FF87CEFA"
+      },
+      {
+        "Id": "eda0479b600f4159b896a6b537673a96",
+        "Title": "this being a python script elimates package dependencies",
+        "Nodes": [],
+        "Left": 294.07562955993217,
+        "Top": 685.4695321268224,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 112.99248693825473,
+    "Y": 45.613707826600347,
+    "Zoom": 0.932709699304894
+  }
+}

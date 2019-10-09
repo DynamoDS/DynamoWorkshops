@@ -1,7 +1,0 @@
-- How Dynamo operates.
-	- Dynamo vs Add-In
-	- Automatic vs Manual
-- Dynamo Settings
-- Package Mapping
-- File Formats
-- Options for Node Creation (python, c#, dyf, etc)
