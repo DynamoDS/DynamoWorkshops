@@ -1,0 +1,276 @@
+{
+  "Uuid": "f6a97afc-593c-4def-9721-9c79f13408ac",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "DynamoPlayer_OOTBPushButton",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Nodes.DSEdgeSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [],
+      "Id": "0294d8e1a30a43ddaf857a3f182f24a5",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "5b9eee60a7a54738b7601100c43f8659",
+          "Name": "Curve",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.SelectEdges, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [],
+      "Id": "53a1e7f28ca5494cba9ff484416555de",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f33bb21523b44820a1e0c2ea63a374a6",
+          "Name": "Curves",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSFaceSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [],
+      "Id": "08e7bed129664837b9b57ea8445e3444",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c91fdee6ca2241eb9ed6339bc0dccdec",
+          "Name": "Surface",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.SelectFaces, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [],
+      "Id": "267ac1255bda42e1bca9a46e153879ec",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "303ebcf2452c45739754120b5a4d3844",
+          "Name": "Surfaces",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [],
+      "Id": "02f084c5302948008eb17e238aa6544e",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "169602b1855547f0919a02f55ebf2207",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementsSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [],
+      "Id": "6472fded6e5945e9b163cdf9f112447f",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9fd95a46955443dcbf2020737771e33d",
+          "Name": "Elements",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSPointOnElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [],
+      "Id": "3ce225f1da754c8ca3bdf2a406503135",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4aed9d005f924dbb93acea5dbd8ebcf3",
+          "Name": "Point",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSUvOnElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [],
+      "Id": "18f61fc3f41643d4bf5fc7abac5bf6f3",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "93f4d30c3eb341b0b4d78d5784720683",
+          "Name": "Point",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    }
+  ],
+  "Connectors": [],
+  "Dependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": false,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.1.0.7500",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Select Edge",
+        "Id": "0294d8e1a30a43ddaf857a3f182f24a5",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 838.57758381401163,
+        "Y": 313.12917682185025
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Select Edges",
+        "Id": "53a1e7f28ca5494cba9ff484416555de",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 838.57758381401163,
+        "Y": 447.49997224253514
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Select Face",
+        "Id": "08e7bed129664837b9b57ea8445e3444",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 838.57758381401163,
+        "Y": 580.50002775746475
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Select Faces",
+        "Id": "267ac1255bda42e1bca9a46e153879ec",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 838.57758381401163,
+        "Y": 710.93111679799892
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Select Model Element",
+        "Id": "02f084c5302948008eb17e238aa6544e",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1092.3102519836509,
+        "Y": 313.12917682185
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Select Model Elements",
+        "Id": "6472fded6e5945e9b163cdf9f112447f",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1092.3102519836509,
+        "Y": 447.49997224253514
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Select Point on Face",
+        "Id": "3ce225f1da754c8ca3bdf2a406503135",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1092.3102519836509,
+        "Y": 580.50002775746475
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Select UV on Face",
+        "Id": "18f61fc3f41643d4bf5fc7abac5bf6f3",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1092.3102519836509,
+        "Y": 710.93111679799892
+      }
+    ],
+    "Annotations": [],
+    "X": -352.07325352113185,
+    "Y": -169.62872650257407,
+    "Zoom": 0.899609261588403
+  }
+}

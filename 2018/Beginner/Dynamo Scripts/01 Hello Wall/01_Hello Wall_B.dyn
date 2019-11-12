@@ -1,0 +1,360 @@
+{
+  "Uuid": "3c9d0464-8643-5ffe-96e5-ab1769818209",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "01_Hello Wall_B",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [
+    {
+      "Id": "cf8d590febc74babb5a9bd77d87cbfad",
+      "Name": "Number",
+      "Type": "number",
+      "Value": "0",
+      "NumberType": "Double",
+      "Description": "Creates a number."
+    },
+    {
+      "Id": "4d8b0a67d34549379fc99d4d91b90bc8",
+      "Name": "Number",
+      "Type": "number",
+      "Value": "0",
+      "NumberType": "Double",
+      "Description": "Creates a number."
+    },
+    {
+      "Id": "bfd9789258bf42d8888740112a4f4099",
+      "Name": "String",
+      "Type": "string",
+      "Value": "Hello ",
+      "Description": "Creates a string."
+    },
+    {
+      "Id": "4abc9516de3d4e83801559e9aeb6bef6",
+      "Name": "String",
+      "Type": "string",
+      "Value": "World",
+      "Description": "Creates a string."
+    }
+  ],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Double",
+      "InputValue": 0.0,
+      "Id": "cf8d590febc74babb5a9bd77d87cbfad",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "7410a8b8ac554f6fb3dac2c2cb386f6b",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Double",
+      "InputValue": 0.0,
+      "Id": "4d8b0a67d34549379fc99d4d91b90bc8",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "2b4de0db3799463d919bf0069fab9fcb",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Point.ByCoordinates@double,double",
+      "Id": "226fc25c91574292b337b89abe52c922",
+      "Inputs": [
+        {
+          "Id": "75b1aedd7f5a488cb00d7d35ef8a70b3",
+          "Name": "x",
+          "Description": "double\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "bd9f00544fb34b4687a1867c41f5840c",
+          "Name": "y",
+          "Description": "double\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "51dab54fadcd4ddb858726560afc4c74",
+          "Name": "Point",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Form a Point in the XY plane given two 2 cartesian coordinates. The Z component is 0.\n\nPoint.ByCoordinates (x: double = 0, y: double = 0): Point"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "2af8d90c4c8c4715af920c2019be863a",
+      "Inputs": [
+        {
+          "Id": "c2701e7663fc4cddb8ce230916bf87d9",
+          "Name": "",
+          "Description": "Node to evaluate.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ce35a3884cdc4e708488b1f35b10656d",
+          "Name": "",
+          "Description": "Watch contents.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualize the output of node."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "+@var[]..[],var[]..[]",
+      "Id": "21615bb8dc664f95a3e29a0a889cb8dc",
+      "Inputs": [
+        {
+          "Id": "85b8b8b2988d4f548852797e236d9ba0",
+          "Name": "x",
+          "Description": "x value.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "136d33b18e914f5e9113481de68be851",
+          "Name": "y",
+          "Description": "y value.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "d53a7875e7964083804fe06ac824afd4",
+          "Name": "var[]..[]",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Adds x to y.\n\n+ (x: var[]..[], y: var[]..[]): var[]..[]"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "Hello ",
+      "Id": "bfd9789258bf42d8888740112a4f4099",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "1dec1bcc3ec54be18a1e4334a8f4381a",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "World",
+      "Id": "4abc9516de3d4e83801559e9aeb6bef6",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ab56119ce7f841f0b0d77ba5d9cd1263",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "7410a8b8ac554f6fb3dac2c2cb386f6b",
+      "End": "bd9f00544fb34b4687a1867c41f5840c",
+      "Id": "fcbd37fb1a964c278e15def277b0c37f"
+    },
+    {
+      "Start": "2b4de0db3799463d919bf0069fab9fcb",
+      "End": "75b1aedd7f5a488cb00d7d35ef8a70b3",
+      "Id": "2f687ad0a36d4b229c4ea2688347b83f"
+    },
+    {
+      "Start": "d53a7875e7964083804fe06ac824afd4",
+      "End": "c2701e7663fc4cddb8ce230916bf87d9",
+      "Id": "ad327d3ea62741f792e7094ea0461afd"
+    },
+    {
+      "Start": "1dec1bcc3ec54be18a1e4334a8f4381a",
+      "End": "85b8b8b2988d4f548852797e236d9ba0",
+      "Id": "8166e7150afa48f2bef737e5c42806ee"
+    },
+    {
+      "Start": "ab56119ce7f841f0b0d77ba5d9cd1263",
+      "End": "136d33b18e914f5e9113481de68be851",
+      "Id": "d2cd839b2a3a4bd180498b2e4915e78e"
+    }
+  ],
+  "Dependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": false,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.0.1.5055",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -16.040325164794922,
+      "EyeY": 19.623208999633789,
+      "EyeZ": 19.695257186889648,
+      "LookX": 12.039064407348633,
+      "LookY": -14.963991165161133,
+      "LookZ": -25.596639633178711,
+      "UpX": 0.11373969912528992,
+      "UpY": 0.96363043785095215,
+      "UpZ": -0.24182562530040741
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Number",
+        "Id": "cf8d590febc74babb5a9bd77d87cbfad",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 158.88448004447,
+        "Y": -30.2647636941997
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Number",
+        "Id": "4d8b0a67d34549379fc99d4d91b90bc8",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 158.88448004447,
+        "Y": -108.44444496406
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Point.ByCoordinates",
+        "Id": "226fc25c91574292b337b89abe52c922",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 392.689832757696,
+        "Y": -111.374551574694
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Watch",
+        "Id": "2af8d90c4c8c4715af920c2019be863a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 498.78139872252,
+        "Y": 157.18554167464
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "+",
+        "Id": "21615bb8dc664f95a3e29a0a889cb8dc",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 299.78139872252,
+        "Y": 155.18554167464
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "String",
+        "Id": "bfd9789258bf42d8888740112a4f4099",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 170.78139872252,
+        "Y": 155.18554167464
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "String",
+        "Id": "4abc9516de3d4e83801559e9aeb6bef6",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 169.78139872252,
+        "Y": 224.18554167464
+      }
+    ],
+    "Annotations": [],
+    "X": -49.796696109433555,
+    "Y": 132.94163394924249,
+    "Zoom": 0.982642311367963
+  }
+}
