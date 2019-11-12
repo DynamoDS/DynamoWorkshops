@@ -24,7 +24,7 @@ This repository houses all of the content for the "Dynamo for BIM Managers" work
   - Presented By: Mostafa, Aaron, Sol
   - Breaking down all the nuances with Dynamo. In this section we will look at how Dynamo operates. This includes everything from the UI to what is "under the hood". DynamoSettings.xml, package locations, file versioning? We got it.
 * [02_TeachingDynamoEffectively](./02_TeachingDynamoEffectively)
-  - Presented By: Mostafa, John 
+  - Presented By: Mostafa
   - Learning Dynamo is only part of the battle. Time to look at how to teach it. In this sections we will look at the best strategies for teaching others to be succesful in their "Dynamo Journey".
 * [03_ShippableScripts](./03_ShippableScripts)
   - Presented By: Mostafa, John 
