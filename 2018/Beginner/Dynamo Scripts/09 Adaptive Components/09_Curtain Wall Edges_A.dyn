@@ -1,0 +1,33 @@
+<Workspace Version="1.3.1.1736" X="-5543.07603301369" Y="-312.416661804256" zoom="1.22040690048026" ScaleFactor="1" Name="Home" Description="" RunType="Manual" RunPeriod="1000" HasRunWithoutCrash="True">
+  <NamespaceResolutionMap />
+  <Elements>
+    <DSRevitNodesUI.FamilyTypes guid="b681a4b5-4615-4e25-b74f-f1f302803bc8" type="DSRevitNodesUI.FamilyTypes" nickname="Family Types" x="4688.91530056168" y="397.608443526453" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false" index="46:Empty System Panel:Empty" />
+    <DSRevitNodesUI.ElementsOfFamilyType guid="a59205fb-7c9d-424e-8795-718d2cc81089" type="DSRevitNodesUI.ElementsOfFamilyType" nickname="All Elements of Family Type" x="4976.0702050163" y="397.61695384164" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="true">
+      <PortInfo index="0" default="False" />
+    </DSRevitNodesUI.ElementsOfFamilyType>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="c8bad81d-77ea-47bc-af9d-4f1ba3065dc0" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="AdaptiveComponent.ByPoints" x="7516.05536440828" y="393.182226208348" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="RevitNodes.dll" function="Revit.Elements.AdaptiveComponent.ByPoints@Autodesk.DesignScript.Geometry.Point[][],Revit.Elements.FamilyType">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <DSRevitNodesUI.FamilyTypes guid="98dffe39-67c8-4686-a8e2-698638ddb42e" type="DSRevitNodesUI.FamilyTypes" nickname="Family Types" x="7217.31062363173" y="448.12620820566" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false" index="-1" />
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="b681a4b5-4615-4e25-b74f-f1f302803bc8" start_index="0" end="a59205fb-7c9d-424e-8795-718d2cc81089" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="98dffe39-67c8-4686-a8e2-698638ddb42e" start_index="0" end="c8bad81d-77ea-47bc-af9d-4f1ba3065dc0" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="39db4e5d-0c9c-42b5-a03c-3f6dfc1b43e6" annotationText="1. Select Irregular Curtain Panels" left="4678.91530056168" top="351.608443526453" width="499.154904454615" height="139.008510315187" fontSize="30" InitialTop="397.608443526453" InitialHeight="123.008510315188" TextblockHeight="36" backgrouund="#FFFFAA45">
+      <Models ModelGuid="b681a4b5-4615-4e25-b74f-f1f302803bc8" />
+      <Models ModelGuid="a59205fb-7c9d-424e-8795-718d2cc81089" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="90edbb37-057c-46d2-b6c2-fa06c87f1985" annotationText="6. Create Adaptive Components" left="7207.31062363173" top="347.182226208348" width="652.744740776554" height="193.943981997312" fontSize="30" InitialTop="393.182226208348" InitialHeight="190" TextblockHeight="36" backgrouund="#FFBB87C6">
+      <Models ModelGuid="c8bad81d-77ea-47bc-af9d-4f1ba3065dc0" />
+      <Models ModelGuid="98dffe39-67c8-4686-a8e2-698638ddb42e" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+  </Annotations>
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

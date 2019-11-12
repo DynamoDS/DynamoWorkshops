@@ -1,0 +1,5 @@
+# CBW227909 - View Extensions for C# Beginners
+Andreas Dieckmann
+John Pierson
+
+This breakout session is specifically targeted at C#-beginners (with some prior programming experience in another language, e.g. Python) and taught by a (relative) C#-beginner who is still very much aware of all the things he had to learn when making his first view extension. It will teach participants extension basics and help participants understand how they can learn how to make simple view extensions. We will look at some code examples to familiarize ourselves with key concepts of view extensions and the Dynamo API and learn how we can create a simple user interface and use it to interact with Dynamo. The DynaMonito view extension will serve as the main learning resource since it contains many smaller, simple tools well suited for learning extension basics.

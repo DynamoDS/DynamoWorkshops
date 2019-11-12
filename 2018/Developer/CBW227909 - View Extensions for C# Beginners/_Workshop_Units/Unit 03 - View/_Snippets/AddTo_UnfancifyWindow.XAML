@@ -1,0 +1,21 @@
+            <CheckBox
+                IsChecked="True"
+                IsEnabled="False"
+                Content="Node to code"/>
+            <Button
+                Content="Unfancify this graph"
+                ToolTip="Click here to unfancify your graph..."/>
+
+
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Unfancify;component/Shared.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+
+
+                Style="{StaticResource UnfancifyCheckBox}"

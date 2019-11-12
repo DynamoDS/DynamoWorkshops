@@ -1,0 +1,8 @@
+            <TextBlock 
+                TextAlignment="Left" 
+                Text="Ignore groups with these prefixes:" />
+            <TextBox 
+                Style="{StaticResource UnfancifyMultilineTextBox}"
+                ToolTip="Enter ignore prefixes for groups here..."
+                IsEnabled="{Binding IsChecked, ElementName=checkUngroup, Mode=OneWay}"
+                Text="{Binding IgnoreGroupPrefixes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>

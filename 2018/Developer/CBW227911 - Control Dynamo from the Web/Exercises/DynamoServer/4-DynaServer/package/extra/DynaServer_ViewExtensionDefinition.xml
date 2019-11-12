@@ -1,0 +1,4 @@
+﻿<ViewExtensionDefinition>
+  <AssemblyPath>..\bin\DynaServerExtensions.dll</AssemblyPath>
+  <TypeName>DynaServer.Extensions.ServerViewExtension</TypeName>
+</ViewExtensionDefinition>
