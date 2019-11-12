@@ -1,4 +1,0 @@
-            <CheckBox
-                Style="{StaticResource UnfancifyCheckBox}"
-                IsChecked="{Binding DoAutoLayout, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                Content="Auto layout (single graph mode only)"/>

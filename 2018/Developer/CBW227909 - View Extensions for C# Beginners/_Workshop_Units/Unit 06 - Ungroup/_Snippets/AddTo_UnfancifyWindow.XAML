@@ -1,5 +1,0 @@
-            <CheckBox
-                Style="{StaticResource UnfancifyCheckBox}"
-                x:Name="checkUngroup"
-                IsChecked="{Binding UngroupAll, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                Content="Ungroup all"/>

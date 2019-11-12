@@ -1,4 +1,0 @@
-﻿<ViewExtensionDefinition>
-  <AssemblyPath>..\bin\Unfancify.dll</AssemblyPath>
-  <TypeName>MyFirstViewExtension.UnfancifyViewExtension</TypeName>
-</ViewExtensionDefinition>
