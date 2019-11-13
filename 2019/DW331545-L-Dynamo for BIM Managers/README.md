@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <img src="./_resources/au_2019.png" alt="AU" width="400">
+  <img src="./!Presentation/_resources/au_2019.png" alt="AU" width="400">
 </h1>
 
 <h4 align="center">#AU2019 <a href="http://dynamobim.org/" target="_blank">Dynamo</a> Workshop - "Dynamo for BIM Managers".</h4>
