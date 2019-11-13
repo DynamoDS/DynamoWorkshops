@@ -21,7 +21,7 @@ This repository houses all of the content for the "Dynamo for BIM Managers" work
   - Presented By: John 
   - This section provides a part of the lab to setup for the rest of the day. The strategies used in this setup can be taken back to your firm as well for your Dynamo usage.
 * [01_UnravelingDynamo](./01_UnravelingDynamo)
-  - Presented By: Mostafa, Aaron, Sol
+  - Presented By: Mostafa, Aaron, John
   - Breaking down all the nuances with Dynamo. In this section we will look at how Dynamo operates. This includes everything from the UI to what is "under the hood". DynamoSettings.xml, package locations, file versioning? We got it.
 * [02_TeachingDynamoEffectively](./02_TeachingDynamoEffectively)
   - Presented By: Mostafa
