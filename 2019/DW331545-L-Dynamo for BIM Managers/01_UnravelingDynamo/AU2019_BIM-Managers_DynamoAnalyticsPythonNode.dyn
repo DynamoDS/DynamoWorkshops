@@ -12,28 +12,7 @@
     {
       "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
       "NodeType": "PythonScriptNode",
-      "Code": "\"\"\"\r\nDynamo graph check and usage tracking.\r\n\"\"\"\r\n\r\n__author__ = 'Dynamo BIM Managers: AU 2019'\r\n__version__ = '1.0'\r\n\r\n\r\nimport clr\r\nimport sys\r\nsys.path.append(r'C:\\Program Files (x86)\\IronPython 2.7\\Lib')\r\nimport System\r\nfrom System import Environment\r\nfrom System.IO import *\r\nimport os\r\nimport csv\r\n\r\n\"\"\"\r\n# Old way (Revit 2019 and down) to access the Dynamo DLLs\r\ndynamoAPIFolder = Directory.CreateDirectory(r'C:\\Program Files\\Dynamo\\Dynamo Core')\r\nlatest = sorted([s.Name for s in dynamoAPIFolder.GetDirectories()])[-1]\r\nclr.AddReferenceToFileAndPath(Path.Combine(dynamoAPIFolder.FullName, latest, 'DynamoCore.dll'))\r\nclr.AddReferenceToFileAndPath(Path.Combine(dynamoAPIFolder.FullName, latest, 'DynamoCoreWpf.dll'))\r\n\"\"\"\r\n\r\n# New way to access Dynamo DLLs as Revit now incorporates Dynamo as a feature\r\nsys.path.append(r'C:\\Program Files\\Autodesk\\Revit 2020\\AddIns\\DynamoForRevit')\r\nsys.path.append(r'C:\\Program Files\\Autodesk\\Revit 2020\\AddIns\\DynamoForRevit\\Revit')\r\n\t\r\nclr.AddReference('DynamoCore.dll')\r\nclr.AddReference('DynamoCoreWpf.dll')\r\nclr.AddReference('DynamoRevitDS.dll')\r\n\r\nfrom Dynamo.ViewModels import *\r\nfrom Dynamo.Models import *\r\nfrom Dynamo.Graph.Workspaces import *\r\n\r\ntry:\r\n\t\r\n\tclr.AddReference(\"RevitServices\")\r\n\timport RevitServices\r\n\tfrom RevitServices.Persistence import DocumentManager\r\n\t\r\n\tdoc = DocumentManager.Instance.CurrentDBDocument\r\n\tuiapp = DocumentManager.Instance.CurrentUIApplication\r\n\trevitApp = uiapp.Application\r\n\t\r\n\tclr.AddReference(\"RevitAPI\")\r\n\timport Autodesk\r\n\tfrom Autodesk.Revit.DB import *\r\n\t\r\n\tif doc.IsWorkshared:\r\n\t    revitDoc = ModelPathUtils.ConvertModelPathToUserVisiblePath(doc.GetWorksharingCentralModelPath())\r\n\telse:\r\n\t    revitDoc = DocumentManager.Instance.CurrentDBDocument.PathName\r\n\t\r\n\tif len(revitDoc) == 0:\r\n\t    revitDoc = 'None'\r\n\t\r\n\tversion = doc.Application.VersionNumber\r\n\t\r\n\tfrom Dynamo.Applications import *\r\n\tapp = DynamoRevit()\r\n\tmodel = app.RevitDynamoModel\r\n\tws = model.CurrentWorkspace\r\n\tdynpath = ws.FileName # Gets the Dynamo File Path\r\n\tdynname = Path.GetFileName(dynpath) # Gets the Dynamo File Name\r\n\t\r\n\tnodeCount = len(ws.Nodes)  # Counts the total amount of Nodes in the Workspace\r\n\twireCount = len(list(ws.Connectors))  # Counts the total amount of Wires in the Workspace\r\n\tlastSave = ws.LastSaved  # Get's the time and date of last Graph Save\r\n\tnotes = list(ws.Notes)  # Captures the Workspace Note objects and casts to a list\r\n\t\r\n\tnotesList,catchList = [],[]\r\n\tfor line in notes:\r\n\t\tcatchList.append(line.Text) # Get's the Text content of each Note\r\n\r\n\tkeys = [\"OFFICE: \", \"AUTHOR NAME: \", \"AUTHOR EMAIL: \", \"TESTED ON: \", \"RATING: \", \"KEYWORDS: \"] # Template data to export\r\n\r\n\tfor k in keys:  # Captures only the relevant Note Data based around a colon split\r\n\t\tfor n in catchList:\r\n\t\t\tif k in n:\r\n\t\t\t\tnotesList.append(n.split(':')[-1])\r\n\t\t\telse:\r\n\t\t\t\tpass\r\n\t\t\t\t\r\n\tdataOffice = notesList[0]\r\n\tdataAuthorName = notesList[1]\r\n\tdataAuthorEmail = notesList[2]\r\n\tdataTestedOn = notesList[3]\r\n\tdataRating = notesList[4]\r\n\tdataKeywords = notesList[5]\r\n\t\r\n\tappName = revitApp.VersionName # Gets the Revit Version \r\n\tappNumber = revitApp.VersionNumber # Gets the Revit Version Number\r\n\tappBuild = revitApp.VersionBuild # Gets the Revit Version Build\r\n\tappLanguage = str(revitApp.Language) # Gets the Revit Language\r\n\t\r\n\t# Getting Physical Memory (RAM) of Machine\r\n\tprocess = os.popen('wmic memorychip get capacity')\r\n\tresult = process.read()\r\n\tprocess.close()\r\n\ttotalMem = 0\r\n\t\r\n\tfor m in result.split(\" \\r\\n\")[1:-1]:\r\n\t    totalMem += int(m)\r\n\t\r\n\tmachineRam = totalMem / (1024**3) # Gets the Machines Ram\r\n\t\r\n\t# Machine data\r\n\tuserName = Environment.UserName # Gets the Username\r\n\tmachineName = Environment.MachineName # Gets the Machines Name\r\n\tmachineOS = Environment.OSVersion # Gets the OS Version\r\n\tmachineProcessor = Environment.ProcessorCount # Gets the Machines Processor Count\r\n\tmachineVersion = Environment.Version # Gets the Machines Version\r\n\t\r\n\tsummary = {\r\n\t\t\t\t\"Machine\" :\r\n\t\t\t\t\t{\r\n\t\t\t\t\t\"Username\" : userName,\r\n\t\t\t\t\t\"Name\" : machineName,\r\n\t\t\t\t\t\"OS\" : machineOS,\r\n\t\t\t\t\t\"Processor Count\" : machineProcessor,\r\n\t\t\t\t\t\"Version\" : machineVersion,\r\n\t\t\t\t\t\"RAM\" : machineRam\r\n\t\t\t\t\t},\r\n\t\t\t\t\"Dynamo\" :\r\n\t\t\t\t\t{\r\n\t\t\t\t\t\"Path\" : dynpath,\r\n\t\t\t\t\t\"Name\" : dynname,\r\n\t\t\t\t\t\"Node Count\" : nodeCount,\r\n\t\t\t\t\t\"Wire Count\" : wireCount,\r\n\t\t\t\t\t\"Last Saved\" : lastSave\r\n\t\t\t\t\t},\r\n\t\t\t\t\"Revit\" :\r\n\t\t\t\t\t{\r\n\t\t\t\t\t\"Version Name\" : appName,\r\n\t\t\t\t\t\"Version Number\" : appNumber,\r\n\t\t\t\t\t\"Version Build\" : appBuild,\r\n\t\t\t\t\t\"Language\" : appLanguage,\r\n\t\t\t\t\t\"Revit Document\" : revitDoc\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\r\n\r\nexcept Exception as ex:\r\n    summary = ex.message\r\n\r\n###############################################################################################################################\r\n########### \t\t\tCHANGE THE FILE PATH AND FILE NAME TO THE SHARED LOCATION \t\t\t\t###############################\r\n###############################################################################################################################\r\ntracker = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), 'DynamoTracker_' + userName + '.csv')\r\n\r\ntrace = [userName, machineName, machineOS, machineProcessor, machineRam,\r\n         machineVersion, appName, appNumber, appBuild, appLanguage, revitDoc, \r\n         dynname, dynpath, lastSave, nodeCount, wireCount, dataOffice, \r\n         dataAuthorName, dataAuthorEmail, dataTestedOn, dataRating, dataKeywords]\r\n\r\nheaders = ['User: Username', 'Machine: Name', 'Machine: Operating System', 'Machine: Processor', \r\n\t\t\t'Machine: RAM', 'Machine: Version','Application: Name', 'Application: Version', \r\n\t\t\t'Application: Build Number', 'Application: Language', 'Application: Document Path', \r\n\t\t\t'Graph: Name', 'Graph: Path', 'Graph: Last Saved', 'Graph: Node Count', \r\n\t\t\t'Graph: Wire Count', 'Info: Office', 'Info: Author Name', 'Info: Author Email', \r\n\t\t\t'Info: Tested On', 'Info: Rating', 'Info: Keywords']\r\n\r\nif os.path.isfile(tracker):\r\n    with open(tracker, 'ab') as f:\r\n        writer = csv.writer(f, dialect='excel')\r\n        writer.writerow(trace)\r\nelse:\r\n    with open(tracker, 'ab') as f:\r\n        writer = csv.writer(f, dialect='excel')\r\n        writer.writerow(headers)\r\n        writer.writerow(trace)\r\ntrace = []\r\n\r\nOUT = summary",
-      "VariableInputPorts": true,
-      "Id": "c485725e25c74e07a2d0501e6eed2d96",
-      "Inputs": [],
-      "Outputs": [
-        {
-          "Id": "9d19839473bc45caabeffe3408ca4062",
-          "Name": "OUT",
-          "Description": "Result of the python script",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Disabled",
-      "Description": "Runs an embedded IronPython script."
-    },
-    {
-      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
-      "NodeType": "PythonScriptNode",
-      "Code": "import sys\r\nsys.path.append(r'Y:\\OneDrive - autodesk\\01 AEC Generative\\Dynamo\\AU 2019')\r\n\r\n# Importing our external Python module\r\nimport dynamoAnalytics\r\n\r\n# Sending out a Summary to the Dynamo Document\r\nOUT = dynamoAnalytics.summary\r\n\r\n",
+      "Code": "import sys\r\nsys.path.append(r'Y:\\OneDrive - autodesk\\01 AEC Generative\\Dynamo\\AU 2019')\r\n\r\n# Importing our external Python module\r\nimport AU2019_BIM-Managers_DynamoAnalytics\r\n\r\n# Sending out a Summary to the Dynamo Document\r\nOUT = AU2019_BIM-Managers_DynamoAnalytics.summary\r\n\r\n",
       "VariableInputPorts": true,
       "Id": "4b5793b4fb5f4e29a8b45bd7496ba837",
       "Inputs": [],
@@ -100,27 +79,17 @@
     "NodeViews": [
       {
         "ShowGeometry": true,
-        "Name": "Python Script : InGraph",
-        "Id": "c485725e25c74e07a2d0501e6eed2d96",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": true,
-        "X": 1223.982030378625,
-        "Y": -261.17939487789937
-      },
-      {
-        "ShowGeometry": true,
-        "Name": "Python Script : External",
+        "Name": "Dynamo Analytics: External Python file",
         "Id": "4b5793b4fb5f4e29a8b45bd7496ba837",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": true,
-        "X": 1222.9786088239753,
-        "Y": 163.41478412425386
+        "X": 1197.0607830626982,
+        "Y": -23.466380575480741
       },
       {
         "ShowGeometry": true,
-        "Name": "Dynamo Analytics",
+        "Name": "Dynamo Analytics: In-Graph",
         "Id": "0131ca9af8984aa092d08eb4816e5d66",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
@@ -132,36 +101,20 @@
     "Annotations": [
       {
         "Id": "d6006c6f597a46529019076c6b5415a2",
-        "Title": "In-Graph Tracker",
+        "Title": "OPTIONS",
         "Nodes": [
-          "c485725e25c74e07a2d0501e6eed2d96",
-          "ce78d046fe0144d2b79aa708dd9beab3"
-        ],
-        "Left": 824.895405535839,
-        "Top": -314.17939487789937,
-        "Width": 564.086624842786,
-        "Height": 406.78506486034939,
-        "FontSize": 36.0,
-        "InitialTop": -261.17939487789937,
-        "InitialHeight": 146.78506486034939,
-        "TextblockHeight": 43.0,
-        "Background": "#FFB9F9E1"
-      },
-      {
-        "Id": "e79cc6cbf3e641d787556fa8d7363fdd",
-        "Title": "External Python Tracker",
-        "Nodes": [
+          "ce78d046fe0144d2b79aa708dd9beab3",
           "4b5793b4fb5f4e29a8b45bd7496ba837",
           "c7db4ab8377b4a7b974140540ca62e6a"
         ],
-        "Left": 824.76073968187882,
-        "Top": 110.41478412425386,
-        "Width": 564.21786914209645,
-        "Height": 348.78506486034939,
-        "FontSize": 36.0,
-        "InitialTop": 163.41478412425386,
+        "Left": 860.36190394600771,
+        "Top": -428.43353107522711,
+        "Width": 643.52020420835242,
+        "Height": 497.96715049974637,
+        "FontSize": 48.0,
+        "InitialTop": -360.43353107522711,
         "InitialHeight": 146.78506486034939,
-        "TextblockHeight": 43.0,
+        "TextblockHeight": 58.0,
         "Background": "#FFB9F9E1"
       },
       {
@@ -268,28 +221,11 @@
         "Background": "#FFA4E1FF"
       },
       {
-        "Id": "f1e4848755b444dfae04872f366ab63e",
-        "Title": "Options",
-        "Nodes": [
-          "c8491ed9a03f45f1a6892a53e89fa726",
-          "e3491a8660384ab1836a47a9a726d9d4"
-        ],
-        "Left": 824.895405535839,
-        "Top": -446.78329033392271,
-        "Width": 564.086624842786,
-        "Height": 116.44974929408943,
-        "FontSize": 48.0,
-        "InitialTop": -378.78329033392271,
-        "InitialHeight": 144.44974929408943,
-        "TextblockHeight": 58.0,
-        "Background": "#FFFFFFFF"
-      },
-      {
         "Id": "ce78d046fe0144d2b79aa708dd9beab3",
-        "Title": "This version of the Python based 'Dynamo Graph Analytics' node is in canvas.\r\n\r\n----------------------------------------------------------\r\n\r\nPros:\r\n1. Ships with every graph it's embedded into.\r\n2. Pushes out analytics to the desktop of the user (or any chosen file path)\r\n3. Instant feedback when making amendments to the Python node\r\n\r\n---------------------------------------------------------\r\n\r\nCons:\r\n1. Hard to maintain as you'll have to update every graph\r\n2. Can become misaligned with other graphs containing this node\r\n3. Updates will not roll out to every graph containing this node automatically. Bespoke updates have to be made",
+        "Title": "IN GRAPH:\r\n\r\nThis version of the Python based Dynamo Graph Analytics is a Python node in canvas.\r\n\r\n----------------------------------------------------------\r\n\r\nPros:\r\n1. Ships with every graph it's embedded into.\r\n2. Pushes out analytics to the desktop of the user (or any chosen file path)\r\n3. Instant feedback when making amendments to the Python node\r\n\r\n---------------------------------------------------------\r\n\r\nCons:\r\n1. Hard to maintain as you'll have to update every graph\r\n2. Can become misaligned with other graphs containing this node\r\n3. Updates will not roll out to every graph containing this node automatically. Bespoke updates have to be made",
         "Nodes": [],
-        "Left": 834.895405535839,
-        "Top": -254.39433001754998,
+        "Left": 870.36190394600771,
+        "Top": -360.43353107522711,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -300,10 +236,10 @@
       },
       {
         "Id": "c7db4ab8377b4a7b974140540ca62e6a",
-        "Title": "This version of the Python based 'Dynamo Graph Analytics' node is in canvas.\r\n\r\n----------------------------------------------------------\r\n\r\nPros:\r\n1. Ships with every graph it's embedded into.\r\n2. Pushes out analytics to a single centralized location of the BIM Managers choosing.\r\n3. Will update every single graph automatically when the single Python file is updated.\r\n\r\n---------------------------------------------------------\r\n\r\nCons:\r\n1. No instant feedback when making amendments.\r\n2. Requires ability to write Python external to Dynamo (i.e in Atom / Sublime)",
+        "Title": "EXTERNAL PYTHON FILE:\r\n\r\nThis version of the Python based Dynamo Graph Analytics node is an external .py file ran through an in-canvas Python node.\r\n\r\n----------------------------------------------------------\r\n\r\nPros:\r\n1. Ships with every graph it's embedded into.\r\n2. Pushes out analytics to a single centralized location of the BIM Managers choosing.\r\n3. Will update every single graph automatically when the single Python file is updated.\r\n\r\n---------------------------------------------------------\r\n\r\nCons:\r\n1. No instant feedback when making amendments.\r\n2. Requires ability to write Python external to Dynamo (i.e in Atom / Sublime)",
         "Nodes": [],
-        "Left": 834.76073968187882,
-        "Top": 170.19984898460325,
+        "Left": 1194.8821081543601,
+        "Top": -360.43353107522711,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -479,38 +415,10 @@
         "InitialHeight": 0.0,
         "TextblockHeight": 0.0,
         "Background": "#FFC1D676"
-      },
-      {
-        "Id": "c8491ed9a03f45f1a6892a53e89fa726",
-        "Title": " ",
-        "Nodes": [],
-        "Left": 834.895405535839,
-        "Top": -378.78329033392271,
-        "Width": 0.0,
-        "Height": 0.0,
-        "FontSize": 36.0,
-        "InitialTop": 0.0,
-        "InitialHeight": 0.0,
-        "TextblockHeight": 0.0,
-        "Background": "#FFC1D676"
-      },
-      {
-        "Id": "e3491a8660384ab1836a47a9a726d9d4",
-        "Title": " ",
-        "Nodes": [],
-        "Left": 1328.982030378625,
-        "Top": -374.33354103983328,
-        "Width": 0.0,
-        "Height": 0.0,
-        "FontSize": 36.0,
-        "InitialTop": 0.0,
-        "InitialHeight": 0.0,
-        "TextblockHeight": 0.0,
-        "Background": "#FFC1D676"
       }
     ],
-    "X": -391.92046116376707,
-    "Y": 421.38689899675904,
-    "Zoom": 0.82619522933933354
+    "X": -307.18885676074831,
+    "Y": 451.68551268168466,
+    "Zoom": 0.733086184582167
   }
 }
