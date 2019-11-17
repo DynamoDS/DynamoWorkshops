@@ -1,4 +1,6 @@
-﻿using DynamoDev.Stats;
+﻿using Dynamo.ViewModels;
+using Dynamo.Wpf.Extensions;
+using DynamoDev.Stats;
 using System;
 using System.Diagnostics;
 using System.Windows;
