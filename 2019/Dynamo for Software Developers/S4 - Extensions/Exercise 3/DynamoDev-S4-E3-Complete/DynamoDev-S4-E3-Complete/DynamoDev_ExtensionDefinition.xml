@@ -1,4 +1,4 @@
 ﻿<ExtensionDefinition>
-  <AssemblyPath>..\bin\DynamoDev.dll</AssemblyPath>
-  <TypeName>DynamoDev.ExtensionExample</TypeName>
+  <AssemblyPath>..\bin\DynamoDevExtension.dll</AssemblyPath>
+  <TypeName>DynamoDev.Extensions.ExtensionExample</TypeName>
 </ExtensionDefinition>
