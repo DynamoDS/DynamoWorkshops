@@ -60,7 +60,7 @@ namespace DynamoDev.Extensions
             };
 
             // and a submenu item that shows the window
-            var inputsMenuItem = new MenuItem { Header = "Show node inputs" };
+            var inputsMenuItem = new MenuItem { Header = "Show Input Stats" };
             inputsMenuItem.Click += (sender, args) => MakeAndShowInputWindow();
 
             // now make a hackathon worthy menu item
@@ -72,8 +72,8 @@ namespace DynamoDev.Extensions
 
             // add all menu items to menu
             this.extensionMenu.Items.Add(sayHelloMenuItem);
-            this.extensionMenu.Items.Add(inputsMenuItem);
             this.extensionMenu.Items.Add(hackMenuItem);
+            this.extensionMenu.Items.Add(inputsMenuItem);
 
             // finally, we need to add our menu to Dynamo
             this.viewLoadedParams.dynamoMenu.Items.Add(this.extensionMenu);

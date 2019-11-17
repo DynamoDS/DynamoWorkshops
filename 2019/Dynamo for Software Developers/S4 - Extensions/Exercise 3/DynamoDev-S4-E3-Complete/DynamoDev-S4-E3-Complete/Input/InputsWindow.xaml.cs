@@ -23,5 +23,10 @@ namespace DynamoDev.Stats
         {
             InitializeComponent();
         }
+
+        private void DataGrid_SourceUpdated(object sender, DataTransferEventArgs e)
+        {
+
+        }
     }
 }

@@ -4,8 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DynamoDev.Stats"
-             mc:Ignorable="d" d:DesignWidth="300"
-            Width="180" Title="Graph Inputs" SizeToContent="Height" BorderThickness="0" Background="White">
+             mc:Ignorable="d"
+            Width="250" Title="Graph Inputs" SizeToContent="Height" BorderThickness="0" Background="White" Height="272.666">
     <StackPanel Name="MainGrid" 
           HorizontalAlignment="Stretch"
           VerticalAlignment="Stretch">
@@ -17,13 +17,11 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*" />
                 <RowDefinition Height="2*" />
-                <RowDefinition Height="2*" />
-                <RowDefinition Height="2*" />
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Grid.Column="0" Margin="0,0,0,0" Padding="5" TextWrapping="Wrap" TextAlignment="Center" Text="Node Count" FontFamily="Arial" FontWeight="Bold" FontSize="14" Background="#8d9ca9" Foreground="#f2f3f4" VerticalAlignment="Center"/>
-            <TextBlock Grid.Row="0" Grid.Column="1" Margin="0,0,0,0" Padding="5" TextWrapping="Wrap" TextAlignment="Center" Text="Connector Count" FontFamily="Arial" FontWeight="Bold" FontSize="14" Background="#8d9ca9" Foreground="#f2f3f4" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="0" Grid.Column="0" Margin="0,0,0,0" Padding="15" TextWrapping="Wrap" TextAlignment="Center" Text="Nodes" FontFamily="Arial" FontWeight="Bold" FontSize="14" Background="#8d9ca9" Foreground="#f2f3f4" VerticalAlignment="Center"/>
             <TextBlock Grid.Row="1" Grid.Column="0" Margin="0,0,0,0" Text="{Binding NodeCount}" Padding="10" TextAlignment="Center" FontFamily="Arial" FontWeight="Bold" FontSize="20"  Background="White" Foreground="#13344e"/>
-            <TextBlock Grid.Row="1" Grid.Column="1" Margin="0,0,0,0" Text="{Binding WireCount}" Padding="10" TextAlignment="Center" FontFamily="Arial" FontWeight="Bold" FontSize="20" Background="White" Foreground="#13344e"/>
+            <TextBlock Grid.Row="0" Grid.Column="1" Margin="0,0,0,0" Padding="15" TextWrapping="Wrap" TextAlignment="Center" Text="Wires" FontFamily="Arial" FontWeight="Bold" FontSize="14" Background="#8d9ca9" Foreground="#f2f3f4" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="1" Grid.Column="1" Margin="0,0,0,0" Text="{Binding WireCount}" Padding="10" TextAlignment="Center" FontFamily="Arial" FontWeight="Bold" FontSize="20"  Background="White" Foreground="#13344e"/>
         </Grid>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -31,10 +29,14 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*" />
-                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Grid.Column="0" Margin="0,0,0,0" Padding="5" TextWrapping="Wrap" TextAlignment="Center" Text="Input Nodes" FontFamily="Arial" FontWeight="Bold" FontSize="14" Background="#8d9ca9" Foreground="#f2f3f4" VerticalAlignment="Center"/>
-            <TextBlock Grid.Row="1" Grid.Column="0" Margin="0,0,0,0" Text="{Binding InputNodes}" Padding="10" TextAlignment="Left" FontFamily="Arial" FontWeight="Bold" FontSize="12" Background="White" Foreground="#13344e"/>
         </Grid>
+        <DataGrid Grid.Row="1" ItemsSource="{Binding InputNodes}" Grid.ColumnSpan="2" Margin="0,0,0.333,-0.333" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Key}" Header="Name"/>
+                <DataGridTextColumn Binding="{Binding Value}" Header="Value"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </StackPanel>
 </Window>

@@ -3,21 +3,25 @@ using Dynamo.Extensions;
 using Dynamo.Graph.Nodes;
 using Dynamo.Wpf.Extensions;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 
 namespace DynamoDev.Stats
 {
     public class InputsViewModel : NotificationObject
     {
         private ViewLoadedParams readyParams;
-        private string nodeCount;
-        private string wireCount;
-        private string inputNodes;
+
+        /// <summary>
+        /// The input node names and their current values
+        /// </summary>
+        public Dictionary<string, string> InputNodes { get; set; }
 
         /// <summary>
         /// Displays the count of the nodes in the workspace that are marked as input
         /// </summary>
-        public string InputNodes { get; set; }
+        public string InputNodesNames { get; set; }
 
         /// <summary>
         /// Displays the count of the nodes in the workspace
@@ -31,6 +35,8 @@ namespace DynamoDev.Stats
 
         public InputsViewModel(ReadyParams p)
         {
+            this.ResetStats();
+
             this.readyParams = p as ViewLoadedParams;
             Recompute();
 
@@ -38,28 +44,42 @@ namespace DynamoDev.Stats
             this.readyParams.CurrentWorkspaceModel.NodeRemoved += OnNodeCountChange;
             this.readyParams.CurrentWorkspaceModel.ConnectorAdded += OnWireCountChange;
             this.readyParams.CurrentWorkspaceModel.ConnectorDeleted += OnWireCountChange;
-            this.readyParams.CurrentWorkspaceModel.NodeAdded += OnNodesUpdate;
-            this.readyParams.CurrentWorkspaceModel.NodeRemoved += OnNodesUpdate;
             this.readyParams.CurrentWorkspaceChanged += OnWorkspaceChange;
+            this.readyParams.CurrentWorkspaceCleared += OnWorkspaceChange;
         }
-
         public void Recompute()
         {
+            this.ResetStats();
             var nodes = this.readyParams.CurrentWorkspaceModel.Nodes
-                .Where(x => x.IsInputNode)
-                .Select(x => x.Name)
+                .Where(x => x.IsSetAsInput)
                 .ToList();
-            this.InputNodes = String.Join(Environment.NewLine, this.InputNodes);
+
+            foreach (var node in nodes)
+            {
+                var value = node.CachedValue?.Data?.ToString() ?? "N/A";
+                if (!this.InputNodes.ContainsKey(node.Name)) this.InputNodes.Add(node.Name, value);
+            }
 
             this.NodeCount = this.readyParams.CurrentWorkspaceModel.Nodes
                 .Count()
                 .ToString();
 
-            this.wireCount = this.readyParams.CurrentWorkspaceModel.Connectors
+            this.WireCount = this.readyParams.CurrentWorkspaceModel.Connectors
                 .Count()
                 .ToString();
 
-            RaisePropertyChanged(nameof(NodeCount), nameof(WireCount), nameof(InputNodes));
+            RaisePropertyChanged(
+                nameof(this.NodeCount),
+                nameof(this.WireCount),
+                nameof(this.InputNodes)
+                );
+        }
+
+        private void ResetStats()
+        {
+            this.InputNodes = new Dictionary<string, string>();
+            this.NodeCount = 0.ToString();
+            this.WireCount = 0.ToString();
         }
 
         #region ChangeProperty events
@@ -69,12 +89,8 @@ namespace DynamoDev.Stats
             Recompute();
         }
 
-        private void OnWireCountChange(Dynamo.Graph.Connectors.ConnectorModel obj)
-        {
-            Recompute();
-        }
 
-        private void OnNodesUpdate(NodeModel obj)
+        private void OnWireCountChange(Dynamo.Graph.Connectors.ConnectorModel obj)
         {
             Recompute();
         }
@@ -92,8 +108,6 @@ namespace DynamoDev.Stats
             this.readyParams.CurrentWorkspaceModel.NodeRemoved -= OnNodeCountChange;
             this.readyParams.CurrentWorkspaceModel.ConnectorAdded += OnWireCountChange;
             this.readyParams.CurrentWorkspaceModel.ConnectorDeleted += OnWireCountChange;
-            this.readyParams.CurrentWorkspaceModel.NodeAdded += OnNodesUpdate;
-            this.readyParams.CurrentWorkspaceModel.NodeRemoved += OnNodesUpdate;
             this.readyParams.CurrentWorkspaceChanged += OnWorkspaceChange;
         }
     }
