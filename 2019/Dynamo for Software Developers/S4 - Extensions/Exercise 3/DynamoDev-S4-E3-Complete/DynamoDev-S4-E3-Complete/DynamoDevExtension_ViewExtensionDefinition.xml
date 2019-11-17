@@ -1,0 +1,4 @@
+﻿<ViewExtensionDefinition>
+  <AssemblyPath>..\bin\DynamoDevExtension.dll</AssemblyPath>
+  <TypeName>DynamoDev.Extensions.ViewExtensionExample</TypeName>
+</ViewExtensionDefinition>
