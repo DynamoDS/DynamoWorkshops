@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Dynamo.Core;
+using Dynamo.Extensions;
+using Dynamo.Graph.Nodes;
+using Dynamo.Wpf.Extensions;
+using System;
 using System.Linq;
 
 namespace DynamoDev.Stats
@@ -42,10 +46,10 @@ namespace DynamoDev.Stats
         public void Recompute()
         {
             var nodes = this.readyParams.CurrentWorkspaceModel.Nodes
-                .Where(x => x.IsInput)
+                .Where(x => x.IsInputNode)
                 .Select(x => x.Name)
                 .ToList();
-            this.InputNodes = nodes.Join(Environment.NewLine);
+            this.InputNodes = String.Join(Environment.NewLine, this.InputNodes);
 
             this.NodeCount = this.readyParams.CurrentWorkspaceModel.Nodes
                 .Count()
