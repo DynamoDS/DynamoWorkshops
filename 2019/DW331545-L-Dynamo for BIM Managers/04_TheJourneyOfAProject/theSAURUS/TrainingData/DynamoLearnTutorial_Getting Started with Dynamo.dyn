@@ -1,0 +1,318 @@
+{
+  "Uuid": "3c9d0464-8643-5ffe-96e5-ab1769818209",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Getting Started with Dynamo",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [
+    {
+      "Id": "a7bf9b4dcef34bbaa98b01ad68f730ba",
+      "Name": "Number",
+      "Type": "number",
+      "Value": "0",
+      "NumberType": "Double",
+      "Description": "Creates a number."
+    }
+  ],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Point.ByCoordinates@double,double,double",
+      "Id": "965d5791318242afa1d94436dc42093b",
+      "Inputs": [
+        {
+          "Id": "d9306af21a20492a99c296cb109af35f",
+          "Name": "x",
+          "Description": "double\nDefault value : 0 (disabled)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f162ba8800254c1ca1d61b22f4b790eb",
+          "Name": "y",
+          "Description": "double\nDefault value : 0 (disabled)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9779623db42f460f931881e98f981255",
+          "Name": "z",
+          "Description": "double\nDefault value : 0 (disabled)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "d246513c6b9f4c02bfc2caf1952e74be",
+          "Name": "Point",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Form a Point given 3 cartesian coordinates\n\nPoint.ByCoordinates (x: double = 0, y: double = 0, z: double = 0): Point"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Double",
+      "InputValue": 0.0,
+      "Id": "a7bf9b4dcef34bbaa98b01ad68f730ba",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "533e032320144711b573c9c443637489",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "ee0446ac73d34ba0a88b80ba1246bc7e",
+      "Inputs": [
+        {
+          "Id": "1ac71b54b485428f8b2ef115304d0d7e",
+          "Name": "",
+          "Description": "Node to evaluate.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "07a915962700421596594045dc5ef68d",
+          "Name": "",
+          "Description": "Watch contents.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualize the output of node."
+    },
+    {
+      "ConcreteType": "Watch3DNodeModels.Watch3D, Watch3DNodeModels",
+      "WatchWidth": 200.0,
+      "WatchHeight": 200.0,
+      "WasExecuted": true,
+      "Camera": {
+        "Name": "c48c837b-85e0-4a68-ae12-41cc6c84e149 Preview",
+        "EyeX": -18.497118620858288,
+        "EyeY": 17.865515812348832,
+        "EyeZ": 4.645951355914538,
+        "LookX": 21.661727138749658,
+        "LookY": -19.368330467356131,
+        "LookZ": -4.0116574772001785,
+        "UpX": 0.47582813659880213,
+        "UpY": 0.875112690654078,
+        "UpZ": -0.088121297522680636
+      },
+      "NodeType": "ExtensionNode",
+      "Id": "c48c837b85e04a68ae1241cc6c84e149",
+      "Inputs": [
+        {
+          "Id": "6f3b81b124ff40849d496a6ea8d3910f",
+          "Name": "",
+          "Description": "Incoming geometry objects.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "7bcf365f618747d68d7766a02535be35",
+          "Name": "",
+          "Description": "Incoming geometry objects.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Shows a dynamic preview of geometry."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "d246513c6b9f4c02bfc2caf1952e74be",
+      "End": "1ac71b54b485428f8b2ef115304d0d7e",
+      "Id": "8d34b2edeb99456083cd1224a31c67d9"
+    },
+    {
+      "Start": "d246513c6b9f4c02bfc2caf1952e74be",
+      "End": "6f3b81b124ff40849d496a6ea8d3910f",
+      "Id": "48f600fb7a5640fc88c28b9f74f4ce1a"
+    },
+    {
+      "Start": "533e032320144711b573c9c443637489",
+      "End": "d9306af21a20492a99c296cb109af35f",
+      "Id": "041afc770ead4b059d74d34057a5c3b7"
+    },
+    {
+      "Start": "533e032320144711b573c9c443637489",
+      "End": "f162ba8800254c1ca1d61b22f4b790eb",
+      "Id": "c2a383ac3c28482fb92583b16a9cbeac"
+    },
+    {
+      "Start": "533e032320144711b573c9c443637489",
+      "End": "9779623db42f460f931881e98f981255",
+      "Id": "cb7e6f4d74d541dfa25f538cf1f92520"
+    }
+  ],
+  "Dependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.0.2.6826",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": 33.135295639361871,
+      "EyeY": 31.121222726728803,
+      "EyeZ": 34.636083573422269,
+      "LookX": -38.135295639361871,
+      "LookY": -20.121222726728803,
+      "LookZ": -42.636083573422269,
+      "UpX": -0.081246729805252951,
+      "UpY": 0.99254615164132276,
+      "UpZ": -0.090835597416178554
+    },
+    "NodeViews": [
+      {
+        "Id": "965d5791318242afa1d94436dc42093b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Point.ByCoordinates",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 1056.96401158586,
+        "Y": 471.016358534037
+      },
+      {
+        "Id": "a7bf9b4dcef34bbaa98b01ad68f730ba",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Name": "Number",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 803.546240145054,
+        "Y": 491.560063533451
+      },
+      {
+        "Id": "ee0446ac73d34ba0a88b80ba1246bc7e",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Watch",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 1292.71205485428,
+        "Y": 470.907330521448
+      },
+      {
+        "Id": "c48c837b85e04a68ae1241cc6c84e149",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Watch 3D",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 1246.7922144543106,
+        "Y": 588.07955511089585
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "51f49e6caa3b45a5a9034590911bb860",
+        "Title": "View -> Background 3D Preview On/Off:\r\n\r\nShow/Hide geometry preview in the Dynamo Workspace",
+        "Nodes": [],
+        "Left": 707.686952143425,
+        "Top": 259.379597223279,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "8e6bc34d90394746995213750cccb3e1",
+        "Title": "Watch Node:\r\nVisualize the output of a node",
+        "Nodes": [],
+        "Left": 1344.87059480836,
+        "Top": 402.069856943095,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "b84bb985303c41209ac43dcf17b3ae64",
+        "Title": "Point By Coordinates:\r\nForm a Point by 3 Cartesian Coordinates",
+        "Nodes": [],
+        "Left": 1002.90501102556,
+        "Top": 400.143175765248,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "e333140566e542e4a6fb92df95573ea6",
+        "Title": "Number:\r\nCreate a Number",
+        "Nodes": [],
+        "Left": 784.425422671468,
+        "Top": 434.59864767813,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": -620.16198823086438,
+    "Y": -156.70208504086202,
+    "Zoom": 1.1575
+  }
+}
