@@ -1,3 +1,8 @@
+We'll be building the `DynamoDev` extension :
+
+![DynamoDev Extenion](DynamoDevExtension.gif)
+
+
 # Exercise 1 - Basic extensions in Dynamo
 
 ## Make an extension
