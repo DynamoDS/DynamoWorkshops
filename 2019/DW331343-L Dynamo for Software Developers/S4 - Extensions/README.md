@@ -5,13 +5,13 @@
 Add `ExtensionExample.cs` file
 
 
-** Implement an interface **
+**Implement an interface**
 
 ```cs
     public class ExtensionExample : IExtension
 ```
 
-** Usings **
+**Usings**
 
 ```cs
 using Dynamo.Extensions;
@@ -23,20 +23,20 @@ using System.Threading.Tasks;
 using System.Windows;
 ```
 
-** Properties **
+**Properties**
 
 ```cs
         private ViewLoadedParams viewLoadedParams;
 ```
 
-** References **
+**References**
 
 ```cs
         private DynamoViewModel dynamoViewModel => this.viewLoadedParams.DynamoWindow.DataContext as DynamoViewModel;
 ```
 (aka The ViewModel hack)
 
-** Message boxes **
+**Message boxes**
 
 ```cs
 MessageBox.Show("Extension is starting up!");
