@@ -33,6 +33,7 @@ namespace DynamoDev.Layout
             {
                 var desk = new Desk();
                 desk.Origin = point;
+                desks.Add(desk);
             }
 
             return new DeskArrangement(desks, surface);

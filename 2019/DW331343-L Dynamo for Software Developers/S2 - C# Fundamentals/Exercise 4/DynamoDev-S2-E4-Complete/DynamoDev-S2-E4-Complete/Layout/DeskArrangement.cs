@@ -18,7 +18,7 @@ namespace DynamoDev.Layout
         /// <summary>
         /// The number of desks in the arrangement.
         /// </summary>
-        public int DeskCount => this.Desks is null ? this.Desks.Count : 0;
+        public int DeskCount => this.Desks is null ? 0 : this.Desks.Count;
 
         /// <summary>
         /// Returns the actual yield of the desk arrangement, 
