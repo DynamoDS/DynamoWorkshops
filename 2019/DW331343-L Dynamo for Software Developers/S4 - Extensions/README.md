@@ -1,3 +1,12 @@
+# Exercise 1 - Basic extensions in Dynamo
+
+
+
+
+# Exercise 2 - 
+
+
+
 # Exercise 3 - UI
 
 NOTE
