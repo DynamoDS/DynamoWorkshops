@@ -1,4 +1,0 @@
-- Using Revit analogies.
-- No such thing as a stupid question. - we were all new once.
-- Maybe show "our Dynamo journeys"
-- Concept of element types, categories, etc.
