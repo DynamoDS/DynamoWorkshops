@@ -1,0 +1,601 @@
+{
+  "Uuid": "3c9d0464-8643-5ffe-96e5-ab1769818209",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "2018-UKDynamoDay_05.1_Animation_End",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [
+    {
+      "Id": "720887f4143045a9b2e24c737aeb7703",
+      "Name": "String",
+      "Type": "string",
+      "Value": "\\\\prlx2\\Marketing\\Lectures\\2018- AULondon-IntermediateDynamoWorkshop\\AU-Dynamo-Workshops\\AU2018-London-Intermediate-Dynamo-Workshop\\05_AnimationStrategiesWithDynamo\\Images\\Doors\\",
+      "Description": "Creates a string."
+    }
+  ],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.FamilyTypes, DSRevitNodesUI",
+      "SelectedIndex": -1,
+      "NodeType": "ExtensionNode",
+      "Id": "06c131bf8f9949299292fd1754f8f993",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "beb44413a4f34d3fa1e34c31f60b58ca",
+          "Name": "Family Type",
+          "Description": "The selected Family Type",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All family types available in the document."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfFamilyType, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "Id": "e019144b883e42f3993f8d7b68188c3a",
+      "Inputs": [
+        {
+          "Id": "e59291690b1a48fc8fd03150a00afba3",
+          "Name": "Family Type",
+          "Description": "The Family Type.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ab093b83ac7a4c4aad650a5873adac19",
+          "Name": "Elements",
+          "Description": "The list of elements matching the query.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Get all elements of the specified family type from the model."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "\\\\prlx2\\Marketing\\Lectures\\2018- AULondon-IntermediateDynamoWorkshop\\AU-Dynamo-Workshops\\AU2018-London-Intermediate-Dynamo-Workshop\\05_AnimationStrategiesWithDynamo\\Images\\Doors\\",
+      "Id": "720887f4143045a9b2e24c737aeb7703",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "34c7bb9debde41e1b673b1059e27d659",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"3D Swing Angle\";\n0;\n90;\n20;",
+      "Id": "6bfeecc135214e39aa0af95379d01a35",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "25c1f166ece4465eb29c5544dbed3c98",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "05b572b4e41245479a094357cd9d9498",
+          "Name": "",
+          "Description": "Value of expression at line 2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1bc0afeb9cc044a9885158877ede2859",
+          "Name": "",
+          "Description": "Value of expression at line 3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "163167b69bd648beba8bf170ee89143e",
+          "Name": "",
+          "Description": "Value of expression at line 4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
+      "FunctionSignature": "58849545-7510-4baf-99da-98c0b1e184fd",
+      "FunctionType": "Graph",
+      "NodeType": "FunctionNode",
+      "Id": "eec5f5c2ad054384a5270fb2939392cb",
+      "Inputs": [
+        {
+          "Id": "6aad5b57f5274bc5a6ce11a1f8b87b31",
+          "Name": "refresh",
+          "Description": "bool\nDefault value : true",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4ed82a808dc549deae07a14ac0769676",
+          "Name": "view",
+          "Description": "return value",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Selects the current document's active view. Supports more view types than the built-in option.\r\nWill be depreciated once the bult in node works with all plan types."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Rhythm.Revit.Tools.Element.AnimateNumericParameter@Revit.Elements.Element[],string,double,double,int,string,Revit.Elements.Element",
+      "Id": "600f34ff91894a71ab9f3345c3d66796",
+      "Inputs": [
+        {
+          "Id": "3f29c21791a54e9dba2878c278f1c4ef",
+          "Name": "element",
+          "Description": "The element to set parameter to.\n\nElement[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "dcbc734614b0483aa33b14ce07690c35",
+          "Name": "parameterName",
+          "Description": "The parameter name.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7c32831a0ed14db990951a8e0b287981",
+          "Name": "startValue",
+          "Description": "The value to set.\n\ndouble",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "da7ce929f5fd42e990be2b81fcad5e89",
+          "Name": "endValue",
+          "Description": "The value to set.\n\ndouble",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "68fd5d8fb8374e3fbfb25469486c2777",
+          "Name": "iterations",
+          "Description": "The number of images.\n\nint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "4694b87679524719ab6f6a6b8220204b",
+          "Name": "directoryPath",
+          "Description": "Where to save the images.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "537dad72a1c74db18f7ef554fd497c38",
+          "Name": "view",
+          "Description": "The view to export from.\n\nElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "50d7e7fe567d4b08970b86ca9c3fdcdb",
+          "Name": "element",
+          "Description": "The element.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Animate a numeric parameter of an element. This will export images of the parameter, then revert the element back to where it was. Also adds text to comments to prevent infinite loops.Clear this comment for subsequent runs. Inspired by the Bad Monkeys Team.\n\nElement.AnimateNumericParameter (element: Element[], parameterName: string, startValue: double, endValue: double, iterations: int, directoryPath: string, view: Element): var[]..[]"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "beb44413a4f34d3fa1e34c31f60b58ca",
+      "End": "e59291690b1a48fc8fd03150a00afba3",
+      "Id": "531bc6a36a8c4a8292e50173199001ee"
+    },
+    {
+      "Start": "ab093b83ac7a4c4aad650a5873adac19",
+      "End": "3f29c21791a54e9dba2878c278f1c4ef",
+      "Id": "f4f8996f2c564c4782bce83795cb9e29"
+    },
+    {
+      "Start": "34c7bb9debde41e1b673b1059e27d659",
+      "End": "4694b87679524719ab6f6a6b8220204b",
+      "Id": "7700951d23f84ace8e024a6ebab19742"
+    },
+    {
+      "Start": "25c1f166ece4465eb29c5544dbed3c98",
+      "End": "dcbc734614b0483aa33b14ce07690c35",
+      "Id": "e0491d3fabde4ebbb286a42333864ee5"
+    },
+    {
+      "Start": "05b572b4e41245479a094357cd9d9498",
+      "End": "7c32831a0ed14db990951a8e0b287981",
+      "Id": "f0a4ab517f974d3385ffd19ac1787058"
+    },
+    {
+      "Start": "1bc0afeb9cc044a9885158877ede2859",
+      "End": "da7ce929f5fd42e990be2b81fcad5e89",
+      "Id": "144e32a530714beca4585a89068fb763"
+    },
+    {
+      "Start": "163167b69bd648beba8bf170ee89143e",
+      "End": "68fd5d8fb8374e3fbfb25469486c2777",
+      "Id": "5e475c60384645338dd666cd4cad0567"
+    },
+    {
+      "Start": "4ed82a808dc549deae07a14ac0769676",
+      "End": "537dad72a1c74db18f7ef554fd497c38",
+      "Id": "7d39ee8d28924f8389347186394bebb5"
+    }
+  ],
+  "Dependencies": [
+    "58849545-7510-4baf-99da-98c0b1e184fd"
+  ],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": false,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.0.2.6826",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Family Types",
+        "Id": "06c131bf8f9949299292fd1754f8f993",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 279.474186557542,
+        "Y": 330.896746230167
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "All Elements of Family Type",
+        "Id": "e019144b883e42f3993f8d7b68188c3a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 685.474186557542,
+        "Y": 330.896746230167
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "String",
+        "Id": "720887f4143045a9b2e24c737aeb7703",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 672.474186557542,
+        "Y": 559.896746230167
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "6bfeecc135214e39aa0af95379d01a35",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 717.474186557542,
+        "Y": 423.896746230167
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Springs.Doc.ActiveView",
+        "Id": "eec5f5c2ad054384a5270fb2939392cb",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 700.749096175047,
+        "Y": 757.793492460334
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Element.AnimateNumericParameter",
+        "Id": "600f34ff91894a71ab9f3345c3d66796",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1026.18274785554,
+        "Y": 379.137915414176
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "b1f767b29ef34a5a8a2a65175af8fdeb",
+        "Title": "Dynamo Workshop- Animate Door Parameters.",
+        "Nodes": [
+          "cee8dd26720c422e8586fbb10b84e4ff",
+          "a7da0e3e76cc451ea603f3061b840841"
+        ],
+        "Left": 267.649925590048,
+        "Top": 33.8724059815156,
+        "Width": 1022.335569802912,
+        "Height": 103.5895989501158,
+        "FontSize": 36.0,
+        "InitialTop": 86.8724059815156,
+        "InitialHeight": 141.059858754912,
+        "TextblockHeight": 43.0,
+        "Background": "#FF48B9FF"
+      },
+      {
+        "Id": "42deb9962e1449b593dc06203b3ac044",
+        "Title": "Control",
+        "Nodes": [
+          "c365d35ffde84d34806eefd90ec728dd"
+        ],
+        "Left": 648.564836235138,
+        "Top": 167.363360580016,
+        "Width": 192.0,
+        "Height": 90.0,
+        "FontSize": 30.0,
+        "InitialTop": 213.363360580016,
+        "InitialHeight": 140.0,
+        "TextblockHeight": 36.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "883c8f4e1cce40858a21bfe9a665f0bd",
+        "Title": "To Revit",
+        "Nodes": [
+          "c31cc8af59a944f587ee4c9810faf47f"
+        ],
+        "Left": 854.815108261326,
+        "Top": 167.363360580016,
+        "Width": 181.0,
+        "Height": 90.0,
+        "FontSize": 30.0,
+        "InitialTop": 213.363360580016,
+        "InitialHeight": 140.0,
+        "TextblockHeight": 36.0,
+        "Background": "#FFFFAA45"
+      },
+      {
+        "Id": "2e418c2a881b4bab9a93e4ac5f131d64",
+        "Title": "Annotation",
+        "Nodes": [
+          "f18fe2170f534a179b507ff5b6848388"
+        ],
+        "Left": 1055.12498048967,
+        "Top": 167.363360580016,
+        "Width": 158.29666666666668,
+        "Height": 90.0,
+        "FontSize": 30.0,
+        "InitialTop": 213.363360580016,
+        "InitialHeight": 140.0,
+        "TextblockHeight": 36.0,
+        "Background": "#FF48B9FF"
+      },
+      {
+        "Id": "c3896cd4bc5d4dc29b6a8c07ac5afabd",
+        "Title": "Input",
+        "Nodes": [
+          "6e7ed838ab034499a31ae4d427d4e588"
+        ],
+        "Left": 457.199951094495,
+        "Top": 167.363360580016,
+        "Width": 177.0,
+        "Height": 90.0,
+        "FontSize": 30.0,
+        "InitialTop": 213.363360580016,
+        "InitialHeight": 140.0,
+        "TextblockHeight": 36.0,
+        "Background": "#FFBB87C6"
+      },
+      {
+        "Id": "3c32119175a049779365d712c18fa6dc",
+        "Title": "Background",
+        "Nodes": [
+          "e46f99feacfa42a6b522e58d80284c01"
+        ],
+        "Left": 269.619962754245,
+        "Top": 167.363360580016,
+        "Width": 168.52333333333334,
+        "Height": 90.0,
+        "FontSize": 30.0,
+        "InitialTop": 213.363360580016,
+        "InitialHeight": 140.0,
+        "TextblockHeight": 36.0,
+        "Background": "#FFB5B5B5"
+      },
+      {
+        "Id": "cf095379ed524581a4a25984d43c8fea",
+        "Title": "Family types and parameter values",
+        "Nodes": [
+          "06c131bf8f9949299292fd1754f8f993",
+          "e019144b883e42f3993f8d7b68188c3a",
+          "720887f4143045a9b2e24c737aeb7703",
+          "6bfeecc135214e39aa0af95379d01a35"
+        ],
+        "Left": 269.474186557542,
+        "Top": 284.896746230167,
+        "Width": 628.0,
+        "Height": 455.99999999999994,
+        "FontSize": 30.0,
+        "InitialTop": 330.896746230167,
+        "InitialHeight": 407.0,
+        "TextblockHeight": 36.0,
+        "Background": "#FFBB87C6"
+      },
+      {
+        "Id": "a7da0e3e76cc451ea603f3061b840841",
+        "Title": "</Title>",
+        "Nodes": [],
+        "Left": 1215.98549539296,
+        "Top": 86.8724059815156,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "cee8dd26720c422e8586fbb10b84e4ff",
+        "Title": "<Title>",
+        "Nodes": [],
+        "Left": 277.649925590048,
+        "Top": 93.4620049316314,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "c365d35ffde84d34806eefd90ec728dd",
+        "Title": "For sliders and other options",
+        "Nodes": [],
+        "Left": 658.564836235138,
+        "Top": 213.363360580016,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "c31cc8af59a944f587ee4c9810faf47f",
+        "Title": "For changes made to Revit",
+        "Nodes": [],
+        "Left": 864.815108261326,
+        "Top": 213.363360580016,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "f18fe2170f534a179b507ff5b6848388",
+        "Title": "For notes and titles",
+        "Nodes": [],
+        "Left": 1065.12498048967,
+        "Top": 213.363360580016,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "6e7ed838ab034499a31ae4d427d4e588",
+        "Title": "For selection and whatnot",
+        "Nodes": [],
+        "Left": 467.199951094495,
+        "Top": 213.363360580016,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "e46f99feacfa42a6b522e58d80284c01",
+        "Title": "For workflow ",
+        "Nodes": [],
+        "Left": 279.619962754245,
+        "Top": 213.363360580016,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 116.875261211117,
+    "Y": 24.3973816480249,
+    "Zoom": 0.784369328044827
+  }
+}

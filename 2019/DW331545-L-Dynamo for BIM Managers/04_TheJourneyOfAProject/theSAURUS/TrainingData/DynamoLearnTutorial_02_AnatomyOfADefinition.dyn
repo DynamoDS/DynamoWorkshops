@@ -1,0 +1,272 @@
+{
+  "Uuid": "3c9d0464-8643-5ffe-96e5-ab1769818209",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "02_AnatomyOfADefinition",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Point.ByCoordinates@double,double,double",
+      "Id": "03a81932b85b4bb1aa51ba6f00b00b47",
+      "Inputs": [
+        {
+          "Id": "208413841b0c49febd28bb9f7b8f406b",
+          "Name": "x",
+          "Description": "double\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "dcb2935564814891991407e8e3abc606",
+          "Name": "y",
+          "Description": "double\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9521900c46054af39674f29c825b2e65",
+          "Name": "z",
+          "Description": "double\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "37d7de1cc57f44a19e05c021a5d1bfff",
+          "Name": "Point",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Form a Point given 3 cartesian coordinates\n\nPoint.ByCoordinates (x: double = 0, y: double = 0, z: double = 0): Point"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Double",
+      "InputValue": 3.0,
+      "Id": "4ae8f7143523405ca49053811036ba4d",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "6b362da393e14070ac9b3338ffdfcff3",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Double",
+      "MaximumValue": 100.0,
+      "MinimumValue": 0.0,
+      "StepValue": 0.1,
+      "InputValue": 43.5,
+      "Id": "0b46055c80f549eb99df9c556a1ed85c",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "edcbed1769ca4d9b9cce12c556aba0d5",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A slider that produces numeric values."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.ReferencePoint.ByPoint@Autodesk.DesignScript.Geometry.Point",
+      "Id": "3b67370158064b80b6a53e2314fbf6fe",
+      "Inputs": [
+        {
+          "Id": "0c919172c6694bc0af584133f0cf7f28",
+          "Name": "pt",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "57251674831e401a82288b3f414dbe55",
+          "Name": "ReferencePoint",
+          "Description": "ReferencePoint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Create a Reference Point from a point.\n\nReferencePoint.ByPoint (pt: Point): ReferencePoint"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "18edf43b851c43b480c1ecb3907cabff",
+      "Inputs": [
+        {
+          "Id": "8540d48034dd44ca8087a1e1730aea6d",
+          "Name": "",
+          "Description": "Node to evaluate.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "dfeb8005a7744d86ade88fa458af40b9",
+          "Name": "",
+          "Description": "Watch contents.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualize the output of node."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "37d7de1cc57f44a19e05c021a5d1bfff",
+      "End": "0c919172c6694bc0af584133f0cf7f28",
+      "Id": "925919cefcab4fd1a3a439c45ef7c7df"
+    },
+    {
+      "Start": "37d7de1cc57f44a19e05c021a5d1bfff",
+      "End": "8540d48034dd44ca8087a1e1730aea6d",
+      "Id": "541d6ba7283e4902b5e16ede1d1ac8fc"
+    },
+    {
+      "Start": "6b362da393e14070ac9b3338ffdfcff3",
+      "End": "208413841b0c49febd28bb9f7b8f406b",
+      "Id": "d01744f71fbb4ea5bea562616428b053"
+    },
+    {
+      "Start": "6b362da393e14070ac9b3338ffdfcff3",
+      "End": "dcb2935564814891991407e8e3abc606",
+      "Id": "9b85831f07fa42d795095dad2cc154e9"
+    },
+    {
+      "Start": "edcbed1769ca4d9b9cce12c556aba0d5",
+      "End": "9521900c46054af39674f29c825b2e65",
+      "Id": "0739b0fda6ff4149ad54249c0b96cfb5"
+    }
+  ],
+  "Dependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.0.2.6826",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Point.ByCoordinates",
+        "Id": "03a81932b85b4bb1aa51ba6f00b00b47",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 647.0,
+        "Y": 379.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Number",
+        "Id": "4ae8f7143523405ca49053811036ba4d",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 523.0,
+        "Y": 342.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Number Slider",
+        "Id": "0b46055c80f549eb99df9c556a1ed85c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 289.0,
+        "Y": 474.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "ReferencePoint.ByPoint",
+        "Id": "3b67370158064b80b6a53e2314fbf6fe",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 871.0,
+        "Y": 446.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Watch",
+        "Id": "18edf43b851c43b480c1ecb3907cabff",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 874.0,
+        "Y": 335.0
+      }
+    ],
+    "Annotations": [],
+    "X": -72.0,
+    "Y": -28.0,
+    "Zoom": 1.0
+  }
+}

@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "AU2019 - Load Packages for DW331545-L Dynamo for BIM Managers"
-#define MyAppVersion "1.0.0"
+#define MyAppVersion "1.0.1"
 #define MyAppPublisher "Autodesk University"
 #define MyAppURL "https://github.com/DynamoDS/DynamoWorkshops"
 

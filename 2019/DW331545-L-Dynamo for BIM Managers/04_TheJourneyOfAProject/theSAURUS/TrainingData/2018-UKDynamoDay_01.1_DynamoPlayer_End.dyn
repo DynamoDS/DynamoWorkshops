@@ -1,0 +1,663 @@
+{
+  "Uuid": "3c9d0464-8643-5ffe-96e5-ab1769818209",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "2018-UKDynamoDay_01.1_DynamoPlayer_End",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "archilabUI.ViewTemplatesUi, archilabUI",
+      "SelectedIndex": 1,
+      "NodeType": "ExtensionNode",
+      "Id": "47cd35af6222464d95a1c2bcd2a2433b",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ee8d14573af042c098277545d02b83f2",
+          "Name": "viewTemplate",
+          "Description": "The selected viewTemplate",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Retrieve all available View Templates (except 3D view based due to Dynamo limitation)."
+    },
+    {
+      "ConcreteType": "archilabUI.ViewTemplatesUi, archilabUI",
+      "SelectedIndex": 4,
+      "NodeType": "ExtensionNode",
+      "Id": "76c44ee08e004e8a9db6dc5ca375812d",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "3f77ad98829f4af68144a377efeeee0d",
+          "Name": "viewTemplate",
+          "Description": "The selected viewTemplate",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Retrieve all available View Templates (except 3D view based due to Dynamo limitation)."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Views.View.AddFilter@Revit.Filter.ParameterFilterElement",
+      "Id": "90b7e17c770146c0b2347db2f7785b19",
+      "Inputs": [
+        {
+          "Id": "a3c2229f8213499caec215b6411c06c7",
+          "Name": "view",
+          "Description": "Revit.Elements.Views.View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a44a2ec14a8b428fbfc7316e1773295d",
+          "Name": "parameterFilter",
+          "Description": "Parameter filter\n\nParameterFilterElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0f1e4db4f31e45efa8673e8b544d4de9",
+          "Name": "view",
+          "Description": "View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Add a Filter to a View. The Filter will be added even if View has a View Template applied, which normally would prevent user from adding Filters without first disabling or modifying the View Template.\n\nView.AddFilter (parameterFilter: ParameterFilterElement): View"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Views.View.Filters",
+      "Id": "4a416482163e4736985a84553d3fec6e",
+      "Inputs": [
+        {
+          "Id": "68cf6f3efc9e4d35a5007d18d66bbc6f",
+          "Name": "view",
+          "Description": "Revit.Elements.Views.View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "61860a84d26841c08c3e2b168748eb03",
+          "Name": "filter",
+          "Description": "View Filters",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get View Filters\n\nView.Filters: ParameterFilterElement[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Views.View.SetFilterOverrides@Revit.Filter.ParameterFilterElement,Revit.Filter.OverrideGraphicSettings,bool",
+      "Id": "f7a396df2a4d480e99e41198bf6594a1",
+      "Inputs": [
+        {
+          "Id": "7f95a868f8354e0091abbea0b3a20ce6",
+          "Name": "view",
+          "Description": "Revit.Elements.Views.View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "cd14bacf631049b59a532035f984cd4a",
+          "Name": "parameterFilter",
+          "Description": "Parameter Filter\n\nParameterFilterElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b0b80455de6c4a6881b7f57f9a3e7322",
+          "Name": "overrides",
+          "Description": "Graphic Overrides Settings\n\nOverrideGraphicSettings",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f22afa82abe34b83818838499b08ee4b",
+          "Name": "hide",
+          "Description": "If True given Filter will be hidden.\n\nbool\nDefault value : false",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a9a1294c99aa47ad912b658dfd98f19d",
+          "Name": "view",
+          "Description": "View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Set Filter overrides. If View doesn't have specified Filter, it will be first added to the View and then its settings will be overriden. This behavior will persist even if View has a View Template applied which normally would prevent user from adding Filters without first disabling or modifying the View Template.\n\nView.SetFilterOverrides (parameterFilter: ParameterFilterElement, overrides: OverrideGraphicSettings, hide: bool = false): View"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Views.View.FilterOverrides@Revit.Filter.ParameterFilterElement",
+      "Id": "b3db37d49e2d4aa5b6d95bc3c5f7ef3f",
+      "Inputs": [
+        {
+          "Id": "533d7f82170b447da0c240113e70e90c",
+          "Name": "view",
+          "Description": "Revit.Elements.Views.View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1d207e720aec4af0870be1c8fdc66fbc",
+          "Name": "parameterFilter",
+          "Description": "ParameterFilterElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "cf6adae035d349e1829b85ab952701c2",
+          "Name": "overrides",
+          "Description": "Filter overrides",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get Filter overrides\n\nView.FilterOverrides (parameterFilter: ParameterFilterElement): OverrideGraphicSettings"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "true;",
+      "Id": "9da3bdc3b8f740a8917d4a20e2049a63",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f5c51b0f10704b93a8e9d97a787dcfc3",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "ee8d14573af042c098277545d02b83f2",
+      "End": "68cf6f3efc9e4d35a5007d18d66bbc6f",
+      "Id": "180430a6466e4181b22f81b05ffc7435"
+    },
+    {
+      "Start": "ee8d14573af042c098277545d02b83f2",
+      "End": "533d7f82170b447da0c240113e70e90c",
+      "Id": "a1ee08cfa411438cb665bb882a43801c"
+    },
+    {
+      "Start": "3f77ad98829f4af68144a377efeeee0d",
+      "End": "a3c2229f8213499caec215b6411c06c7",
+      "Id": "7f489a13b0f24fbf8377228464d506c4"
+    },
+    {
+      "Start": "0f1e4db4f31e45efa8673e8b544d4de9",
+      "End": "7f95a868f8354e0091abbea0b3a20ce6",
+      "Id": "e157c2182e0b49ca8b75ba33b31bd950"
+    },
+    {
+      "Start": "61860a84d26841c08c3e2b168748eb03",
+      "End": "a44a2ec14a8b428fbfc7316e1773295d",
+      "Id": "909f0e0284d2431f8f3146578bd657af"
+    },
+    {
+      "Start": "61860a84d26841c08c3e2b168748eb03",
+      "End": "cd14bacf631049b59a532035f984cd4a",
+      "Id": "420db9a95983487e9ce8a1fb365af763"
+    },
+    {
+      "Start": "61860a84d26841c08c3e2b168748eb03",
+      "End": "1d207e720aec4af0870be1c8fdc66fbc",
+      "Id": "c86e7867e8f94d049c6f47a68c5112c6"
+    },
+    {
+      "Start": "cf6adae035d349e1829b85ab952701c2",
+      "End": "b0b80455de6c4a6881b7f57f9a3e7322",
+      "Id": "dd08773f516940cab41d1b1fde151cd0"
+    },
+    {
+      "Start": "f5c51b0f10704b93a8e9d97a787dcfc3",
+      "End": "f22afa82abe34b83818838499b08ee4b",
+      "Id": "9b5213cec204427ea7893593ba24c3fe"
+    }
+  ],
+  "Dependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": false,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.0.2.6826",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "View Template to Send Filters To",
+        "Id": "47cd35af6222464d95a1c2bcd2a2433b",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 316.986952380313,
+        "Y": 476.526131739936
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "View Template to Get Filters From",
+        "Id": "76c44ee08e004e8a9db6dc5ca375812d",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 319.776418985695,
+        "Y": 198.437469113107
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "View.AddFilter",
+        "Id": "90b7e17c770146c0b2347db2f7785b19",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 970.537024739261,
+        "Y": 186.605833888715
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "View.Filters",
+        "Id": "4a416482163e4736985a84553d3fec6e",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 653.102455736334,
+        "Y": 356.189761881265
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "View.SetFilterOverrides",
+        "Id": "f7a396df2a4d480e99e41198bf6594a1",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1474.54704505114,
+        "Y": 330.617210682493
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "View.FilterOverrides",
+        "Id": "b3db37d49e2d4aa5b6d95bc3c5f7ef3f",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 945.126112759644,
+        "Y": 402.813056379822
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "9da3bdc3b8f740a8917d4a20e2049a63",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1338.4209322915,
+        "Y": 452.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "5fa9ee013c9549b1ab5fd9413baf61b5",
+        "Title": "Dynamo Workshop- Copy Filters between View Templates.",
+        "Nodes": [
+          "547d9bed11d3412494cf833325404604",
+          "99eaff6354744d27b5b07f8d29b94dde"
+        ],
+        "Left": 288.89814150957,
+        "Top": -159.784224998528,
+        "Width": 944.15823303848993,
+        "Height": 103.114379575205,
+        "FontSize": 36.0,
+        "InitialTop": -106.784224998528,
+        "InitialHeight": 146.114379575205,
+        "TextblockHeight": 43.0,
+        "Background": "#FF48B9FF"
+      },
+      {
+        "Id": "acdb8891c8764e03ba9e14fa46ef04a6",
+        "Title": "Annotation",
+        "Nodes": [
+          "215d6ae5277b440a98ca25c0d9e60659"
+        ],
+        "Left": 1076.37319640919,
+        "Top": -26.7684897749378,
+        "Width": 158.29666666666668,
+        "Height": 90.0,
+        "FontSize": 30.0,
+        "InitialTop": 19.2315102250622,
+        "InitialHeight": 140.0,
+        "TextblockHeight": 36.0,
+        "Background": "#FF48B9FF"
+      },
+      {
+        "Id": "9ff921f04d0a4e66a0af8122652c5f50",
+        "Title": "To Revit",
+        "Nodes": [
+          "434e819a71dd4458950629ba6c298fc3"
+        ],
+        "Left": 876.063324180848,
+        "Top": -26.7684897749378,
+        "Width": 181.0,
+        "Height": 90.0,
+        "FontSize": 30.0,
+        "InitialTop": 19.2315102250622,
+        "InitialHeight": 140.0,
+        "TextblockHeight": 36.0,
+        "Background": "#FFFFAA45"
+      },
+      {
+        "Id": "d14c7f0731ed4f89916f98148179a3a5",
+        "Title": "Control",
+        "Nodes": [
+          "32fe5841f5b9429e9c883a4a5c0088d8"
+        ],
+        "Left": 669.81305215466,
+        "Top": -26.7684897749378,
+        "Width": 192.0,
+        "Height": 90.0,
+        "FontSize": 30.0,
+        "InitialTop": 19.2315102250622,
+        "InitialHeight": 140.0,
+        "TextblockHeight": 36.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "2e4dac3a6b3e45eb9ca7ff3e6be20ee3",
+        "Title": "Input",
+        "Nodes": [
+          "0b0f7c74b6fb4b959aff81d3e4caf013"
+        ],
+        "Left": 478.448167014017,
+        "Top": -26.7684897749378,
+        "Width": 177.0,
+        "Height": 90.0,
+        "FontSize": 30.0,
+        "InitialTop": 19.2315102250622,
+        "InitialHeight": 140.0,
+        "TextblockHeight": 36.0,
+        "Background": "#FFBB87C6"
+      },
+      {
+        "Id": "9566f48b40ee41afb2fdf366ee0f7b28",
+        "Title": "Background",
+        "Nodes": [
+          "4059b89d77124f1fb1e94afda81327ba"
+        ],
+        "Left": 290.868178673767,
+        "Top": -26.7684897749378,
+        "Width": 168.52333333333334,
+        "Height": 90.0,
+        "FontSize": 30.0,
+        "InitialTop": 19.2315102250622,
+        "InitialHeight": 140.0,
+        "TextblockHeight": 36.0,
+        "Background": "#FFB5B5B5"
+      },
+      {
+        "Id": "d42a3748a82e404b9b9aced9bebc2073",
+        "Title": "Host View Template",
+        "Nodes": [
+          "76c44ee08e004e8a9db6dc5ca375812d"
+        ],
+        "Left": 309.776418985695,
+        "Top": 116.437469113107,
+        "Width": 260.0,
+        "Height": 175.0,
+        "FontSize": 30.0,
+        "InitialTop": 198.437469113107,
+        "InitialHeight": 123.0,
+        "TextblockHeight": 72.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "105b4f95d60e408f982140148b1e0e34",
+        "Title": "Child View Template",
+        "Nodes": [
+          "47cd35af6222464d95a1c2bcd2a2433b"
+        ],
+        "Left": 306.986952380313,
+        "Top": 394.526131739936,
+        "Width": 243.0,
+        "Height": 175.0,
+        "FontSize": 30.0,
+        "InitialTop": 476.526131739936,
+        "InitialHeight": 123.0,
+        "TextblockHeight": 72.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "17b6b7fabbbf41949c28cb3230ba9004",
+        "Title": "Set the overrides",
+        "Nodes": [
+          "f7a396df2a4d480e99e41198bf6594a1",
+          "9da3bdc3b8f740a8917d4a20e2049a63"
+        ],
+        "Left": 1328.4209322915,
+        "Top": 284.617210682493,
+        "Width": 397.12611275963991,
+        "Height": 260.382789317507,
+        "FontSize": 30.0,
+        "InitialTop": 330.617210682493,
+        "InitialHeight": 244.382789317507,
+        "TextblockHeight": 36.0,
+        "Background": "#FFFFAA45"
+      },
+      {
+        "Id": "ec108a8b2cb9430689984497778a0a7b",
+        "Title": "Get the filters and overrides",
+        "Nodes": [
+          "4a416482163e4736985a84553d3fec6e",
+          "b3db37d49e2d4aa5b6d95bc3c5f7ef3f"
+        ],
+        "Left": 643.102455736334,
+        "Top": 310.189761881265,
+        "Width": 583.02365702331,
+        "Height": 211.62329449855702,
+        "FontSize": 30.0,
+        "InitialTop": 356.189761881265,
+        "InitialHeight": 195.623294498557,
+        "TextblockHeight": 36.0,
+        "Background": "#FFB5B5B5"
+      },
+      {
+        "Id": "74c28f42c22d4642b921eae57004e931",
+        "Title": "Add filter to view",
+        "Nodes": [
+          "90b7e17c770146c0b2347db2f7785b19"
+        ],
+        "Left": 960.537024739261,
+        "Top": 140.605833888715,
+        "Width": 261.0,
+        "Height": 165.0,
+        "FontSize": 30.0,
+        "InitialTop": 186.605833888715,
+        "InitialHeight": 149.0,
+        "TextblockHeight": 36.0,
+        "Background": "#FFFFAA45"
+      },
+      {
+        "Id": "99eaff6354744d27b5b07f8d29b94dde",
+        "Title": "</Title>",
+        "Nodes": [],
+        "Left": 1159.05637454806,
+        "Top": -106.784224998528,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "215d6ae5277b440a98ca25c0d9e60659",
+        "Title": "For notes and titles",
+        "Nodes": [],
+        "Left": 1086.37319640919,
+        "Top": 19.2315102250622,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "434e819a71dd4458950629ba6c298fc3",
+        "Title": "For changes made to Revit",
+        "Nodes": [],
+        "Left": 886.063324180848,
+        "Top": 19.2315102250622,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "32fe5841f5b9429e9c883a4a5c0088d8",
+        "Title": "For sliders and other options",
+        "Nodes": [],
+        "Left": 679.81305215466,
+        "Top": 19.2315102250622,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "0b0f7c74b6fb4b959aff81d3e4caf013",
+        "Title": "For selection and whatnot",
+        "Nodes": [],
+        "Left": 488.448167014017,
+        "Top": 19.2315102250622,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "4059b89d77124f1fb1e94afda81327ba",
+        "Title": "For workflow ",
+        "Nodes": [],
+        "Left": 300.868178673767,
+        "Top": 19.2315102250622,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "547d9bed11d3412494cf833325404604",
+        "Title": "<Title>",
+        "Nodes": [],
+        "Left": 298.89814150957,
+        "Top": -100.669845423323,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 80.30849049911,
+    "Y": 162.07438863915121,
+    "Zoom": 0.576033703577125
+  }
+}
