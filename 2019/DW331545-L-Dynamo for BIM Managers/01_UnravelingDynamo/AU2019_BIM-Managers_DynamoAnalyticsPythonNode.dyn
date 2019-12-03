@@ -1,0 +1,424 @@
+{
+  "Uuid": "782311a2-752d-4924-b43d-2c102453851e",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "AU2019_BIM-Managers_DynamoAnalyticsPythonNode",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "import sys\r\nsys.path.append(r'Y:\\OneDrive - autodesk\\01 AEC Generative\\Dynamo\\AU 2019')\r\n\r\n# Importing our external Python module\r\nimport AU2019_BIM-Managers_DynamoAnalytics\r\n\r\n# Sending out a Summary to the Dynamo Document\r\nOUT = AU2019_BIM-Managers_DynamoAnalytics.summary\r\n\r\n",
+      "VariableInputPorts": true,
+      "Id": "4b5793b4fb5f4e29a8b45bd7496ba837",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9c19634c261c46ffbd4cf6e8d20edc39",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded IronPython script."
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "\"\"\"\nDynamo graph check and usage tracking.\n\"\"\"\n\n__author__ = 'Dynamo BIM Managers: AU 2019'\n__version__ = '1.0'\n\n\nimport clr\nimport sys\nsys.path.append(r'C:\\Program Files (x86)\\IronPython 2.7\\Lib')\nimport System\nfrom System import Environment\nfrom System.IO import *\nimport os\nimport csv\n\n\"\"\"\n# Old way (Revit 2019 and down) to access the Dynamo DLLs\ndynamoAPIFolder = Directory.CreateDirectory(r'C:\\Program Files\\Dynamo\\Dynamo Core')\nlatest = sorted([s.Name for s in dynamoAPIFolder.GetDirectories()])[-1]\nclr.AddReferenceToFileAndPath(Path.Combine(dynamoAPIFolder.FullName, latest, 'DynamoCore.dll'))\nclr.AddReferenceToFileAndPath(Path.Combine(dynamoAPIFolder.FullName, latest, 'DynamoCoreWpf.dll'))\n\"\"\"\n\n# New way to access Dynamo DLLs as Revit now incorporates Dynamo as a feature\nsys.path.append(r'C:\\Program Files\\Autodesk\\Revit 2020\\AddIns\\DynamoForRevit')\nsys.path.append(r'C:\\Program Files\\Autodesk\\Revit 2020\\AddIns\\DynamoForRevit\\Revit')\n    \nclr.AddReference('DynamoCore.dll')\nclr.AddReference('DynamoCoreWpf.dll')\nclr.AddReference('DynamoRevitDS.dll')\n\nfrom Dynamo.ViewModels import *\nfrom Dynamo.Models import *\nfrom Dynamo.Graph.Workspaces import *\n\ntry:\n    \n    clr.AddReference(\"RevitServices\")\n    import RevitServices\n    from RevitServices.Persistence import DocumentManager\n    \n    doc = DocumentManager.Instance.CurrentDBDocument\n    uiapp = DocumentManager.Instance.CurrentUIApplication\n    revitApp = uiapp.Application\n    \n    clr.AddReference(\"RevitAPI\")\n    import Autodesk\n    from Autodesk.Revit.DB import *\n    \n    if doc.IsWorkshared:\n        revitDoc = ModelPathUtils.ConvertModelPathToUserVisiblePath(doc.GetWorksharingCentralModelPath())\n    else:\n        revitDoc = DocumentManager.Instance.CurrentDBDocument.PathName\n    \n    if len(revitDoc) == 0:\n        revitDoc = 'None'\n    \n    version = doc.Application.VersionNumber\n    \n    from Dynamo.Applications import *\n    app = DynamoRevit()\n    model = app.RevitDynamoModel\n    ws = model.CurrentWorkspace\n    dynpath = ws.FileName # Gets the Dynamo File Path\n    dynname = Path.GetFileName(dynpath) # Gets the Dynamo File Name\n    \n    nodeCount = len(ws.Nodes)  # Counts the total amount of Nodes in the Workspace\n    wireCount = len(list(ws.Connectors))  # Counts the total amount of Wires in the Workspace\n    lastSave = ws.LastSaved  # Get's the time and date of last Graph Save\n    notes = list(ws.Notes)  # Captures the Workspace Note objects and casts to a list\n    \n    notesList,catchList = [],[]\n    for line in notes:\n        catchList.append(line.Text) # Get's the Text content of each Note\n\n    keys = [\"OFFICE: \", \"AUTHOR NAME: \", \"AUTHOR EMAIL: \", \"TESTED ON: \", \"RATING: \", \"KEYWORDS: \"] # Template data to export\n\n    for k in keys:  # Captures only the relevant Note Data based around a colon split\n        for n in catchList:\n            if k in n:\n                notesList.append(n.split(':')[-1])\n            else:\n                pass\n                \n    dataOffice = notesList[0]\n    dataAuthorName = notesList[1]\n    dataAuthorEmail = notesList[2]\n    dataTestedOn = notesList[3]\n    dataRating = notesList[4]\n    dataKeywords = notesList[5]\n    \n    appName = revitApp.VersionName # Gets the Revit Version \n    appNumber = revitApp.VersionNumber # Gets the Revit Version Number\n    appBuild = revitApp.VersionBuild # Gets the Revit Version Build\n    appLanguage = str(revitApp.Language) # Gets the Revit Language\n    \n    # Getting Physical Memory (RAM) of Machine\n    process = os.popen('wmic memorychip get capacity')\n    result = process.read()\n    process.close()\n    totalMem = 0\n    \n    for m in result.split(\" \\r\\n\")[1:-1]:\n        totalMem += int(m)\n    \n    machineRam = totalMem / (1024**3) # Gets the Machines Ram\n    \n    # Machine data\n    userName = Environment.UserName # Gets the Username\n    machineName = Environment.MachineName # Gets the Machines Name\n    machineOS = Environment.OSVersion # Gets the OS Version\n    machineProcessor = Environment.ProcessorCount # Gets the Machines Processor Count\n    machineVersion = Environment.Version # Gets the Machines Version\n    \n\n    summary = {\n                \"Machine\" :\n                    {\n                    \"Username\" : userName,\n                    \"Name\" : machineName,\n                    \"OS\" : machineOS,\n                    \"Processor Count\" : machineProcessor,\n                    \"Version\" : machineVersion,\n                    \"RAM\" : machineRam\n                    },\n                \"Dynamo\" :\n                    {\n                    \"Path\" : dynpath,\n                    \"Name\" : dynname,\n                    \"Node Count\" : nodeCount,\n                    \"Wire Count\" : wireCount,\n                    \"Last Saved\" : lastSave\n                    },\n                \"Revit\" :\n                    {\n                    \"Version Name\" : appName,\n                    \"Version Number\" : appNumber,\n                    \"Version Build\" : appBuild,\n                    \"Language\" : appLanguage,\n                    \"Revit Document\" : revitDoc\n                    },\n                \"Graph Notes\" :\n                    {\n                    \"Office\" : dataOffice,\n                    \"Author Name\" : dataAuthorName,\n                    \"Author Email\" : dataAuthorEmail,\n                    \"Last Tested On\" : dataTestedOn,\n                    \"Rating\" : dataRating,\n                    \"Keywords\" : dataKeywords\n                    }\n                }\n\nexcept Exception as ex:\n    summary = ex.message\n\n###############################################################################################################################\n###########             CHANGE THE FILE PATH AND FILE NAME TO THE SHARED LOCATION               ###############################\n###############################################################################################################################\ntracker = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), 'DynamoTracker_' + userName + '.csv')\n\ntrace = [userName, machineName, machineOS, machineProcessor, machineRam,\n         machineVersion, appName, appNumber, appBuild, appLanguage, revitDoc, \n         dynname, dynpath, lastSave, nodeCount, wireCount, dataOffice, \n         dataAuthorName, dataAuthorEmail, dataTestedOn, dataRating, dataKeywords]\n\nheaders = ['User: Username', 'Machine: Name', 'Machine: Operating System', 'Machine: Processor', \n            'Machine: RAM', 'Machine: Version','Application: Name', 'Application: Version', \n            'Application: Build Number', 'Application: Language', 'Application: Document Path', \n            'Graph: Name', 'Graph: Path', 'Graph: Last Saved', 'Graph: Node Count', \n            'Graph: Wire Count', 'Info: Office', 'Info: Author Name', 'Info: Author Email', \n            'Info: Tested On', 'Info: Rating', 'Info: Keywords']\n\nif os.path.isfile(tracker):\n    with open(tracker, 'ab') as f:\n        writer = csv.writer(f, dialect='excel')\n        writer.writerow(trace)\nelse:\n    with open(tracker, 'ab') as f:\n        writer = csv.writer(f, dialect='excel')\n        writer.writerow(headers)\n        writer.writerow(trace)\ntrace = []\n\nOUT = summary",
+      "VariableInputPorts": true,
+      "Id": "0131ca9af8984aa092d08eb4816e5d66",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "2ef790d0b3844805be4a7c2cba485c95",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded IronPython script."
+    }
+  ],
+  "Connectors": [],
+  "Dependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.2.1.5175",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -5.5984228975631808E+17,
+      "EyeY": 6.06495813902678E+17,
+      "EyeZ": 2.7059044004888694E+18,
+      "LookX": 5.5984228975631808E+17,
+      "LookY": -6.06495813902678E+17,
+      "LookZ": -2.7059044004888694E+18,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Dynamo Analytics: External Python file",
+        "Id": "4b5793b4fb5f4e29a8b45bd7496ba837",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": true,
+        "X": 1197.0607830626982,
+        "Y": -23.466380575480741
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Dynamo Analytics: In-Graph",
+        "Id": "0131ca9af8984aa092d08eb4816e5d66",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1548.1698071820902,
+        "Y": 38.091984087612218
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "d6006c6f597a46529019076c6b5415a2",
+        "Title": "OPTIONS",
+        "Nodes": [
+          "ce78d046fe0144d2b79aa708dd9beab3",
+          "4b5793b4fb5f4e29a8b45bd7496ba837",
+          "c7db4ab8377b4a7b974140540ca62e6a"
+        ],
+        "Left": 860.36190394600771,
+        "Top": -428.43353107522711,
+        "Width": 643.52020420835242,
+        "Height": 497.96715049974637,
+        "FontSize": 48.0,
+        "InitialTop": -360.43353107522711,
+        "InitialHeight": 146.78506486034939,
+        "TextblockHeight": 58.0,
+        "Background": "#FFB9F9E1"
+      },
+      {
+        "Id": "519dc7fef5da4fdc9001cfe2b4811284",
+        "Title": "FUNCTION",
+        "Nodes": [
+          "b1ea3a1626d845569ac47d0872f1ef55"
+        ],
+        "Left": 1865.02980385558,
+        "Top": 1.9132439771511542,
+        "Width": 243.0,
+        "Height": 97.0,
+        "FontSize": 36.0,
+        "InitialTop": 54.913243977151154,
+        "InitialHeight": 140.0,
+        "TextblockHeight": 43.0,
+        "Background": "#FFB9F9E1"
+      },
+      {
+        "Id": "4c12846c7f9e49c7802b05cb538b1e00",
+        "Title": "LANDING PAGE",
+        "Nodes": [
+          "0131ca9af8984aa092d08eb4816e5d66",
+          "b0508515706f481a88f095b3e69c97b2",
+          "7fd080a03cf344c6a548ee6d126f20a4",
+          "4ee1a2a80ac24b62b3086a3672b0d581",
+          "4467b9d447bb43a78b7b8dac6a45fec1",
+          "da5be3090a8d41fba2ae52aa9e9bd63f",
+          "730548f0f02a4e25b7b23ce2c70ca614",
+          "5a2f066b71014bbe88ec00a5ddc55371"
+        ],
+        "Left": 1538.1698071820902,
+        "Top": -433.79905638723437,
+        "Width": 310.0,
+        "Height": 564.89104047484659,
+        "FontSize": 48.0,
+        "InitialTop": -308.79905638723437,
+        "InitialHeight": 487.187183038243,
+        "TextblockHeight": 115.0,
+        "Background": "#FFFFFFFF"
+      },
+      {
+        "Id": "e26eba53a0e443bf9761f673448ebf13",
+        "Title": "OUTPUT",
+        "Nodes": [
+          "f44c1c0d2a5b4b12b71c7b091936d0b5"
+        ],
+        "Left": 1865.02980385558,
+        "Top": -107.40402681334488,
+        "Width": 235.0,
+        "Height": 97.0,
+        "FontSize": 36.0,
+        "InitialTop": -54.404026813344885,
+        "InitialHeight": 140.0,
+        "TextblockHeight": 43.0,
+        "Background": "#FFFFC999"
+      },
+      {
+        "Id": "bdf7b04f50aa4871888fda3556b81710",
+        "Title": "SET",
+        "Nodes": [
+          "4e42926f9b3141bf80246c90cd25e3cd"
+        ],
+        "Left": 1865.02980385558,
+        "Top": -326.03856839433695,
+        "Width": 234.0,
+        "Height": 97.0,
+        "FontSize": 36.0,
+        "InitialTop": -273.03856839433695,
+        "InitialHeight": 140.0,
+        "TextblockHeight": 43.0,
+        "Background": "#FFFFB8D8"
+      },
+      {
+        "Id": "9fba0d29165b4536a4fb1ff56eb52d14",
+        "Title": "INPUT",
+        "Nodes": [
+          "7203a33ca845428d8e6d60b706299fd6"
+        ],
+        "Left": 1865.02980385558,
+        "Top": -216.72129760384092,
+        "Width": 184.0,
+        "Height": 97.0,
+        "FontSize": 36.0,
+        "InitialTop": -163.72129760384092,
+        "InitialHeight": 140.0,
+        "TextblockHeight": 43.0,
+        "Background": "#FFD4B6DB"
+      },
+      {
+        "Id": "928f1cae41174c368f643bc25167c93c",
+        "Title": "GET",
+        "Nodes": [
+          "29a1b7376e6947d8ac83d69f6a3314fa"
+        ],
+        "Left": 1865.02980385558,
+        "Top": -435.355839184833,
+        "Width": 250.0,
+        "Height": 97.0,
+        "FontSize": 36.0,
+        "InitialTop": -382.355839184833,
+        "InitialHeight": 140.0,
+        "TextblockHeight": 43.0,
+        "Background": "#FFA4E1FF"
+      },
+      {
+        "Id": "ce78d046fe0144d2b79aa708dd9beab3",
+        "Title": "IN GRAPH:\r\n\r\nThis version of the Python based Dynamo Graph Analytics is a Python node in canvas.\r\n\r\n----------------------------------------------------------\r\n\r\nPros:\r\n1. Ships with every graph it's embedded into.\r\n2. Pushes out analytics to the desktop of the user (or any chosen file path)\r\n3. Instant feedback when making amendments to the Python node\r\n\r\n---------------------------------------------------------\r\n\r\nCons:\r\n1. Hard to maintain as you'll have to update every graph\r\n2. Can become misaligned with other graphs containing this node\r\n3. Updates will not roll out to every graph containing this node automatically. Bespoke updates have to be made",
+        "Nodes": [],
+        "Left": 870.36190394600771,
+        "Top": -360.43353107522711,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "c7db4ab8377b4a7b974140540ca62e6a",
+        "Title": "EXTERNAL PYTHON FILE:\r\n\r\nThis version of the Python based Dynamo Graph Analytics node is an external .py file ran through an in-canvas Python node.\r\n\r\n----------------------------------------------------------\r\n\r\nPros:\r\n1. Ships with every graph it's embedded into.\r\n2. Pushes out analytics to a single centralized location of the BIM Managers choosing.\r\n3. Will update every single graph automatically when the single Python file is updated.\r\n\r\n---------------------------------------------------------\r\n\r\nCons:\r\n1. No instant feedback when making amendments.\r\n2. Requires ability to write Python external to Dynamo (i.e in Atom / Sublime)",
+        "Nodes": [],
+        "Left": 1194.8821081543601,
+        "Top": -360.43353107522711,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "b1ea3a1626d845569ac47d0872f1ef55",
+        "Title": "Data manipulation on dynamo objects",
+        "Nodes": [],
+        "Left": 1875.02980385558,
+        "Top": 54.913243977151154,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "f44c1c0d2a5b4b12b71c7b091936d0b5",
+        "Title": "Object creation in Host | Final output",
+        "Nodes": [],
+        "Left": 1875.02980385558,
+        "Top": -54.404026813344885,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "4e42926f9b3141bf80246c90cd25e3cd",
+        "Title": "Set parameter values of Host objects",
+        "Nodes": [],
+        "Left": 1875.02980385558,
+        "Top": -273.03856839433695,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "b0508515706f481a88f095b3e69c97b2",
+        "Title": "This Python Script creates a CSV file to track the usage of the Dynamo file.",
+        "Nodes": [],
+        "Left": 1548.1698071820902,
+        "Top": -27.315693708994786,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "29a1b7376e6947d8ac83d69f6a3314fa",
+        "Title": "Get parameter values from Host objects",
+        "Nodes": [],
+        "Left": 1875.02980385558,
+        "Top": -382.355839184833,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "7203a33ca845428d8e6d60b706299fd6",
+        "Title": "Data input and preparation",
+        "Nodes": [],
+        "Left": 1875.02980385558,
+        "Top": -163.72129760384092,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "730548f0f02a4e25b7b23ce2c70ca614",
+        "Title": "OFFICE: <Office>",
+        "Nodes": [],
+        "Left": 1548.1698071820902,
+        "Top": -308.79905638723437,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "5a2f066b71014bbe88ec00a5ddc55371",
+        "Title": "AUTHOR NAME: <Author Name>",
+        "Nodes": [],
+        "Left": 1548.1698071820902,
+        "Top": -261.88516260752777,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "4ee1a2a80ac24b62b3086a3672b0d581",
+        "Title": "AUTHOR EMAIL: <Author Email>",
+        "Nodes": [],
+        "Left": 1548.1698071820902,
+        "Top": -214.97126882782118,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "4467b9d447bb43a78b7b8dac6a45fec1",
+        "Title": "TESTED ON: <Tested On>",
+        "Nodes": [],
+        "Left": 1548.1698071820902,
+        "Top": -168.05737504811458,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "da5be3090a8d41fba2ae52aa9e9bd63f",
+        "Title": "RATING: <Rating - i.e 1-5>",
+        "Nodes": [],
+        "Left": 1548.1698071820902,
+        "Top": -121.14348126840798,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "7fd080a03cf344c6a548ee6d126f20a4",
+        "Title": "KEYWORDS: <Keyword 1, Keyword 2, Keywords N>",
+        "Nodes": [],
+        "Left": 1548.1698071820902,
+        "Top": -74.229587488701384,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": -307.18885676074831,
+    "Y": 451.68551268168466,
+    "Zoom": 0.733086184582167
+  }
+}

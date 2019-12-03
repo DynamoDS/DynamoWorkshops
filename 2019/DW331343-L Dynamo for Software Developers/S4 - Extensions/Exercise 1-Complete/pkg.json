@@ -1,0 +1,18 @@
+﻿{
+  "license": "",
+  "file_hash": null,
+  "name": "DevDynamoExtension",
+  "version": "0.0.0",
+  "description": "Sample Dynamo Extension",
+  "group": "",
+  "keywords": [],
+  "dependencies": [],
+  "contents": "",
+  "engine_version": "2.4.0.6186",
+  "engine": "dynamo",
+  "engine_metadata": "",
+  "site_url": "https://github.com/DynamoDS/DynamoWorkshop",
+  "repository_url": "https://github.com/DynamoDS/DynamoWorkshop",
+  "contains_binaries": true,
+  "node_libraries": []
+}

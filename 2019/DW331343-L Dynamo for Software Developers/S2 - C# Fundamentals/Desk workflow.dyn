@@ -1,0 +1,405 @@
+{
+  "Uuid": "a64dc7f6-0546-4f47-85bc-5c49699efc2c",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "Desk workflow",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Rectangle.ByWidthLength@double,double",
+      "Id": "41d1e4234de74b989959682a2e66e127",
+      "Inputs": [
+        {
+          "Id": "cb24c20ece054f2491a1449664b90f78",
+          "Name": "width",
+          "Description": "double\nDefault value : 1",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3450eca9d0134e48801d6d2f67c4ad3c",
+          "Name": "length",
+          "Description": "double\nDefault value : 1",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "686da5153e2741369ded327b27d41697",
+          "Name": "Rectangle",
+          "Description": "Rectangle",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Create a Rectangle centered at the WCS origin in the WCS XY Plane, with specified width (X Axis length), and length (Y Axis length).\n\nRectangle.ByWidthLength (width: double = 1, length: double = 1): Rectangle"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "10;",
+      "Id": "5bf16809b92b4002803c0f0a8bb376dc",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a8a01c50a3a543a9bc02ce19cd85d35c",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Surface.ByPatch@Autodesk.DesignScript.Geometry.Curve",
+      "Id": "6bbf024777804a4f9793e1b6c9f2884c",
+      "Inputs": [
+        {
+          "Id": "8e5d4c97c7914086884bb161515ab0f0",
+          "Name": "closedCurve",
+          "Description": "Curve",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "d48c6f05949c419faab793d1f96d64ad",
+          "Name": "Surface",
+          "Description": "Surface",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Create a Surface by filling in the interior of a closed boundary defined by input Curves.\n\nSurface.ByPatch (closedCurve: Curve): Surface"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DynamoDev.Layout.DeskArchitect.LayoutDesksOnSurface@Autodesk.DesignScript.Geometry.Surface",
+      "Id": "e94507b385734a869b61d7c83597bd6c",
+      "Inputs": [
+        {
+          "Id": "c2c03d2afc674f7c82b65acf31a2faf0",
+          "Name": "surface",
+          "Description": "Surface",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "5349984f727a459a8564b2d5eef429a1",
+          "Name": "DeskArrangement",
+          "Description": "DeskArrangement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "DeskArchitect.LayoutDesksOnSurface (surface: Surface): DeskArrangement"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DynamoDev.Layout.DeskArrangement.CreatedAt",
+      "Id": "b070f9e2962449c8bc8489ca0e31e24c",
+      "Inputs": [
+        {
+          "Id": "0d1f7fb34f7649a59b871e7dee284fc2",
+          "Name": "deskArrangement",
+          "Description": "DynamoDev.Layout.DeskArrangement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c5edd445b4994080bf3e71c8a4f36849",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "DeskArrangement.CreatedAt: var"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DynamoDev.Layout.DeskArrangement.DeskCount",
+      "Id": "db51a38fc6fb4699b61ced67c7ab7cc8",
+      "Inputs": [
+        {
+          "Id": "e181d998ac5b4a7ca5818756f9746369",
+          "Name": "deskArrangement",
+          "Description": "DynamoDev.Layout.DeskArrangement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "27868a24d2b7419c8abb0f528948057b",
+          "Name": "int",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "DeskArrangement.DeskCount: int"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DynamoDev.Layout.DeskArrangement.Desks",
+      "Id": "5a15c787cc7e41f1bf8328e75f449ece",
+      "Inputs": [
+        {
+          "Id": "cb118d5659dd4b4298626df0452c2d03",
+          "Name": "deskArrangement",
+          "Description": "DynamoDev.Layout.DeskArrangement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "421fd380979b48cb9978fd0efe76302b",
+          "Name": "Desk[]",
+          "Description": "Desk[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "DeskArrangement.Desks: Desk[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DynamoDev.Business.Desk.Origin",
+      "Id": "9d6ecacb8d074d188dc363419e9248cb",
+      "Inputs": [
+        {
+          "Id": "49e1e98663aa4824ab9bb9bdce7e4037",
+          "Name": "desk",
+          "Description": "DynamoDev.Business.Desk",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "733e6873fe2d43269ec9f73ec822219b",
+          "Name": "Point",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Desk.Origin: Point"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "686da5153e2741369ded327b27d41697",
+      "End": "8e5d4c97c7914086884bb161515ab0f0",
+      "Id": "49a211c8659b46de8b9e378e4ed3ab16"
+    },
+    {
+      "Start": "a8a01c50a3a543a9bc02ce19cd85d35c",
+      "End": "cb24c20ece054f2491a1449664b90f78",
+      "Id": "cbf1803cea5b47de934ab250e5cebf8f"
+    },
+    {
+      "Start": "a8a01c50a3a543a9bc02ce19cd85d35c",
+      "End": "3450eca9d0134e48801d6d2f67c4ad3c",
+      "Id": "41f3b70c48194829868e133ea8785d9a"
+    },
+    {
+      "Start": "d48c6f05949c419faab793d1f96d64ad",
+      "End": "c2c03d2afc674f7c82b65acf31a2faf0",
+      "Id": "41d8d57b571c4f1b9f85096adb3b348c"
+    },
+    {
+      "Start": "5349984f727a459a8564b2d5eef429a1",
+      "End": "0d1f7fb34f7649a59b871e7dee284fc2",
+      "Id": "6ea7dd8d2aa345479dd3e906c4b2c8d9"
+    },
+    {
+      "Start": "5349984f727a459a8564b2d5eef429a1",
+      "End": "e181d998ac5b4a7ca5818756f9746369",
+      "Id": "58b53477286e4870a85539ef40ef8289"
+    },
+    {
+      "Start": "5349984f727a459a8564b2d5eef429a1",
+      "End": "cb118d5659dd4b4298626df0452c2d03",
+      "Id": "7b5f6c20bedb4e8898e70b5cb02e7c8a"
+    },
+    {
+      "Start": "421fd380979b48cb9978fd0efe76302b",
+      "End": "49e1e98663aa4824ab9bb9bdce7e4037",
+      "Id": "7d9b68e9e13a4788b3a32c600bcaec5b"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.4.1.6394",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Default Camera",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Rectangle.ByWidthLength",
+        "Id": "41d1e4234de74b989959682a2e66e127",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 175.33333333333314,
+        "Y": 263.33333333333331
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "5bf16809b92b4002803c0f0a8bb376dc",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 64.333333333333314,
+        "Y": 268.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Surface.ByPatch",
+        "Id": "6bbf024777804a4f9793e1b6c9f2884c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 437.3333333333332,
+        "Y": 265.99999999999994
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "DeskArchitect.LayoutDesksOnSurface",
+        "Id": "e94507b385734a869b61d7c83597bd6c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 752.66666666666652,
+        "Y": 257.33333333333337
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "DeskArrangement.CreatedAt",
+        "Id": "b070f9e2962449c8bc8489ca0e31e24c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1081.3333333333335,
+        "Y": 306.00000000000006
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "DeskArrangement.DeskCount",
+        "Id": "db51a38fc6fb4699b61ced67c7ab7cc8",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1081.3333333333333,
+        "Y": 398.00000000000006
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "DeskArrangement.Desks",
+        "Id": "5a15c787cc7e41f1bf8328e75f449ece",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1079.9999999999998,
+        "Y": 186.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Desk.Origin",
+        "Id": "9d6ecacb8d074d188dc363419e9248cb",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1419.3333333333333,
+        "Y": 187.33333333333334
+      }
+    ],
+    "Annotations": [],
+    "X": -797.46166666666659,
+    "Y": -8.0783333333333758,
+    "Zoom": 0.8425
+  }
+}
