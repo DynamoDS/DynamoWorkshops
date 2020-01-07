@@ -12,8 +12,7 @@
 </p>
 
 ## Presentation Link
-The presentations for this class is being authored on OneDrive. Once complete, a PDF version will live on this repo.
-<a href ="https://parallaxteam-my.sharepoint.com/:p:/p/johnpierson/ETOsolcazOVHgElIIu6EdXABBl3E0KiIhaBfGx4hFbFrHQ?e=4%3aSQU9kp&at=9">DW331545-L-Dynamo for BIM Managers</a> 
+<a href ="https://github.com/johnpierson/DynamoWorkshops/blob/master/2019/DW331545-L-Dynamo%20for%20BIM%20Managers/DW331545-L-Dynamo%20for%20BIM%20Managers.pdf">DW331545-L-Dynamo for BIM Managers</a> 
 
 ## Repository Information
 This repository houses all of the content for the "Dynamo for BIM Managers" workshop for AU2019.
