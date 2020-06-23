@@ -20,12 +20,12 @@
       {
         // Make sure that no text notes are currently selected
         GeneralUtils.ClearSelection();
-        // Create a whitelist of prefixes for text note content from what was entered by the user in the UI
+        // Create an allowed list of prefixes for text note content from what was entered by the user in the UI
         var textNoteIgnoreList = IgnoreTextNotePrefixes.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
         // Cycle through all text notes in the graph
         foreach (var note in viewModel.Model.CurrentWorkspace.Notes)
         {
-          // Cycle through the whitelist
+          // Cycle through the list
           foreach (var ignoreTerm in textNoteIgnoreList)
           {
             // Identify keepers
