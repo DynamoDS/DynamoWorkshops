@@ -141,12 +141,12 @@ namespace Unfancify
       {
         // Make sure that no groups are currently selected
         GeneralUtils.ClearSelection();
-        // Create a whitelist of prefixes for group titles from what was entered by the user in the UI
+        // Create an allowedlist of prefixes for group titles from what was entered by the user in the UI
         var groupIgnoreList = IgnoreGroupPrefixes.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
         // Cycle through all groups in the graph
         foreach (var anno in viewModel.CurrentSpaceViewModel.Annotations)
         {
-          // Cycle through the whitelist
+          // Cycle through the allowedlist
           foreach (var ignoreTerm in groupIgnoreList)
           {
             // Identify keepers (group and its contents)
